@@ -120,6 +120,7 @@ class Ukz {
   String _soprot4bdr2;
   String _soprot5bdr2;
   //АЗ
+  String _markaaz;
   String _sostojanieaz;
   String _fotoaz;
   String _zamechaz;
@@ -127,14 +128,17 @@ class Ukz {
   String _tok2az;
   String _tok3az;
   String _tok4az;
+  String _tok5az;
   String _soprrast1az;
   String _soprrast2az;
   String _soprrast3az;
   String _soprrast4az;
+  String _soprrast5az;
   //ЗЗ
   String _sostojaniezz;
   String _fotozz;
   String _zamechzz;
+  String _soprrastzz;
   //ВЛки
   String _naznachvl1;
   String _sostojanievl1;
@@ -320,6 +324,7 @@ class Ukz {
     this._soprot4bdr2,
     this._soprot5bdr2,
     //АЗ
+    this._markaaz,
     this._sostojanieaz,
     this._fotoaz,
     this._zamechaz,
@@ -327,12 +332,15 @@ class Ukz {
     this._tok2az,
     this._tok3az,
     this._tok4az,
+    this._tok5az,
     this._soprrast1az,
     this._soprrast2az,
     this._soprrast3az,
     this._soprrast4az,
+    this._soprrast5az,
     //ЗЗ
     this._sostojaniezz,
+    this._soprrastzz,
     this._fotozz,
     this._zamechzz,
     //ВЛки
@@ -522,6 +530,7 @@ class Ukz {
     this._soprot4bdr2,
     this._soprot5bdr2,
     //АЗ
+    this._markaaz,
     this._sostojanieaz,
     this._fotoaz,
     this._zamechaz,
@@ -529,12 +538,15 @@ class Ukz {
     this._tok2az,
     this._tok3az,
     this._tok4az,
+    this._tok5az,
     this._soprrast1az,
     this._soprrast2az,
     this._soprrast3az,
     this._soprrast4az,
+    this._soprrast5az,
     //ЗЗ
     this._sostojaniezz,
+    this._soprrastzz,
     this._fotozz,
     this._zamechzz,
     //ВЛки
@@ -721,17 +733,21 @@ class Ukz {
   String get soprot4bdr2 => _soprot4bdr2;
   String get soprot5bdr2 => _soprot5bdr2;
   String get sostojanieaz => _sostojanieaz;
+  String get markaaz => _markaaz;
   String get fotoaz => _fotoaz;
   String get zamechaz => _zamechaz;
   String get tok1az => _tok1az;
   String get tok2az => _tok2az;
   String get tok3az => _tok3az;
   String get tok4az => _tok4az;
+  String get tok5az => _tok5az;
   String get soprrast1az => _soprrast1az;
   String get soprrast2az => _soprrast2az;
   String get soprrast3az => _soprrast3az;
   String get soprrast4az => _soprrast4az;
+  String get soprrast5az => _soprrast5az;
   String get sostojaniezz => _sostojaniezz;
+  String get soprrastzz => _soprrastzz;
   String get fotozz => _fotozz;
   String get zamechzz => _zamechzz;
   String get naznachvl1 => _naznachvl1;
@@ -1455,6 +1471,12 @@ class Ukz {
     }
   }
 
+  set markaaz(String newmarkaaz) {
+    if ((newmarkaaz?.length ?? 0) <= 255) {
+      _markaaz = newmarkaaz;
+    }
+  }
+
   set sostojanieaz(String newsostojanieaz) {
     if ((newsostojanieaz?.length ?? 0) <= 255) {
       _sostojanieaz = newsostojanieaz;
@@ -1497,6 +1519,12 @@ class Ukz {
     }
   }
 
+  set tok5az(String newtok5az) {
+    if ((newtok5az?.length ?? 0) <= 255) {
+      _tok5az = newtok5az;
+    }
+  }
+
   set soprrast1az(String newsoprrast1az) {
     if ((newsoprrast1az?.length ?? 0) <= 255) {
       _soprrast1az = newsoprrast1az;
@@ -1521,9 +1549,21 @@ class Ukz {
     }
   }
 
+  set soprrast5az(String newsoprrast5az) {
+    if ((newsoprrast5az?.length ?? 0) <= 255) {
+      _soprrast5az = newsoprrast5az;
+    }
+  }
+
   set sostojaniezz(String newsostojaniezz) {
     if ((newsostojaniezz?.length ?? 0) <= 255) {
       _sostojaniezz = newsostojaniezz;
+    }
+  }
+
+  set soprrastzz(String newsoprrastzz) {
+    if ((newsoprrastzz?.length ?? 0) <= 255) {
+      _soprrastzz = newsoprrastzz;
     }
   }
 
@@ -2044,6 +2084,7 @@ class Ukz {
     map['soprot4bdr2'] = _soprot4bdr2;
     map['soprot5bdr2'] = _soprot5bdr2;
 
+    map['markaaz'] = _markaaz;
     map['sostojanieaz'] = _sostojanieaz;
     map['fotoaz'] = _fotoaz;
     map['zamechaz'] = _zamechaz;
@@ -2051,12 +2092,15 @@ class Ukz {
     map['tok2az'] = _tok2az;
     map['tok3az'] = _tok3az;
     map['tok4az'] = _tok4az;
+    map['tok5az'] = _tok5az;
     map['soprrast1az'] = _soprrast1az;
     map['soprrast2az'] = _soprrast2az;
     map['soprrast3az'] = _soprrast3az;
     map['soprrast4az'] = _soprrast4az;
+    map['soprrast5az'] = _soprrast5az;
 
     map['sostojaniezz'] = _sostojaniezz;
+    map['soprrastzz'] = _soprrastzz;
     map['fotozz'] = _fotozz;
     map['zamechzz'] = _zamechzz;
 
@@ -2252,7 +2296,8 @@ class Ukz {
     _soprot4bdr2 = o['soprot4bdr2'];
     _soprot5bdr2 = o['soprot5bdr2'];
 
-    _sostojanieaz = o['sostojanieaz'];
+    _markaaz = o['markaaz'];
+    _markaaz = o['markaaz'];
     _fotoaz = o['fotoaz'];
     _zamechaz = o['zamechaz'];
     _tok1az = o['tok1az'];
@@ -2265,6 +2310,7 @@ class Ukz {
     _soprrast4az = o['soprrast4az'];
 
     _sostojaniezz = o['sostojaniezz'];
+    _soprrastzz = o['soprrastzz'];
     _fotozz = o['fotozz'];
     _zamechzz = o['zamechzz'];
 

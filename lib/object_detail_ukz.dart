@@ -181,15 +181,17 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   FocusNode focusNode150 = FocusNode(); //free
   FocusNode focusNode151 = FocusNode(); //free
 
-  File _image;
+  File _imageskz1;
+  File _imageskz2;
 
-  File _imageDefmet1;
-  File _imageDefmet2;
-  File _imageDefmet3;
+  File _imagekip1;
+  File _imagekip2;
+  File _imagekip3;
+  File _imagekip4;
 
-  File _imageDefInsul1;
-  File _imageDefInsul2;
-  File _imageDefInsul3;
+  File _imagebdr1;
+  File _imagebdr2;
+  File _imageaz;
 
   Color _cardColor = Colors.white;
 
@@ -221,257 +223,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     'В ремонте',
     'В резерве',
   ];
-  final List<String> _dolzhnproizvrab = [
-    'Начальник службы ЗоК',
-    'ВрИО начальника службы ЗоК',
-    'ИО начальника службы ЗоК',
-    'Начальник участка',
-  ];
-  final List<String> _dolzhnpredststroitSK = [
-    'Монтёр ЗПТК',
-    'Электромонтёр по РиОЭ',
-    'Электромонтёр по РиМВЛ',
-    'Электромонтёр по РиМКЛ',
-  ];
-  final List<String> _dolzhnpredststroit = [
-    'Инженер ЛЭС',
-    'Старший мастер',
-    'Мастер',
-    'Инженер КС',
-    'Линейный трубопроводчик',
-    'Оператор МГ',
-    'Обходчик',
-    'Машинист',
-    'Электромонтёр по РиМКЛ',
-    'Инженер по диагностике',
-    'Инженер-диагност',
-  ];
-  final List<String> _dolzhnnachuchastka = [
-    'Начальник службы ЗоК',
-    'ВрИО начальника службы ЗоК',
-    'ИО начальника службы ЗоК',
-    'Начальник ЛЭС',
-    'ВрИО начальника ЛЭС',
-    'ИО начальника ЛЭС',
-    'Начальник ГКС',
-    'ВрИО начальника ГКС',
-    'ИО начальника ГКС',
-  ];
-  final List<String> _dolzhnpredstzakazch = [
-    'Специалист по НК изоляции',
-    'Специалист ИТЦ',
-    'Инженер по ЭХЗ',
-    'Старший мастер',
-    'Мастер',
-    'Инженер по диагностике',
-    'Инженер-диагност',
-    'Дефктоскопист',
-  ];
-  final List<String> _mesto = [
-    'Склон',
-    'Дно оврага',
-    'Пойма',
-    'Равнина',
-    'Проходимое болото',
-    'Непроходимое болото',
-    'Ручей',
-    'Край водоема',
-    'Старица',
-    'Размыв',
-  ];
-  final List<String> _tipgrunt = [
-    'Глина',
-    'Песок',
-    'Суглинок',
-    'Супесь',
-    'Торф',
-    'В воде',
-    'В болоте',
-    'Солончак',
-    'Солонцы',
-    'Чернозем',
-    'Смешанный',
-  ];
-  final List<String> _vlaggrunt = [
-    'Сухой',
-    'Влажный',
-    'Мокрый',
-    'Водянистый',
-  ];
-  final List<String> _zakl = [
-    'Ремонт изоляционного покрытия',
-    'Ремонт дефектов металла и изоляционного покрытия',
-    'Ремонт дефектов металла, сварных соединений и изоляционного покрытия',
-    'Ремонт сварных соединений и изоляционного покрытия',
-  ];
-  final List<String> _osnovanie = [
-    'ВТД (НО в шурфе)',
-    'ВТД (Ремонт трубы)',
-    'ВТД (Ремонт СС)',
-    'ВТД (Замена трубы)',
-    'КО',
-    'КО (Контрольная шурфовка)',
-    'КО (Осмотр изоляции)',
-    'КО (Ремонт дефекта изоляции)',
-    'Техническое диагностирование',
-    'ЭПБ',
-    'Плановые работы',
-    'Обследование тройников и тройниковых соединений',
-    'План шурфов на КС',
-    'Замена тройникового соединения',
-  ];
-  final List<String> _diameter = [
-    '59',
-    '89',
-    '108',
-    '159',
-    '219',
-    '273',
-    '325',
-    '377',
-    '426',
-    '530',
-    '720',
-    '820',
-    '1020',
-    '1220',
-    '1420',
-    'нет данных'
-  ];
-  final List<String> _gradesteel = [
-    'Ст20',
-    '09Г2С',
-    '10Г2ФБЮ',
-    'К60',
-    'К56',
-    'К55',
-    'К54',
-    'К52',
-    '13ХФА',
-    '09ГСФ',
-    '17Г1С',
-    'нет данных'
-  ];
-  final List<String> _metalldamage = ['Да', 'Нет', 'нет данных'];
-  final List<String> _insuldamage = ['Да', 'Нет', 'нет данных'];
-  final List<String> _charmetdamage1 = [
-    'Сплошная коррозия',
-    'Местная коррозия',
-    'КРН',
-    'Механическое повреждение',
-    'нет данных'
-  ];
-  final List<String> _charmetdamage2 = [
-    'Сплошная коррозия',
-    'Местная коррозия',
-    'КРН',
-    'Механическое повреждение',
-    'нет данных'
-  ];
-  final List<String> _charmetdamage3 = [
-    'Сплошная коррозия',
-    'Местная коррозия',
-    'КРН',
-    'Механическое повреждение',
-    'нет данных'
-  ];
-  final List<String> _charinsuldamage1 = [
-    'Отсутствуют',
-    'Включения',
-    'Вмятина',
-    'Гофры',
-    'Дефект ремонта',
-    'Задир',
-    'Несплошности',
-    'Отрыв',
-    'Отслоение',
-    'Охрупчивание',
-    'Порез',
-    'Прокол',
-    'Пропуск',
-    'Расслоения',
-    'Сдир',
-    'Складки',
-    'Трещины',
-    'Утонение',
-    'Царапина',
-  ];
-  final List<String> _charinsuldamage2 = [
-    'Отсутствуют',
-    'Включения',
-    'Вмятина',
-    'Гофры',
-    'Дефект ремонта',
-    'Задир',
-    'Несплошности',
-    'Отрыв',
-    'Отслоение',
-    'Охрупчивание',
-    'Порез',
-    'Прокол',
-    'Пропуск',
-    'Расслоения',
-    'Сдир',
-    'Складки',
-    'Трещины',
-    'Утонение',
-    'Царапина',
-  ];
-  final List<String> _charinsuldamage3 = [
-    'Отсутствуют',
-    'Включения',
-    'Вмятина',
-    'Гофры',
-    'Дефект ремонта',
-    'Задир',
-    'Несплошности',
-    'Отрыв',
-    'Отслоение',
-    'Охрупчивание',
-    'Порез',
-    'Прокол',
-    'Пропуск',
-    'Расслоения',
-    'Сдир',
-    'Складки',
-    'Трещины',
-    'Утонение',
-    'Царапина',
-    'Нет данных',
-  ];
-  final List<String> _typeinsul = [
-    'Заводское',
-    'РАМ',
-    'Мастичное',
-    'Полиэтиленовое',
-    'Ленточное',
-    'Лакокрасочное',
-    'Полиуретановое',
-    'Покрытие отсутствует',
-    'Нет данных',
-  ];
-  final List<String> _insulcharadhes = [
-    'Адгезионный',
-    'Когезионный',
-    'Смешанный',
-    'Нет данных',
-  ];
-  final List<String> _insulcondit = [
-    'Неудовлетворительное',
-    'Удовлетворительное',
-    'Нет данных',
-  ];
-  final List<String> _vlaga = [
-    'Да',
-    'Нет',
-    'Нет данных',
-  ];
-  final List<String> _typeinsulrest = [
-    'Грунтовка + РАМ 1 слой + Литкор НК Газ',
-    'Грунтовка + РАМ 2 слоя + Литкор НК Газ',
-    'БИУРС',
-    'Термоусаживающаяся манжета',
-  ];
 
   TextEditingController idController = TextEditingController();
   TextEditingController titleController = TextEditingController();
@@ -480,7 +231,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   TextEditingController object1Controller = TextEditingController();
   TextEditingController markaskz1Controller = TextEditingController();
   TextEditingController sostojanieskz1Controller = TextEditingController();
-  TextEditingController fotoskz1Controller = TextEditingController();
+  // TextEditingController fotoskz1Controller = TextEditingController();
   TextEditingController zamechskz1Controller = TextEditingController();
   TextEditingController potencialskz1Controller = TextEditingController();
   TextEditingController naprrabskz1Controller = TextEditingController();
@@ -499,7 +250,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   TextEditingController object2Controller = TextEditingController();
   TextEditingController markaskz2Controller = TextEditingController();
   TextEditingController sostojanieskz2Controller = TextEditingController();
-  TextEditingController fotoskz2Controller = TextEditingController();
+  // TextEditingController fotoskz2Controller = TextEditingController();
   TextEditingController zamechskz2Controller = TextEditingController();
   TextEditingController potencialskz2Controller = TextEditingController();
   TextEditingController naprrabskz2Controller = TextEditingController();
@@ -526,10 +277,10 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   TextEditingController sostojaniekip2Controller = TextEditingController();
   TextEditingController sostojaniekip3Controller = TextEditingController();
   TextEditingController sostojaniekip4Controller = TextEditingController();
-  TextEditingController fotokip1Controller = TextEditingController();
-  TextEditingController fotokip2Controller = TextEditingController();
-  TextEditingController fotokip3Controller = TextEditingController();
-  TextEditingController fotokip4Controller = TextEditingController();
+  // TextEditingController fotokip1Controller = TextEditingController();
+  // TextEditingController fotokip2Controller = TextEditingController();
+  // TextEditingController fotokip3Controller = TextEditingController();
+  // TextEditingController fotokip4Controller = TextEditingController();
   TextEditingController zamechkip1Controller = TextEditingController();
   TextEditingController zamechkip2Controller = TextEditingController();
   TextEditingController zamechkip3Controller = TextEditingController();
@@ -561,7 +312,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
 
   TextEditingController bdr1Controller = TextEditingController();
   TextEditingController sostojaniebdr1Controller = TextEditingController();
-  TextEditingController fotobdr1Controller = TextEditingController();
+  // TextEditingController fotobdr1Controller = TextEditingController();
   TextEditingController zamechbdr1Controller = TextEditingController();
   TextEditingController tok1bdr1Controller = TextEditingController();
   TextEditingController tok2bdr1Controller = TextEditingController();
@@ -575,7 +326,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   TextEditingController soprot5bdr1Controller = TextEditingController();
   TextEditingController bdr2Controller = TextEditingController();
   TextEditingController sostojaniebdr2Controller = TextEditingController();
-  TextEditingController fotobdr2Controller = TextEditingController();
+  // TextEditingController fotobdr2Controller = TextEditingController();
   TextEditingController zamechbdr2Controller = TextEditingController();
   TextEditingController tok1bdr2Controller = TextEditingController();
   TextEditingController tok2bdr2Controller = TextEditingController();
@@ -588,25 +339,29 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   TextEditingController soprot4bdr2Controller = TextEditingController();
   TextEditingController soprot5bdr2Controller = TextEditingController();
 
+  TextEditingController markaazController = TextEditingController();
   TextEditingController sostojanieazController = TextEditingController();
-  TextEditingController fotoazController = TextEditingController();
+  // TextEditingController fotoazController = TextEditingController();
   TextEditingController zamechazController = TextEditingController();
   TextEditingController tok1azController = TextEditingController();
   TextEditingController tok2azController = TextEditingController();
   TextEditingController tok3azController = TextEditingController();
   TextEditingController tok4azController = TextEditingController();
+  TextEditingController tok5azController = TextEditingController();
   TextEditingController soprrast1azController = TextEditingController();
   TextEditingController soprrast2azController = TextEditingController();
   TextEditingController soprrast3azController = TextEditingController();
   TextEditingController soprrast4azController = TextEditingController();
+  TextEditingController soprrast5azController = TextEditingController();
 
   TextEditingController sostojaniezzController = TextEditingController();
-  TextEditingController fotozzController = TextEditingController();
+  TextEditingController soprrastzzController = TextEditingController();
+  // TextEditingController fotozzController = TextEditingController();
   TextEditingController zamechzzController = TextEditingController();
 
   TextEditingController naznachvl1Controller = TextEditingController();
   TextEditingController sostojanievl1Controller = TextEditingController();
-  TextEditingController fotovl1Controller = TextEditingController();
+  // TextEditingController fotovl1Controller = TextEditingController();
   TextEditingController zamechvl1Controller = TextEditingController();
   TextEditingController tipoporvl1Controller = TextEditingController();
   TextEditingController kolvooporvl1Controller = TextEditingController();
@@ -616,7 +371,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   TextEditingController markaizolvl1Controller = TextEditingController();
   TextEditingController naznachvl2Controller = TextEditingController();
   TextEditingController sostojanievl2Controller = TextEditingController();
-  TextEditingController fotovl2Controller = TextEditingController();
+  // TextEditingController fotovl2Controller = TextEditingController();
   TextEditingController zamechvl2Controller = TextEditingController();
   TextEditingController tipoporvl2Controller = TextEditingController();
   TextEditingController kolvooporvl2Controller = TextEditingController();
@@ -626,7 +381,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   TextEditingController markaizolvl2Controller = TextEditingController();
   TextEditingController naznachvl3Controller = TextEditingController();
   TextEditingController sostojanievl3Controller = TextEditingController();
-  TextEditingController fotovl3Controller = TextEditingController();
+  // TextEditingController fotovl3Controller = TextEditingController();
   TextEditingController zamechvl3Controller = TextEditingController();
   TextEditingController tipoporvl3Controller = TextEditingController();
   TextEditingController kolvooporvl3Controller = TextEditingController();
@@ -637,21 +392,21 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
 
   TextEditingController naznachkl1Controller = TextEditingController();
   TextEditingController sostojaniekl1Controller = TextEditingController();
-  TextEditingController fotokl1Controller = TextEditingController();
+  // TextEditingController fotokl1Controller = TextEditingController();
   TextEditingController zamechkl1Controller = TextEditingController();
   TextEditingController markakabelkl1Controller = TextEditingController();
   TextEditingController dlinakl1Controller = TextEditingController();
   TextEditingController soprotkl1Controller = TextEditingController();
   TextEditingController naznachkl2Controller = TextEditingController();
   TextEditingController sostojaniekl2Controller = TextEditingController();
-  TextEditingController fotokl2Controller = TextEditingController();
+  // TextEditingController fotokl2Controller = TextEditingController();
   TextEditingController zamechkl2Controller = TextEditingController();
   TextEditingController markakabelkl2Controller = TextEditingController();
   TextEditingController dlinakl2Controller = TextEditingController();
   TextEditingController soprotkl2Controller = TextEditingController();
   TextEditingController naznachkl3Controller = TextEditingController();
   TextEditingController sostojaniekl3Controller = TextEditingController();
-  TextEditingController fotokl3Controller = TextEditingController();
+  // TextEditingController fotokl3Controller = TextEditingController();
   TextEditingController zamechkl3Controller = TextEditingController();
   TextEditingController markakabelkl3Controller = TextEditingController();
   TextEditingController dlinakl3Controller = TextEditingController();
@@ -659,7 +414,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
 
   TextEditingController tipktpController = TextEditingController();
   TextEditingController sostojaniektpController = TextEditingController();
-  TextEditingController fotoktpController = TextEditingController();
+  // TextEditingController fotoktpController = TextEditingController();
   TextEditingController markatrrController = TextEditingController();
 
   TextEditingController potrmoschnostController = TextEditingController();
@@ -696,7 +451,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     object1Controller.text = object.object1 ?? '';
     markaskz1Controller.text = object.markaskz1 ?? '';
     sostojanieskz1Controller.text = object.sostojanieskz1 ?? '';
-    fotoskz1Controller.text = object.fotoskz1 ?? '';
+    // fotoskz1Controller.text = object.fotoskz1 ?? '';
     zamechskz1Controller.text = object.zamechskz1 ?? '';
     potencialskz1Controller.text = object.potencialskz1 ?? '';
     naprrabskz1Controller.text = object.naprrabskz1 ?? '';
@@ -715,7 +470,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     object2Controller.text = object.object2 ?? '';
     markaskz2Controller.text = object.markaskz2 ?? '';
     sostojanieskz2Controller.text = object.sostojanieskz2 ?? '';
-    fotoskz2Controller.text = object.fotoskz2 ?? '';
+    // fotoskz2Controller.text = object.fotoskz2 ?? '';
     zamechskz2Controller.text = object.zamechskz2 ?? '';
     potencialskz2Controller.text = object.potencialskz2 ?? '';
     naprrabskz2Controller.text = object.naprrabskz2 ?? '';
@@ -742,10 +497,10 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     sostojaniekip2Controller.text = object.sostojaniekip2 ?? '';
     sostojaniekip3Controller.text = object.sostojaniekip3 ?? '';
     sostojaniekip4Controller.text = object.sostojaniekip4 ?? '';
-    fotokip1Controller.text = object.fotokip1 ?? '';
-    fotokip2Controller.text = object.fotokip2 ?? '';
-    fotokip3Controller.text = object.fotokip3 ?? '';
-    fotokip4Controller.text = object.fotokip4 ?? '';
+    // fotokip1Controller.text = object.fotokip1 ?? '';
+    // fotokip2Controller.text = object.fotokip2 ?? '';
+    // fotokip3Controller.text = object.fotokip3 ?? '';
+    // fotokip4Controller.text = object.fotokip4 ?? '';
     zamechkip1Controller.text = object.zamechkip1 ?? '';
     zamechkip2Controller.text = object.zamechkip2 ?? '';
     zamechkip3Controller.text = object.zamechkip3 ?? '';
@@ -777,7 +532,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
 
     bdr1Controller.text = object.bdr1 ?? '';
     sostojaniebdr1Controller.text = object.sostojaniebdr1 ?? '';
-    fotobdr1Controller.text = object.fotobdr1 ?? '';
+    // fotobdr1Controller.text = object.fotobdr1 ?? '';
     zamechbdr1Controller.text = object.zamechbdr1 ?? '';
     tok1bdr1Controller.text = object.tok1bdr1 ?? '';
     tok2bdr1Controller.text = object.tok2bdr1 ?? '';
@@ -791,7 +546,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     soprot5bdr1Controller.text = object.soprot5bdr1 ?? '';
     bdr2Controller.text = object.bdr2 ?? '';
     sostojaniebdr2Controller.text = object.sostojaniebdr2 ?? '';
-    fotobdr2Controller.text = object.fotobdr2 ?? '';
+    // fotobdr2Controller.text = object.fotobdr2 ?? '';
     zamechbdr2Controller.text = object.zamechbdr2 ?? '';
     tok1bdr2Controller.text = object.tok1bdr2 ?? '';
     tok2bdr2Controller.text = object.tok2bdr2 ?? '';
@@ -805,24 +560,27 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     soprot5bdr2Controller.text = object.soprot5bdr2 ?? '';
 
     sostojanieazController.text = object.sostojanieaz ?? '';
-    fotoazController.text = object.fotoaz ?? '';
+    // fotoazController.text = object.fotoaz ?? '';
     zamechazController.text = object.zamechaz ?? '';
     tok1azController.text = object.tok1az ?? '';
     tok2azController.text = object.tok2az ?? '';
     tok3azController.text = object.tok3az ?? '';
     tok4azController.text = object.tok4az ?? '';
+    tok5azController.text = object.tok5az ?? '';
     soprrast1azController.text = object.soprrast1az ?? '';
     soprrast2azController.text = object.soprrast2az ?? '';
     soprrast3azController.text = object.soprrast3az ?? '';
     soprrast4azController.text = object.soprrast4az ?? '';
+    soprrast5azController.text = object.soprrast5az ?? '';
 
     sostojaniezzController.text = object.sostojaniezz ?? '';
-    fotozzController.text = object.fotozz ?? '';
+    soprrastzzController.text = object.soprrastzz ?? '';
+    // fotozzController.text = object.fotozz ?? '';
     zamechzzController.text = object.zamechzz ?? '';
 
     naznachvl1Controller.text = object.naznachvl1 ?? '';
     sostojanievl1Controller.text = object.sostojanievl1 ?? '';
-    fotovl1Controller.text = object.fotovl1 ?? '';
+    // fotovl1Controller.text = object.fotovl1 ?? '';
     zamechvl1Controller.text = object.zamechvl1 ?? '';
     tipoporvl1Controller.text = object.tipoporvl1 ?? '';
     kolvooporvl1Controller.text = object.kolvooporvl1 ?? '';
@@ -832,7 +590,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     markaizolvl1Controller.text = object.markaizolvl1 ?? '';
     naznachvl2Controller.text = object.naznachvl2 ?? '';
     sostojanievl2Controller.text = object.sostojanievl2 ?? '';
-    fotovl2Controller.text = object.fotovl2 ?? '';
+    // fotovl2Controller.text = object.fotovl2 ?? '';
     zamechvl2Controller.text = object.zamechvl2 ?? '';
     tipoporvl2Controller.text = object.tipoporvl2 ?? '';
     kolvooporvl2Controller.text = object.kolvooporvl2 ?? '';
@@ -842,7 +600,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     markaizolvl2Controller.text = object.markaizolvl2 ?? '';
     naznachvl3Controller.text = object.naznachvl3 ?? '';
     sostojanievl3Controller.text = object.sostojanievl3 ?? '';
-    fotovl3Controller.text = object.fotovl3 ?? '';
+    // fotovl3Controller.text = object.fotovl3 ?? '';
     zamechvl3Controller.text = object.zamechvl3 ?? '';
     tipoporvl3Controller.text = object.tipoporvl3 ?? '';
     kolvooporvl3Controller.text = object.kolvooporvl3 ?? '';
@@ -853,21 +611,21 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
 
     naznachkl1Controller.text = object.naznachkl1 ?? '';
     sostojaniekl1Controller.text = object.sostojaniekl1 ?? '';
-    fotokl1Controller.text = object.fotokl1 ?? '';
+    // fotokl1Controller.text = object.fotokl1 ?? '';
     zamechkl1Controller.text = object.zamechkl1 ?? '';
     markakabelkl1Controller.text = object.markakabelkl1 ?? '';
     dlinakl1Controller.text = object.dlinakl1 ?? '';
     soprotkl1Controller.text = object.soprotkl1 ?? '';
     naznachkl2Controller.text = object.naznachkl2 ?? '';
     sostojaniekl2Controller.text = object.sostojaniekl2 ?? '';
-    fotokl2Controller.text = object.fotokl2 ?? '';
+    // fotokl2Controller.text = object.fotokl2 ?? '';
     zamechkl2Controller.text = object.zamechkl2 ?? '';
     markakabelkl2Controller.text = object.markakabelkl2 ?? '';
     dlinakl2Controller.text = object.dlinakl2 ?? '';
     soprotkl2Controller.text = object.soprotkl2 ?? '';
     naznachkl3Controller.text = object.naznachkl3 ?? '';
     sostojaniekl3Controller.text = object.sostojaniekl3 ?? '';
-    fotokl3Controller.text = object.fotokl3 ?? '';
+    // fotokl3Controller.text = object.fotokl3 ?? '';
     zamechkl3Controller.text = object.zamechkl3 ?? '';
     markakabelkl3Controller.text = object.markakabelkl3 ?? '';
     dlinakl3Controller.text = object.dlinakl3 ?? '';
@@ -875,7 +633,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
 
     tipktpController.text = object.tipktp ?? '';
     sostojaniektpController.text = object.sostojaniektp ?? '';
-    fotoktpController.text = object.fotoktp ?? '';
+    // fotoktpController.text = object.fotoktp ?? '';
     markatrrController.text = object.markatrr ?? '';
 
     potrmoschnostController.text = object.potrmoschnost ?? '';
@@ -1031,6 +789,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                 // fontSize: 32,
                 color: Colors.white, // цвет невыбранных иконок
               ),
+              isScrollable: true,
               tabs: [
                 Tab(
                     icon: Icon(
@@ -2349,7 +2108,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                           ),
                                         ),
                                         prefixIcon: GestureDetector(
-                                            onTap: () {
+                                            onTap: () async {
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -2358,26 +2117,28 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                               ).then((value) {
                                                 setState(() async {
                                                   if (value != null) {
-                                                    _image = value;
+                                                    _imageskz1 = value;
                                                     if (_1formKey.currentState
                                                         .validate()) {
                                                       _1formKey.currentState
                                                           .save();
-                                                      if (_image != null) {
+                                                      if (_imageskz1 != null) {
                                                         final Directory extDir =
                                                             await getApplicationDocumentsDirectory();
                                                         final String dirPath =
-                                                            '${extDir.path}/Pictures/ehz';
+                                                            '${extDir.path}/Pictures/flutter';
                                                         await Directory(dirPath)
                                                             .create(
                                                                 recursive:
                                                                     true);
                                                         final String filePath =
                                                             '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
-                                                        await _image
+                                                        await _imageskz1
                                                             .copy(filePath);
                                                         object.fotoskz1 =
                                                             filePath;
+                                                        print(
+                                                            'сделали: ${object.fotoskz1.toString()}');
                                                       }
                                                     }
                                                   }
@@ -2438,16 +2199,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                                         height: 100,
                                                       )
                                                     : Text(
-                                                        'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
-                                                        style: TextStyle(
-                                                          fontSize: 22,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .primaryColor,
-                                                        ),
-                                                      ),
+                                                        'Изображение отсутствует'),
                                               ),
                                             ),
                                           ),
@@ -2472,15 +2224,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                       maxLength: 50,
                                       onFieldSubmitted: (String value) {
                                         object.markaskz2 = value;
-                                      },
-                                      validator: (String value) {
-                                        if (value.isEmpty) {
-                                          return 'введите марку';
-                                        } else if (value.length > 50) {
-                                          return 'Максимальная длина 50';
-                                        } else {
-                                          return null;
-                                        }
                                       },
                                       keyboardType: TextInputType.text,
                                       controller: markaskz2Controller,
@@ -2687,15 +2430,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                             onFieldSubmitted: (String value) {
                                               object.naprrabskz2 = value;
                                             },
-                                            validator: (String value) {
-                                              if (value.isEmpty) {
-                                                return 'введите значение';
-                                              } else if (value.length > 6) {
-                                                return 'Максимальная длина 6';
-                                              } else {
-                                                return null;
-                                              }
-                                            },
                                             controller: naprrabskz2Controller,
                                             focusNode: focusNode21,
                                             style: textStyle,
@@ -2870,15 +2604,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                             maxLength: 6,
                                             onFieldSubmitted: (String value) {
                                               object.tokrabskz2 = value;
-                                            },
-                                            validator: (String value) {
-                                              if (value.isEmpty) {
-                                                return 'введите значение';
-                                              } else if (value.length > 6) {
-                                                return 'Максимальная длина 6';
-                                              } else {
-                                                return null;
-                                              }
                                             },
                                             controller: tokrabskz2Controller,
                                             focusNode: focusNode23,
@@ -3553,7 +3278,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                           ),
                                         ),
                                         prefixIcon: GestureDetector(
-                                            onTap: () {
+                                            onTap: () async {
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -3562,12 +3287,12 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                               ).then((value) {
                                                 setState(() async {
                                                   if (value != null) {
-                                                    _image = value;
+                                                    _imageskz2 = value;
                                                     if (_1formKey.currentState
                                                         .validate()) {
                                                       _1formKey.currentState
                                                           .save();
-                                                      if (_image != null) {
+                                                      if (_imageskz2 != null) {
                                                         final Directory extDir =
                                                             await getApplicationDocumentsDirectory();
                                                         final String dirPath =
@@ -3578,7 +3303,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                                                     true);
                                                         final String filePath =
                                                             '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
-                                                        await _image
+                                                        await _imageskz2
                                                             .copy(filePath);
                                                         object.fotoskz2 =
                                                             filePath;
@@ -4369,7 +4094,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                           ),
                                         ),
                                         prefixIcon: GestureDetector(
-                                            onTap: () {
+                                            onTap: () async {
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -4378,12 +4103,12 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                               ).then((value) {
                                                 setState(() async {
                                                   if (value != null) {
-                                                    _image = value;
+                                                    _imagekip1 = value;
                                                     if (_2formKey.currentState
                                                         .validate()) {
                                                       _2formKey.currentState
                                                           .save();
-                                                      if (_image != null) {
+                                                      if (_imagekip1 != null) {
                                                         final Directory extDir =
                                                             await getApplicationDocumentsDirectory();
                                                         final String dirPath =
@@ -4394,7 +4119,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                                                     true);
                                                         final String filePath =
                                                             '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
-                                                        await _image
+                                                        await _imagekip1
                                                             .copy(filePath);
                                                         object.fotokip1 =
                                                             filePath;
@@ -5130,7 +4855,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                           ),
                                         ),
                                         prefixIcon: GestureDetector(
-                                            onTap: () {
+                                            onTap: () async {
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -5139,12 +4864,12 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                               ).then((value) {
                                                 setState(() async {
                                                   if (value != null) {
-                                                    _image = value;
+                                                    _imagekip2 = value;
                                                     if (_2formKey.currentState
                                                         .validate()) {
                                                       _2formKey.currentState
                                                           .save();
-                                                      if (_image != null) {
+                                                      if (_imagekip2 != null) {
                                                         final Directory extDir =
                                                             await getApplicationDocumentsDirectory();
                                                         final String dirPath =
@@ -5155,7 +4880,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                                                     true);
                                                         final String filePath =
                                                             '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
-                                                        await _image
+                                                        await _imagekip2
                                                             .copy(filePath);
                                                         object.fotokip2 =
                                                             filePath;
@@ -5890,7 +5615,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                           ),
                                         ),
                                         prefixIcon: GestureDetector(
-                                            onTap: () {
+                                            onTap: () async {
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -5899,12 +5624,12 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                               ).then((value) {
                                                 setState(() async {
                                                   if (value != null) {
-                                                    _image = value;
+                                                    _imagekip3 = value;
                                                     if (_2formKey.currentState
                                                         .validate()) {
                                                       _2formKey.currentState
                                                           .save();
-                                                      if (_image != null) {
+                                                      if (_imagekip3 != null) {
                                                         final Directory extDir =
                                                             await getApplicationDocumentsDirectory();
                                                         final String dirPath =
@@ -5915,7 +5640,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                                                     true);
                                                         final String filePath =
                                                             '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
-                                                        await _image
+                                                        await _imagekip3
                                                             .copy(filePath);
                                                         object.fotokip3 =
                                                             filePath;
@@ -5999,7 +5724,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 ),
                               ),
                             ),
-                            VerticalDivider(thickness: 4),
                             Container(
                               width: MediaQuery.of(context).size.width,
                               alignment: Alignment.center,
@@ -6659,12 +6383,12 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                               ).then((value) {
                                                 setState(() async {
                                                   if (value != null) {
-                                                    _image = value;
+                                                    _imagekip4 = value;
                                                     if (_2formKey.currentState
                                                         .validate()) {
                                                       _2formKey.currentState
                                                           .save();
-                                                      if (_image != null) {
+                                                      if (_imagekip4 != null) {
                                                         final Directory extDir =
                                                             await getApplicationDocumentsDirectory();
                                                         final String dirPath =
@@ -6675,7 +6399,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                                                     true);
                                                         final String filePath =
                                                             '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
-                                                        await _image
+                                                        await _imagekip4
                                                             .copy(filePath);
                                                         object.fotokip4 =
                                                             filePath;
@@ -6759,7 +6483,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 ),
                               ),
                             ),
-                            VerticalDivider(thickness: 4),
                           ],
                         ),
                       ),
@@ -6806,7 +6529,1813 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w300),
                           )),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
+                      Divider(thickness: 4),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        //                       ListView(
+                        // scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(12, 2, 12, 2),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 10),
+                                    TextFormField(
+                                      maxLength: 50,
+                                      onFieldSubmitted: (String value) {
+                                        object.bdr1 = value;
+                                      },
+                                      keyboardType: TextInputType.text,
+                                      controller: bdr1Controller,
+                                      focusNode: focusNode68,
+                                      style: textStyle,
+                                      decoration: InputDecoration(
+                                        focusColor:
+                                            Theme.of(context).primaryColor,
+                                        labelStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        hintStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        labelText:
+                                            'Наименование (привязка к объекту) БДР №1',
+                                        hintText: 'Введите наименование',
+                                        prefixIcon: Icon(
+                                          Icons.settings_input_composite_sharp,
+                                          color: focusNode68.hasFocus ||
+                                                  bdr1Controller.text.isNotEmpty
+                                              ? Theme.of(context).primaryColor
+                                              : Colors.grey,
+                                          size: 32,
+                                        ),
+                                        suffixIcon: GestureDetector(
+                                          onTap: () {
+                                            bdr1Controller.clear();
+                                          },
+                                          child: Icon(
+                                            Icons.delete_outline,
+                                            color: Color.fromRGBO(
+                                                187, 30, 16, 1.0),
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 2),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                          borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              width: 2),
+                                        ),
+                                      ),
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          focusNode68.requestFocus();
+                                          object.bdr1 = value;
+                                          object.bdr1 = bdr1Controller.text;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(height: 10),
+                                    DropdownButtonFormField(
+                                      isExpanded: true,
+                                      focusNode: focusNode69,
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          object.sostojaniebdr1 = value;
+                                          object.sostojaniebdr1 =
+                                              sostojaniebdr1Controller.text;
+                                        });
+                                        focusNode69.requestFocus();
+                                        object.sostojaniebdr1 = value;
+                                      },
+                                      decoration: InputDecoration(
+                                        focusColor:
+                                            Theme.of(context).primaryColor,
+                                        labelText: 'Состояние БДР №1',
+                                        labelStyle: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        hintStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        prefixIcon: Icon(
+                                          Icons.check_circle_outline_sharp,
+                                          color: (focusNode69.hasFocus ||
+                                                  sostojaniebdr1Controller
+                                                      .text.isNotEmpty)
+                                              ? Theme.of(context).primaryColor
+                                              : Colors.grey,
+                                          size: 32,
+                                        ),
+                                        border: OutlineInputBorder(),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 2),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                          borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              width: 2),
+                                        ),
+                                      ),
+                                      items:
+                                          _sostojanieskz1.map((String value) {
+                                        return DropdownMenuItem(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      style: textStyle,
+                                      value: object.sostojaniebdr1,
+                                    ),
+                                    SizedBox(height: 10),
+                                    Divider(thickness: 4),
+                                    SizedBox(height: 5),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Общий ток: ${tok5bdr1Controller.text}А',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              tok1bdr1Controller.clear();
+                                              tok2bdr1Controller.clear();
+                                              tok3bdr1Controller.clear();
+                                              tok4bdr1Controller.clear();
+                                              tok5bdr1Controller.clear();
+                                            },
+                                            child: Icon(
+                                              Icons.delete_outline,
+                                              color: Color.fromRGBO(
+                                                  187, 30, 16, 1.0),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.tok1bdr1 = value;
+                                            },
+                                            controller: tok1bdr1Controller,
+                                            focusNode: focusNode70,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'I(1 канала)',
+                                              hintText: 'I(1 канала)',
+                                              helperText: 'А',
+                                              prefixIcon: Icon(
+                                                Icons.flash_on_sharp,
+                                                color: focusNode70.hasFocus ||
+                                                        tok1bdr1Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode70.requestFocus();
+                                                sumtokbdr1();
+                                                object.tok1bdr1 = value;
+                                                object.tok1bdr1 =
+                                                    tok1bdr1Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.tok2bdr1 = value;
+                                            },
+                                            controller: tok2bdr1Controller,
+                                            focusNode: focusNode71,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'I(2 канала)',
+                                              hintText: 'I(2 канала)',
+                                              helperText: 'А',
+                                              prefixIcon: Icon(
+                                                Icons.flash_on_sharp,
+                                                color: focusNode71.hasFocus ||
+                                                        tok2bdr1Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode71.requestFocus();
+                                                sumtokbdr1();
+                                                object.tok2bdr1 = value;
+                                                object.tok2bdr1 =
+                                                    tok2bdr1Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.tok3bdr1 = value;
+                                            },
+                                            controller: tok3bdr1Controller,
+                                            focusNode: focusNode72,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'I(3 канала)',
+                                              hintText: 'I(3 канала)',
+                                              helperText: 'А',
+                                              prefixIcon: Icon(
+                                                Icons.flash_on_sharp,
+                                                color: focusNode72.hasFocus ||
+                                                        tok3bdr1Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode72.requestFocus();
+                                                sumtokbdr1();
+                                                object.tok3bdr1 = value;
+                                                object.tok3bdr1 =
+                                                    tok3bdr1Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.tok4bdr1 = value;
+                                            },
+                                            controller: tok4bdr1Controller,
+                                            focusNode: focusNode73,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'I(4 канала)',
+                                              hintText: 'I(4 канала)',
+                                              helperText: 'А',
+                                              prefixIcon: Icon(
+                                                Icons.flash_on_sharp,
+                                                color: focusNode73.hasFocus ||
+                                                        tok4bdr1Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode73.requestFocus();
+                                                sumtokbdr1();
+                                                object.tok4bdr1 = value;
+                                                object.tok4bdr1 =
+                                                    tok4bdr1Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    Divider(thickness: 4),
+                                    SizedBox(height: 5),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Сопротивление каналов БДР',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              soprot1bdr1Controller.clear();
+                                              soprot2bdr1Controller.clear();
+                                              soprot3bdr1Controller.clear();
+                                              soprot4bdr1Controller.clear();
+                                            },
+                                            child: Icon(
+                                              Icons.delete_outline,
+                                              color: Color.fromRGBO(
+                                                  187, 30, 16, 1.0),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.soprot1bdr1 = value;
+                                            },
+                                            controller: soprot1bdr1Controller,
+                                            focusNode: focusNode74,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'R(1 канала)',
+                                              hintText: 'R(1 канала)',
+                                              helperText: 'Ом',
+                                              prefixIcon: Icon(
+                                                Icons.view_week_sharp,
+                                                color: focusNode74.hasFocus ||
+                                                        soprot1bdr1Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode74.requestFocus();
+                                                object.soprot1bdr1 = value;
+                                                object.soprot1bdr1 =
+                                                    soprot1bdr1Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.soprot2bdr1 = value;
+                                            },
+                                            controller: soprot2bdr1Controller,
+                                            focusNode: focusNode75,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'R(2 канала)',
+                                              hintText: 'R(2 канала)',
+                                              helperText: 'Ом',
+                                              prefixIcon: Icon(
+                                                Icons.view_week_sharp,
+                                                color: focusNode75.hasFocus ||
+                                                        soprot2bdr1Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode75.requestFocus();
+                                                object.soprot2bdr1 = value;
+                                                object.soprot2bdr1 =
+                                                    soprot2bdr1Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.soprot3bdr1 = value;
+                                            },
+                                            controller: soprot3bdr1Controller,
+                                            focusNode: focusNode76,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'R(3 канала)',
+                                              hintText: 'R(3 канала)',
+                                              helperText: 'Ом',
+                                              prefixIcon: Icon(
+                                                Icons.view_week_sharp,
+                                                color: focusNode76.hasFocus ||
+                                                        soprot3bdr1Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode76.requestFocus();
+                                                object.soprot3bdr1 = value;
+                                                object.soprot3bdr1 =
+                                                    soprot3bdr1Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.soprot4bdr1 = value;
+                                            },
+                                            controller: soprot4bdr1Controller,
+                                            focusNode: focusNode77,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'R(4 канала)',
+                                              hintText: 'R(4 канала)',
+                                              helperText: 'Ом',
+                                              prefixIcon: Icon(
+                                                Icons.view_week_sharp,
+                                                color: focusNode77.hasFocus ||
+                                                        soprot4bdr1Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode77.requestFocus();
+                                                object.soprot4bdr1 = value;
+                                                object.soprot4bdr1 =
+                                                    soprot4bdr1Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    Divider(thickness: 4),
+                                    TextFormField(
+                                      maxLength: 1000,
+                                      focusNode: focusNode78,
+                                      onSaved: (value) {
+                                        object.zamechbdr1 = value;
+                                      },
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          focusNode78.requestFocus();
+                                          object.zamechbdr1 = value;
+                                          object.zamechbdr1 =
+                                              zamechbdr1Controller.text;
+                                        });
+                                      },
+                                      controller: zamechbdr1Controller,
+                                      decoration: InputDecoration(
+                                        focusColor:
+                                            Theme.of(context).primaryColor,
+                                        labelStyle: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        hintStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        labelText: 'Замечания',
+                                        suffixIcon: GestureDetector(
+                                          onTap: () {
+                                            zamechbdr1Controller.clear();
+                                          },
+                                          child: Icon(
+                                            Icons.delete_outline,
+                                            color: Color.fromRGBO(
+                                                187, 30, 16, 1.0),
+                                          ),
+                                        ),
+                                        prefixIcon: GestureDetector(
+                                            onTap: () async {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CameraPageUkz()),
+                                              ).then((value) {
+                                                setState(() async {
+                                                  if (value != null) {
+                                                    _imagebdr1 = value;
+                                                    if (_3formKey.currentState
+                                                        .validate()) {
+                                                      _3formKey.currentState
+                                                          .save();
+                                                      if (_imagebdr1 != null) {
+                                                        final Directory extDir =
+                                                            await getApplicationDocumentsDirectory();
+                                                        final String dirPath =
+                                                            '${extDir.path}/Pictures/ehz';
+                                                        await Directory(dirPath)
+                                                            .create(
+                                                                recursive:
+                                                                    true);
+                                                        final String filePath =
+                                                            '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
+                                                        await _imagebdr1
+                                                            .copy(filePath);
+                                                        object.fotobdr1 =
+                                                            filePath;
+                                                      }
+                                                    }
+                                                  }
+                                                });
+                                              });
+                                            },
+                                            child: Icon(
+                                              Icons.camera_alt_sharp,
+                                              color: Colors.green,
+                                            )),
+                                        hintText: 'Дефекты, замечания и другое',
+                                        border: OutlineInputBorder(),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 2),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                          borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              width: 2),
+                                        ),
+                                      ),
+                                      maxLines: 10,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(1000),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Container(
+                                      height: 100,
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ImageScreen(
+                                                              imagePath: object
+                                                                  .fotobdr1)),
+                                                );
+                                              },
+                                              child: Center(
+                                                child: object.fotobdr1 != null
+                                                    ? Image.file(
+                                                        File(object.fotobdr1),
+                                                        fit: BoxFit.cover,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        width: 100,
+                                                        height: 100,
+                                                      )
+                                                    : Text(
+                                                        'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
+                                                        style: TextStyle(
+                                                          fontSize: 22,
+                                                          fontWeight:
+                                                              FontWeight.w300,
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                        ),
+                                                      ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            // VerticalDivider(thickness: 4),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(12, 2, 12, 2),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 10),
+                                    TextFormField(
+                                      maxLength: 50,
+                                      onFieldSubmitted: (String value) {
+                                        object.bdr2 = value;
+                                      },
+                                      keyboardType: TextInputType.text,
+                                      controller: bdr2Controller,
+                                      focusNode: focusNode79,
+                                      style: textStyle,
+                                      decoration: InputDecoration(
+                                        focusColor:
+                                            Theme.of(context).primaryColor,
+                                        labelStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        hintStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        labelText:
+                                            'Наименование (привязка к объекту) БДР №2',
+                                        hintText: 'Введите наименование',
+                                        prefixIcon: Icon(
+                                          Icons.settings_input_composite_sharp,
+                                          color: focusNode79.hasFocus ||
+                                                  bdr2Controller.text.isNotEmpty
+                                              ? Theme.of(context).primaryColor
+                                              : Colors.grey,
+                                          size: 32,
+                                        ),
+                                        suffixIcon: GestureDetector(
+                                          onTap: () {
+                                            bdr2Controller.clear();
+                                          },
+                                          child: Icon(
+                                            Icons.delete_outline,
+                                            color: Color.fromRGBO(
+                                                187, 30, 16, 1.0),
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 2),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                          borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              width: 2),
+                                        ),
+                                      ),
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          focusNode79.requestFocus();
+                                          object.bdr2 = value;
+                                          object.bdr2 = bdr2Controller.text;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(height: 10),
+                                    DropdownButtonFormField(
+                                      isExpanded: true,
+                                      focusNode: focusNode80,
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          object.sostojaniebdr2 = value;
+                                          object.sostojaniebdr2 =
+                                              sostojaniebdr2Controller.text;
+                                        });
+                                        focusNode80.requestFocus();
+                                        object.sostojaniebdr2 = value;
+                                      },
+                                      decoration: InputDecoration(
+                                        focusColor:
+                                            Theme.of(context).primaryColor,
+                                        labelText: 'Состояние БДР №2',
+                                        labelStyle: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        hintStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        prefixIcon: Icon(
+                                          Icons.check_circle_outline_sharp,
+                                          color: (focusNode80.hasFocus ||
+                                                  sostojaniebdr2Controller
+                                                      .text.isNotEmpty)
+                                              ? Theme.of(context).primaryColor
+                                              : Colors.grey,
+                                          size: 32,
+                                        ),
+                                        border: OutlineInputBorder(),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 2),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                          borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              width: 2),
+                                        ),
+                                      ),
+                                      items:
+                                          _sostojanieskz1.map((String value) {
+                                        return DropdownMenuItem(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      style: textStyle,
+                                      value: object.sostojaniebdr2,
+                                    ),
+                                    SizedBox(height: 10),
+                                    Divider(thickness: 4),
+                                    SizedBox(height: 5),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Общий ток: ${tok5bdr2Controller.text}А',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              tok1bdr2Controller.clear();
+                                              tok2bdr2Controller.clear();
+                                              tok3bdr2Controller.clear();
+                                              tok4bdr2Controller.clear();
+                                              tok5bdr2Controller.clear();
+                                            },
+                                            child: Icon(
+                                              Icons.delete_outline,
+                                              color: Color.fromRGBO(
+                                                  187, 30, 16, 1.0),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.tok1bdr2 = value;
+                                            },
+                                            controller: tok1bdr2Controller,
+                                            focusNode: focusNode81,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'I(1 канала)',
+                                              hintText: 'I(1 канала)',
+                                              helperText: 'А',
+                                              prefixIcon: Icon(
+                                                Icons.flash_on_sharp,
+                                                color: focusNode81.hasFocus ||
+                                                        tok1bdr2Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode81.requestFocus();
+                                                sumtokbdr2();
+                                                object.tok1bdr2 = value;
+                                                object.tok1bdr2 =
+                                                    tok1bdr2Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.tok2bdr2 = value;
+                                            },
+                                            controller: tok2bdr2Controller,
+                                            focusNode: focusNode82,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'I(2 канала)',
+                                              hintText: 'I(2 канала)',
+                                              helperText: 'А',
+                                              prefixIcon: Icon(
+                                                Icons.minimize_sharp,
+                                                color: focusNode82.hasFocus ||
+                                                        tok2bdr2Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode82.requestFocus();
+                                                sumtokbdr2();
+                                                object.tok2bdr2 = value;
+                                                object.tok2bdr2 =
+                                                    tok2bdr2Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.tok3bdr2 = value;
+                                            },
+                                            controller: tok3bdr2Controller,
+                                            focusNode: focusNode83,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'I(3 канала)',
+                                              hintText: 'I(3 канала)',
+                                              helperText: 'А',
+                                              prefixIcon: Icon(
+                                                Icons.minimize_sharp,
+                                                color: focusNode83.hasFocus ||
+                                                        tok3bdr2Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode83.requestFocus();
+                                                sumtokbdr2();
+                                                object.tok3bdr2 = value;
+                                                object.tok3bdr2 =
+                                                    tok3bdr2Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.tok4bdr2 = value;
+                                            },
+                                            controller: tok4bdr2Controller,
+                                            focusNode: focusNode84,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'I(4 канала)',
+                                              hintText: 'I(4 канала)',
+                                              helperText: 'А',
+                                              prefixIcon: Icon(
+                                                Icons.flash_on_sharp,
+                                                color: focusNode84.hasFocus ||
+                                                        tok4bdr2Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode84.requestFocus();
+                                                sumtokbdr2();
+                                                object.tok4bdr2 = value;
+                                                object.tok4bdr2 =
+                                                    tok4bdr2Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    Divider(thickness: 4),
+                                    SizedBox(height: 5),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Сопротивление каналов БДР',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              soprot1bdr2Controller.clear();
+                                              soprot2bdr2Controller.clear();
+                                              soprot3bdr2Controller.clear();
+                                              soprot4bdr2Controller.clear();
+                                            },
+                                            child: Icon(
+                                              Icons.delete_outline,
+                                              color: Color.fromRGBO(
+                                                  187, 30, 16, 1.0),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.soprot1bdr2 = value;
+                                            },
+                                            controller: soprot1bdr2Controller,
+                                            focusNode: focusNode85,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'R(1 канала)',
+                                              hintText: 'R(1 канала)',
+                                              helperText: 'Ом',
+                                              prefixIcon: Icon(
+                                                Icons.view_week_sharp,
+                                                color: focusNode85.hasFocus ||
+                                                        soprot1bdr2Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode85.requestFocus();
+                                                object.soprot1bdr2 = value;
+                                                object.soprot1bdr2 =
+                                                    soprot1bdr2Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.soprot2bdr2 = value;
+                                            },
+                                            controller: soprot2bdr2Controller,
+                                            focusNode: focusNode86,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'R(2 канала)',
+                                              hintText: 'R(2 канала)',
+                                              helperText: 'Ом',
+                                              prefixIcon: Icon(
+                                                Icons.view_week_sharp,
+                                                color: focusNode86.hasFocus ||
+                                                        soprot2bdr2Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode86.requestFocus();
+                                                object.soprot2bdr2 = value;
+                                                object.soprot2bdr2 =
+                                                    soprot2bdr2Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.soprot3bdr2 = value;
+                                            },
+                                            controller: soprot3bdr2Controller,
+                                            focusNode: focusNode87,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'R(3 канала)',
+                                              hintText: 'R(3 канала)',
+                                              helperText: 'Ом',
+                                              prefixIcon: Icon(
+                                                Icons.view_week_sharp,
+                                                color: focusNode87.hasFocus ||
+                                                        soprot3bdr2Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode87.requestFocus();
+                                                object.soprot3bdr2 = value;
+                                                object.soprot3bdr2 =
+                                                    soprot3bdr2Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: TextFormField(
+                                            maxLength: 6,
+                                            onFieldSubmitted: (String value) {
+                                              object.soprot4bdr2 = value;
+                                            },
+                                            controller: soprot4bdr2Controller,
+                                            focusNode: focusNode88,
+                                            style: textStyle,
+                                            decoration: InputDecoration(
+                                              focusColor: Theme.of(context)
+                                                  .primaryColor,
+                                              labelStyle: TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              hintStyle: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                              labelText: 'R(4 канала)',
+                                              hintText: 'R(4 канала)',
+                                              helperText: 'Ом',
+                                              prefixIcon: Icon(
+                                                Icons.view_week_sharp,
+                                                color: focusNode88.hasFocus ||
+                                                        soprot4bdr2Controller
+                                                            .text.isNotEmpty
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.grey,
+                                                size: 32,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                borderSide: BorderSide(
+                                                    color: Colors.grey,
+                                                    width: 2),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
+                                                borderSide: BorderSide(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 2),
+                                              ),
+                                            ),
+                                            onChanged: (String value) {
+                                              setState(() {
+                                                focusNode88.requestFocus();
+                                                object.soprot4bdr2 = value;
+                                                object.soprot4bdr2 =
+                                                    soprot4bdr2Controller.text;
+                                              });
+                                            },
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    Divider(thickness: 4),
+                                    TextFormField(
+                                      maxLength: 1000,
+                                      focusNode: focusNode89,
+                                      onSaved: (value) {
+                                        object.zamechbdr2 = value;
+                                      },
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          focusNode89.requestFocus();
+                                          object.zamechbdr2 = value;
+                                          object.zamechbdr2 =
+                                              zamechbdr2Controller.text;
+                                        });
+                                      },
+                                      controller: zamechbdr2Controller,
+                                      decoration: InputDecoration(
+                                        focusColor:
+                                            Theme.of(context).primaryColor,
+                                        labelStyle: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        hintStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        labelText: 'Замечания',
+                                        suffixIcon: GestureDetector(
+                                          onTap: () {
+                                            zamechbdr2Controller.clear();
+                                          },
+                                          child: Icon(
+                                            Icons.delete_outline,
+                                            color: Color.fromRGBO(
+                                                187, 30, 16, 1.0),
+                                          ),
+                                        ),
+                                        prefixIcon: GestureDetector(
+                                            onTap: () async {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CameraPageUkz()),
+                                              ).then((value) {
+                                                setState(() async {
+                                                  if (value != null) {
+                                                    _imagebdr2 = value;
+                                                    if (_3formKey.currentState
+                                                        .validate()) {
+                                                      _3formKey.currentState
+                                                          .save();
+                                                      if (_imagebdr2 != null) {
+                                                        final Directory extDir =
+                                                            await getApplicationDocumentsDirectory();
+                                                        final String dirPath =
+                                                            '${extDir.path}/Pictures/ehz';
+                                                        await Directory(dirPath)
+                                                            .create(
+                                                                recursive:
+                                                                    true);
+                                                        final String filePath =
+                                                            '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
+                                                        await _imagebdr2
+                                                            .copy(filePath);
+                                                        object.fotobdr2 =
+                                                            filePath;
+                                                      }
+                                                    }
+                                                  }
+                                                });
+                                              });
+                                            },
+                                            child: Icon(
+                                              Icons.camera_alt_sharp,
+                                              color: Colors.green,
+                                            )),
+                                        hintText: 'Дефекты, замечания и другое',
+                                        border: OutlineInputBorder(),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 2),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                          borderSide: BorderSide(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              width: 2),
+                                        ),
+                                      ),
+                                      maxLines: 10,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(1000),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Container(
+                                      height: 100,
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ImageScreen(
+                                                              imagePath: object
+                                                                  .fotobdr2)),
+                                                );
+                                              },
+                                              child: Center(
+                                                child: object.fotobdr2 != null
+                                                    ? Image.file(
+                                                        File(object.fotobdr2),
+                                                        fit: BoxFit.cover,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        width: 100,
+                                                        height: 100,
+                                                      )
+                                                    : Text(
+                                                        'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
+                                                        style: TextStyle(
+                                                          fontSize: 22,
+                                                          fontWeight:
+                                                              FontWeight.w300,
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                        ),
+                                                      ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Divider(thickness: 4),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -6850,7 +8379,801 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w300),
                           )),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
+                      Divider(thickness: 4),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 50,
+                        onFieldSubmitted: (String value) {
+                          object.markaaz = value;
+                        },
+                        keyboardType: TextInputType.text,
+                        controller: markaazController,
+                        focusNode: focusNode90,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Тип АЗ',
+                          hintText: 'Введите данные',
+                          prefixIcon: Icon(
+                            Icons.settings_input_composite_sharp,
+                            color: focusNode90.hasFocus ||
+                                    markaazController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              markaazController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode90.requestFocus();
+                            object.markaaz = value;
+                            object.markaaz = markaazController.text;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode91,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojanieaz = value;
+                            object.sostojanieaz = sostojanieazController.text;
+                          });
+                          focusNode91.requestFocus();
+                          object.sostojanieaz = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние АЗ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode91.hasFocus ||
+                                    sostojanieazController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojanieaz,
+                      ),
+                      SizedBox(height: 10),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Общий ток: ${tok5azController.text}А',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                tok1azController.clear();
+                                tok2azController.clear();
+                                tok3azController.clear();
+                                tok4azController.clear();
+                                tok5azController.clear();
+                              },
+                              child: Icon(
+                                Icons.delete_outline,
+                                color: Color.fromRGBO(187, 30, 16, 1.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tok1az = value;
+                              },
+                              controller: tok1azController,
+                              focusNode: focusNode92,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'I(1 канала)',
+                                hintText: 'I(1 канала)',
+                                helperText: 'А',
+                                prefixIcon: Icon(
+                                  Icons.flash_on_sharp,
+                                  color: focusNode92.hasFocus ||
+                                          tok1azController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode92.requestFocus();
+                                  sumtokaz();
+                                  object.tok1az = value;
+                                  object.tok1az = tok1azController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tok2az = value;
+                              },
+                              controller: tok2azController,
+                              focusNode: focusNode93,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'I(2 канала)',
+                                hintText: 'I(2 канала)',
+                                helperText: 'А',
+                                prefixIcon: Icon(
+                                  Icons.flash_on_sharp,
+                                  color: focusNode93.hasFocus ||
+                                          tok2azController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode93.requestFocus();
+                                  sumtokaz();
+                                  object.tok2az = value;
+                                  object.tok2az = tok2azController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tok3az = value;
+                              },
+                              controller: tok3azController,
+                              focusNode: focusNode94,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'I(3 канала)',
+                                hintText: 'I(3 канала)',
+                                helperText: 'А',
+                                prefixIcon: Icon(
+                                  Icons.flash_on_sharp,
+                                  color: focusNode94.hasFocus ||
+                                          tok3azController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode94.requestFocus();
+                                  sumtokaz();
+                                  object.tok3az = value;
+                                  object.tok3az = tok3azController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tok4az = value;
+                              },
+                              controller: tok4azController,
+                              focusNode: focusNode95,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'I(4 канала)',
+                                hintText: 'I(4 канала)',
+                                helperText: 'А',
+                                prefixIcon: Icon(
+                                  Icons.flash_on_sharp,
+                                  color: focusNode95.hasFocus ||
+                                          tok4azController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode95.requestFocus();
+                                  sumtokaz();
+                                  object.tok4az = value;
+                                  object.tok4az = tok4azController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Сопротивление растеканию: ${soprrast5azController.text}Ом',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                soprrast1azController.clear();
+                                soprrast2azController.clear();
+                                soprrast3azController.clear();
+                                soprrast4azController.clear();
+                                soprrast5azController.clear();
+                              },
+                              child: Icon(
+                                Icons.delete_outline,
+                                color: Color.fromRGBO(187, 30, 16, 1.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprrast1az = value;
+                              },
+                              controller: soprrast1azController,
+                              focusNode: focusNode96,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'R(1 канала)',
+                                hintText: 'R(1 канала)',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.view_week_sharp,
+                                  color: focusNode96.hasFocus ||
+                                          soprrast1azController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode96.requestFocus();
+                                  sumsopraz();
+                                  object.soprrast1az = value;
+                                  object.soprrast1az =
+                                      soprrast1azController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprrast2az = value;
+                              },
+                              controller: soprrast2azController,
+                              focusNode: focusNode97,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'R(2 канала)',
+                                hintText: 'R(2 канала)',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.view_week_sharp,
+                                  color: focusNode97.hasFocus ||
+                                          soprrast2azController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode97.requestFocus();
+                                  sumsopraz();
+                                  object.soprrast2az = value;
+                                  object.soprrast2az =
+                                      soprrast2azController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprrast3az = value;
+                              },
+                              controller: soprrast3azController,
+                              focusNode: focusNode98,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'R(3 канала)',
+                                hintText: 'R(3 канала)',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.view_week_sharp,
+                                  color: focusNode98.hasFocus ||
+                                          soprrast3azController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode98.requestFocus();
+                                  sumsopraz();
+                                  object.soprrast3az = value;
+                                  object.soprrast3az =
+                                      soprrast3azController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprrast4az = value;
+                              },
+                              controller: soprrast4azController,
+                              focusNode: focusNode99,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'R(4 канала)',
+                                hintText: 'R(4 канала)',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.view_week_sharp,
+                                  color: focusNode99.hasFocus ||
+                                          soprrast4azController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode99.requestFocus();
+                                  sumsopraz();
+                                  object.soprrast4az = value;
+                                  object.soprrast4az =
+                                      soprrast4azController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      TextFormField(
+                        maxLength: 1000,
+                        focusNode: focusNode100,
+                        onSaved: (value) {
+                          object.zamechaz = value;
+                        },
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode100.requestFocus();
+                            object.zamechaz = value;
+                            object.zamechaz = zamechazController.text;
+                          });
+                        },
+                        controller: zamechazController,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Замечания',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              zamechazController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          prefixIcon: GestureDetector(
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CameraPageUkz()),
+                                ).then((value) {
+                                  setState(() async {
+                                    if (value != null) {
+                                      _imageaz = value;
+                                      if (_4formKey.currentState.validate()) {
+                                        _4formKey.currentState.save();
+                                        if (_imageaz != null) {
+                                          final Directory extDir =
+                                              await getApplicationDocumentsDirectory();
+                                          final String dirPath =
+                                              '${extDir.path}/Pictures/ehz';
+                                          await Directory(dirPath)
+                                              .create(recursive: true);
+                                          final String filePath =
+                                              '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
+                                          await _imageaz.copy(filePath);
+                                          object.fotoaz = filePath;
+                                        }
+                                      }
+                                    }
+                                  });
+                                });
+                              },
+                              child: Icon(
+                                Icons.camera_alt_sharp,
+                                color: Colors.green,
+                              )),
+                          hintText: 'Дефекты, замечания и другое',
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        maxLines: 10,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1000),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 100,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ImageScreen(
+                                            imagePath: object.fotoaz)),
+                                  );
+                                },
+                                child: Center(
+                                  child: object.fotoaz != null
+                                      ? Image.file(
+                                          File(object.fotoaz),
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          height: 100,
+                                        )
+                                      : Text(
+                                          'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
+                                          style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w300,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Divider(thickness: 4),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -8535,6 +10858,98 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     setState(() {
       zapaspotokuskz1Controller.text = zapas.toStringAsFixed(1);
       object.zapaspotokuskz1 = zapaspotokuskz1Controller.text;
+    });
+  }
+
+  void sumtokbdr1() {
+    double t1 = tok1bdr1Controller.text.isNotEmpty
+        ? double.parse(tok1bdr1Controller.text.replaceAll(',', '.'))
+        : 0.0;
+    double t2 = tok2bdr1Controller.text.isNotEmpty
+        ? double.parse(tok2bdr1Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double t3 = tok3bdr1Controller.text.isNotEmpty
+        ? double.parse(tok3bdr1Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double t4 = tok4bdr1Controller.text.isNotEmpty
+        ? double.parse(tok4bdr1Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double summa = t1 + t2 + t3 + t4;
+
+    setState(() {
+      tok5bdr1Controller.text = summa.toStringAsFixed(1);
+      object.tok5bdr1 = tok5bdr1Controller.text;
+    });
+  }
+
+  void sumtokbdr2() {
+    double t1 = tok1bdr2Controller.text.isNotEmpty
+        ? double.parse(tok1bdr1Controller.text.replaceAll(',', '.'))
+        : 0.0;
+    double t2 = tok2bdr2Controller.text.isNotEmpty
+        ? double.parse(tok2bdr2Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double t3 = tok3bdr2Controller.text.isNotEmpty
+        ? double.parse(tok3bdr2Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double t4 = tok4bdr2Controller.text.isNotEmpty
+        ? double.parse(tok4bdr2Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double summa = t1 + t2 + t3 + t4;
+
+    setState(() {
+      tok5bdr2Controller.text = summa.toStringAsFixed(1);
+      object.tok5bdr2 = tok5bdr2Controller.text;
+    });
+  }
+
+  void sumtokaz() {
+    double t1 = tok1azController.text.isNotEmpty
+        ? double.parse(tok1azController.text.replaceAll(',', '.'))
+        : 0.0;
+    double t2 = tok2azController.text.isNotEmpty
+        ? double.parse(tok2azController.text.replaceAll(',', '.'))
+        : 0.0;
+    double t3 = tok3azController.text.isNotEmpty
+        ? double.parse(tok3azController.text.replaceAll(',', '.'))
+        : 0.0;
+    double t4 = tok4azController.text.isNotEmpty
+        ? double.parse(tok4azController.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double summa = t1 + t2 + t3 + t4;
+
+    setState(() {
+      tok5azController.text = summa.toStringAsFixed(1);
+      object.tok5az = tok5azController.text;
+    });
+  }
+
+  void sumsopraz() {
+    double s1 = soprrast1azController.text.isNotEmpty
+        ? double.parse(soprrast1azController.text.replaceAll(',', '.'))
+        : 0.0;
+    double s2 = soprrast2azController.text.isNotEmpty
+        ? double.parse(soprrast2azController.text.replaceAll(',', '.'))
+        : 0.0;
+    double s3 = soprrast3azController.text.isNotEmpty
+        ? double.parse(soprrast3azController.text.replaceAll(',', '.'))
+        : 0.0;
+    double s4 = soprrast4azController.text.isNotEmpty
+        ? double.parse(soprrast4azController.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double summa = s1 + s2 + s3 + s4;
+
+    setState(() {
+      soprrast5azController.text = summa.toStringAsFixed(1);
+      object.soprrast5az = soprrast5azController.text;
     });
   }
 

@@ -138,7 +138,7 @@ class ObjectListUkzState extends State {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          descriptionParser(ukzs[position].title ?? ''),
+                          descriptionParser(ukzs[position].markaskz1 ?? ''),
                           style: const TextStyle(
                               fontSize: 13.0,
                               fontWeight: FontWeight.w600,
@@ -149,7 +149,7 @@ class ObjectListUkzState extends State {
                         ),
                         ukzs[position].date1 != null
                             ? Text(
-                                'Дата обследования ' + ukzs[position].date1,
+                                'Дата обслуживания ' + ukzs[position].date1,
                                 style: const TextStyle(
                                     fontSize: 11.0,
                                     fontWeight: FontWeight.w600,

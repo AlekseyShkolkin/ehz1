@@ -124,6 +124,7 @@ class DbHelperUkz {
   String colsoprot4bdr2 = 'soprot4bdr2';
   String colsoprot5bdr2 = 'soprot5bdr2';
 
+  String colmarkaaz = 'markaaz';
   String colsostojanieaz = 'sostojanieaz';
   String colfotoaz = 'fotoaz';
   String colzamechaz = 'zamechaz';
@@ -131,12 +132,15 @@ class DbHelperUkz {
   String coltok2az = 'tok2az';
   String coltok3az = 'tok3az';
   String coltok4az = 'tok4az';
+  String coltok5az = 'tok5az';
   String colsoprrast1az = 'soprrast1az';
   String colsoprrast2az = 'soprrast2az';
   String colsoprrast3az = 'soprrast3az';
   String colsoprrast4az = 'soprrast4az';
+  String colsoprrast5az = 'soprrast5az';
 
   String colsostojaniezz = 'sostojaniezz';
+  String colsoprrastzz = 'soprrastzz';
   String colfotozz = 'fotozz';
   String colzamechzz = 'zamechzz';
 
@@ -343,6 +347,7 @@ class DbHelperUkz {
         $colsoprot3bdr2 TEXT,
         $colsoprot4bdr2 TEXT,
         $colsoprot5bdr2 TEXT,
+        $colmarkaaz TEXT,
         $colsostojanieaz TEXT,
         $colfotoaz TEXT,
         $colzamechaz TEXT,
@@ -350,11 +355,14 @@ class DbHelperUkz {
         $coltok2az TEXT,
         $coltok3az TEXT,
         $coltok4az TEXT,
+        $coltok5az TEXT,
         $colsoprrast1az TEXT,
         $colsoprrast2az TEXT,
         $colsoprrast3az TEXT,
         $colsoprrast4az TEXT,
+        $colsoprrast5az TEXT,
         $colsostojaniezz TEXT,
+        $colsoprrastzz TEXT,
         $colfotozz TEXT,
         $colzamechzz TEXT,
         $colnaznachvl1 TEXT,
