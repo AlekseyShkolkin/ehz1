@@ -4989,7 +4989,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                       },
                                       keyboardType: TextInputType.text,
                                       controller: kipname3Controller,
-                                      focusNode: focusNode51,
+                                      focusNode: focusNode101,
                                       style: textStyle,
                                       decoration: InputDecoration(
                                         focusColor:
@@ -5009,7 +5009,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                         hintText: 'Введите наименование',
                                         prefixIcon: Icon(
                                           Icons.battery_4_bar_sharp,
-                                          color: focusNode50.hasFocus ||
+                                          color: focusNode101.hasFocus ||
                                                   kipname3Controller
                                                       .text.isNotEmpty
                                               ? Theme.of(context).primaryColor
@@ -5043,7 +5043,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                       ),
                                       onChanged: (String value) {
                                         setState(() {
-                                          focusNode50.requestFocus();
+                                          focusNode101.requestFocus();
                                           object.kipname3 = value;
                                           object.kipname3 =
                                               kipname3Controller.text;
