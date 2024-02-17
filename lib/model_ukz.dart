@@ -197,6 +197,13 @@ class Ukz {
   String _sostojaniektp;
   String _fotoktp;
   String _markatrr;
+  String _tipshr;
+  String _sostojanieshr;
+  String _sostojanieograzhd;
+  String _sostojaniezz2;
+  String _soprrastzz2;
+  String _sostojanieraz;
+  String _tipraz;
   //калькулятор простоя СКЗ
   String _potrmoschnost;
   String _datato1;
@@ -207,6 +214,13 @@ class Ukz {
   String _narabschetchik1;
   String _narabschetchik2;
   String _prostoi2;
+
+  String _rogruntskz;
+  String _rogruntktp;
+  String _rogruntraz;
+  String _rogruntaz;
+  String _soprotzzktp;
+  String _soprotzzraz;
 
   Ukz(
     this._title,
@@ -401,6 +415,13 @@ class Ukz {
     this._sostojaniektp,
     this._fotoktp,
     this._markatrr,
+    this._tipshr,
+    this._sostojanieshr,
+    this._sostojanieograzhd,
+    this._sostojaniezz2,
+    this._soprrastzz2,
+    this._sostojanieraz,
+    this._tipraz,
     //калькулятор простоя СКЗ
     this._potrmoschnost,
     this._datato1,
@@ -411,6 +432,12 @@ class Ukz {
     this._narabschetchik1,
     this._narabschetchik2,
     this._prostoi2,
+    this._rogruntskz,
+    this._rogruntktp,
+    this._rogruntraz,
+    this._rogruntaz,
+    this._soprotzzktp,
+    this._soprotzzraz,
   ]);
 
   Ukz.withId(
@@ -607,6 +634,13 @@ class Ukz {
     this._sostojaniektp,
     this._fotoktp,
     this._markatrr,
+    this._tipshr,
+    this._sostojanieshr,
+    this._sostojanieograzhd,
+    this._sostojaniezz2,
+    this._soprrastzz2,
+    this._sostojanieraz,
+    this._tipraz,
     //калькулятор простоя СКЗ
     this._potrmoschnost,
     this._datato1,
@@ -617,6 +651,12 @@ class Ukz {
     this._narabschetchik1,
     this._narabschetchik2,
     this._prostoi2,
+    this._rogruntskz,
+    this._rogruntktp,
+    this._rogruntraz,
+    this._rogruntaz,
+    this._soprotzzktp,
+    this._soprotzzraz,
   ]);
 
   int get id => _id;
@@ -805,6 +845,13 @@ class Ukz {
   String get sostojaniektp => _sostojaniektp;
   String get fotoktp => _fotoktp;
   String get markatrr => _markatrr;
+  String get tipshr => _tipshr;
+  String get sostojanieshr => _sostojanieshr;
+  String get sostojanieograzhd => _sostojanieograzhd;
+  String get sostojaniezz2 => _sostojaniezz2;
+  String get soprrastzz2 => _soprrastzz2;
+  String get sostojanieraz => _sostojanieraz;
+  String get tipraz => _tipraz;
 
   String get potrmoschnost => _potrmoschnost;
   String get datato1 => _datato1;
@@ -815,6 +862,13 @@ class Ukz {
   String get narabschetchik1 => _narabschetchik1;
   String get narabschetchik2 => _narabschetchik2;
   String get prostoi2 => _prostoi2;
+
+  String get rogruntskz => _rogruntskz;
+  String get rogruntktp => _rogruntktp;
+  String get rogruntraz => _rogruntraz;
+  String get rogruntaz => _rogruntaz;
+  String get soprotzzktp => _soprotzzktp;
+  String get soprotzzraz => _soprotzzraz;
 
   set title(String newTitle) {
     if ((newTitle?.length ?? 0) <= 255) {
@@ -1909,6 +1963,48 @@ class Ukz {
     }
   }
 
+  set tipshr(String newtipshr) {
+    if ((newtipshr?.length ?? 0) <= 255) {
+      _tipshr = newtipshr;
+    }
+  }
+
+  set sostojanieshr(String newsostojanieshr) {
+    if ((newsostojanieshr?.length ?? 0) <= 255) {
+      _sostojanieshr = newsostojanieshr;
+    }
+  }
+
+  set sostojanieograzhd(String newsostojanieograzhd) {
+    if ((newsostojanieograzhd?.length ?? 0) <= 255) {
+      _sostojanieograzhd = newsostojanieograzhd;
+    }
+  }
+
+  set sostojanieraz(String newsostojanieraz) {
+    if ((newsostojanieraz?.length ?? 0) <= 255) {
+      _sostojanieraz = newsostojanieraz;
+    }
+  }
+
+  set tipraz(String newtipraz) {
+    if ((newtipraz?.length ?? 0) <= 255) {
+      _tipraz = newtipraz;
+    }
+  }
+
+  set sostojaniezz2(String newsostojaniezz2) {
+    if ((newsostojaniezz2?.length ?? 0) <= 255) {
+      _sostojaniezz2 = newsostojaniezz2;
+    }
+  }
+
+  set soprrastzz2(String newsoprrastzz2) {
+    if ((newsoprrastzz2?.length ?? 0) <= 255) {
+      _soprrastzz2 = newsoprrastzz2;
+    }
+  }
+
   set potrmoschnost(String newpotrmoschnost) {
     if ((newpotrmoschnost?.length ?? 0) <= 255) {
       _potrmoschnost = newpotrmoschnost;
@@ -1965,6 +2061,42 @@ class Ukz {
 
   set todoDate(newtodoDate) {
     _todoDate = newtodoDate;
+  }
+
+  set rogruntskz(String newrogruntskz) {
+    if ((newrogruntskz?.length ?? 0) <= 255) {
+      _rogruntskz = newrogruntskz;
+    }
+  }
+
+  set rogruntktp(String newrogruntktp) {
+    if ((newrogruntktp?.length ?? 0) <= 255) {
+      _rogruntktp = newrogruntktp;
+    }
+  }
+
+  set rogruntraz(String newrogruntraz) {
+    if ((newrogruntraz?.length ?? 0) <= 255) {
+      _rogruntraz = newrogruntraz;
+    }
+  }
+
+  set rogruntaz(String newrogruntaz) {
+    if ((newrogruntaz?.length ?? 0) <= 255) {
+      _rogruntaz = newrogruntaz;
+    }
+  }
+
+  set soprotzzktp(String newsoprotzzktp) {
+    if ((newsoprotzzktp?.length ?? 0) <= 255) {
+      _soprotzzktp = newsoprotzzktp;
+    }
+  }
+
+  set soprotzzraz(String newsoprotzzraz) {
+    if ((newsoprotzzraz?.length ?? 0) <= 255) {
+      _soprotzzraz = newsoprotzzraz;
+    }
   }
 
   Map<String, dynamic> toMap() {
@@ -2162,6 +2294,14 @@ class Ukz {
     map['fotoktp'] = _fotoktp;
     map['markatrr'] = _markatrr;
 
+    map['tipshr'] = _tipshr;
+    map['sostojanieshr'] = _sostojanieshr;
+    map['sostojanieograzhd'] = _sostojanieograzhd;
+    map['sostojaniezz2'] = _sostojaniezz2;
+    map['soprrastzz2'] = _soprrastzz2;
+    map['sostojanieraz'] = _sostojanieraz;
+    map['tipraz'] = _tipraz;
+
     map['potrmoschnost'] = _potrmoschnost;
     map['datato1'] = _datato1;
     map['elekschetchik1'] = _elekschetchik1;
@@ -2171,6 +2311,13 @@ class Ukz {
     map['narabschetchik1'] = _narabschetchik1;
     map['narabschetchik2'] = _narabschetchik2;
     map['prostoi2'] = _prostoi2;
+
+    map['rogruntskz'] = _rogruntskz;
+    map['rogruntktp'] = _rogruntktp;
+    map['rogruntraz'] = _rogruntraz;
+    map['rogruntaz'] = _rogruntaz;
+    map['soprotzzktp'] = _soprotzzktp;
+    map['soprotzzraz'] = _soprotzzraz;
 
     if (_id != null) {
       map['id'] = _id;
@@ -2372,6 +2519,14 @@ class Ukz {
     _fotoktp = o['fotoktp'];
     _markatrr = o['markatrr'];
 
+    _tipshr = o['tipshr'];
+    _sostojanieshr = o['sostojanieshr'];
+    _sostojanieograzhd = o['sostojanieograzhd'];
+    _sostojaniezz2 = o['sostojaniezz2'];
+    _soprrastzz2 = o['soprrastzz2'];
+    _sostojanieraz = o['sostojanieraz'];
+    _tipraz = o['tipraz'];
+
     _potrmoschnost = o['potrmoschnost'];
     _datato1 = o['datato1'];
     _elekschetchik1 = o['elekschetchik1'];
@@ -2381,5 +2536,12 @@ class Ukz {
     _narabschetchik1 = o['narabschetchik1'];
     _narabschetchik2 = o['narabschetchik2'];
     _prostoi2 = o['prostoi2'];
+
+    _rogruntskz = o['rogruntskz'];
+    _rogruntktp = o['rogruntktp'];
+    _rogruntraz = o['rogruntraz'];
+    _rogruntaz = o['rogruntaz'];
+    _soprotzzktp = o['soprotzzktp'];
+    _soprotzzraz = o['soprotzzraz'];
   }
 }

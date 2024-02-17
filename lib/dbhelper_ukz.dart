@@ -202,6 +202,14 @@ class DbHelperUkz {
   String colfotoktp = 'fotoktp';
   String colmarkatrr = 'markatrr';
 
+  String coltipshr = 'tipshr';
+  String colsostojanieshr = 'sostojanieshr';
+  String colsostojanieograzhd = 'sostojanieograzhd';
+  String colsostojaniezz2 = 'sostojaniezz2';
+  String colsoprrastzz2 = 'soprrastzz2';
+  String colsostojanieraz = 'sostojanieraz';
+  String coltipraz = 'tipraz';
+
   String colpotrmoschnost = 'potrmoschnost';
   String coldatato1 = 'datato1';
   String colelekschetchik1 = 'elekschetchik1';
@@ -211,6 +219,13 @@ class DbHelperUkz {
   String colnarabschetchik1 = 'narabschetchik1';
   String colnarabschetchik2 = 'narabschetchik2';
   String colprostoi2 = 'prostoi2';
+
+  String colrogruntskz = 'rogruntskz';
+  String colrogruntktp = 'rogruntktp';
+  String colrogruntraz = 'rogruntraz';
+  String colrogruntaz = 'rogruntaz';
+  String colsoprotzzktp = 'soprotzzktp';
+  String colsoprotzzraz = 'soprotzzraz';
 
   DbHelperUkz._internal();
 
@@ -419,7 +434,20 @@ class DbHelperUkz {
         $coltipktp TEXT,
         $colsostojaniektp TEXT,
         $colfotoktp TEXT,
-        $colmarkatrr TEXT,
+        $colmarkatrr TEXT,        
+        $coltipshr TEXT,
+        $colsostojanieshr TEXT,
+        $colsostojanieograzhd TEXT,
+        $colsostojaniezz2 TEXT,
+        $colsoprrastzz2 TEXT,
+        $colsostojanieraz TEXT,
+        $coltipraz TEXT,
+        $colrogruntskz TEXT,
+        $colrogruntktp TEXT,
+        $colrogruntraz TEXT,
+        $colrogruntaz TEXT,
+        $colsoprotzzktp TEXT,
+        $colsoprotzzraz TEXT,
         $colpotrmoschnost TEXT,
         $coldatato1 TEXT,
         $colelekschetchik1 TEXT,

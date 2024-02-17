@@ -417,6 +417,14 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   // TextEditingController fotoktpController = TextEditingController();
   TextEditingController markatrrController = TextEditingController();
 
+  TextEditingController tipshrController = TextEditingController();
+  TextEditingController sostojanieshrController = TextEditingController();
+  TextEditingController sostojanieograzhdController = TextEditingController();
+  TextEditingController sostojaniezz2Controller = TextEditingController();
+  TextEditingController soprrastzz2Controller = TextEditingController();
+  TextEditingController sostojanierazController = TextEditingController();
+  TextEditingController tiprazController = TextEditingController();
+
   TextEditingController potrmoschnostController = TextEditingController();
   TextEditingController datato1Controller = TextEditingController();
   TextEditingController elekschetchik1Controller = TextEditingController();
@@ -426,6 +434,13 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   TextEditingController narabschetchik1Controller = TextEditingController();
   TextEditingController narabschetchik2Controller = TextEditingController();
   TextEditingController prostoi2Controller = TextEditingController();
+
+  TextEditingController rogruntskzController = TextEditingController();
+  TextEditingController rogruntktpController = TextEditingController();
+  TextEditingController rogruntrazController = TextEditingController();
+  TextEditingController rogruntazController = TextEditingController();
+  TextEditingController soprotzzktpController = TextEditingController();
+  TextEditingController soprotzzrazController = TextEditingController();
 
   bool isEdit;
   final GlobalKey<FormState> _1formKey = GlobalKey<FormState>();
@@ -636,6 +651,14 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     // fotoktpController.text = object.fotoktp ?? '';
     markatrrController.text = object.markatrr ?? '';
 
+    tipshrController.text = object.tipshr ?? '';
+    sostojanieshrController.text = object.sostojanieshr ?? '';
+    sostojanieograzhdController.text = object.sostojanieograzhd ?? '';
+    sostojaniezz2Controller.text = object.sostojaniezz2 ?? '';
+    soprrastzz2Controller.text = object.soprrastzz2 ?? '';
+    sostojanierazController.text = object.sostojanieraz ?? '';
+    tiprazController.text = object.tipraz ?? '';
+
     potrmoschnostController.text = object.potrmoschnost ?? '';
     datato1Controller.text = object.datato1 ?? '';
     elekschetchik1Controller.text = object.elekschetchik1 ?? '';
@@ -645,6 +668,13 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     narabschetchik1Controller.text = object.narabschetchik1 ?? '';
     narabschetchik2Controller.text = object.narabschetchik2 ?? '';
     prostoi2Controller.text = object.prostoi2 ?? '';
+
+    rogruntskzController.text = object.rogruntskz ?? '';
+    rogruntktpController.text = object.rogruntktp ?? '';
+    rogruntrazController.text = object.rogruntraz ?? '';
+    rogruntazController.text = object.rogruntaz ?? '';
+    soprotzzktpController.text = object.soprotzzktp ?? '';
+    soprotzzrazController.text = object.soprotzzraz ?? '';
   }
 
   ObjectDetailUkzState(this.object);
@@ -658,7 +688,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     );
 
     return DefaultTabController(
-      length: 9,
+      length: 8,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: _cardColor,
@@ -816,13 +846,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                 )),
                 Tab(
                     icon: Icon(
-                  Icons.tornado_sharp,
-                  size: 30,
-                  // color: Colors.white,
-                )),
-                Tab(
-                    icon: Icon(
-                  Icons.linear_scale_sharp,
+                  Icons.flash_on_sharp,
                   size: 30,
                   // color: Colors.white,
                 )),
@@ -834,7 +858,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                 )),
                 Tab(
                     icon: Icon(
-                  Icons.flash_on_sharp,
+                  Icons.device_hub_sharp,
                   size: 30,
                 )),
                 Tab(
@@ -8792,6 +8816,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 soprrast3azController.clear();
                                 soprrast4azController.clear();
                                 soprrast5azController.clear();
+                                rogruntazController.clear();
                               },
                               child: Icon(
                                 Icons.delete_outline,
@@ -9046,6 +9071,59 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                         ],
                       ),
                       SizedBox(height: 5),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.rogruntaz = value;
+                        },
+                        controller: rogruntazController,
+                        focusNode: focusNode112,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Ro грунта',
+                          hintText: 'Ro грунта',
+                          helperText: 'Ом*м',
+                          prefixIcon: Icon(
+                            Icons.blur_on_sharp,
+                            color: focusNode112.hasFocus ||
+                                    rogruntazController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode112.requestFocus();
+                            sumsopraz();
+                            object.rogruntaz = value;
+                            object.rogruntaz = rogruntazController.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
                       Divider(thickness: 4),
                       TextFormField(
                         maxLength: 1000,
@@ -9211,13 +9289,636 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'ЗАЩИТНОЕ ЗАЗЕМЛЕНИЕ',
+                            'ЭЛЕКТРООБОРУДОВАНИЕ',
                             style: TextStyle(
                                 fontSize: 24,
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w300),
                           )),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      TextFormField(
+                        maxLength: 50,
+                        onFieldSubmitted: (String value) {
+                          object.tipraz = value;
+                        },
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'введите название';
+                          } else if (value.length > 50) {
+                            return 'Максимальная длина 50';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.text,
+                        controller: tiprazController,
+                        focusNode: focusNode107,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Тип разъединителя',
+                          hintText: 'Введите наименование',
+                          prefixIcon: Icon(
+                            Icons.calendar_today_sharp,
+                            color: focusNode107.hasFocus ||
+                                    tiprazController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              tiprazController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode107.requestFocus();
+                            object.tipraz = value;
+                            object.tipraz = tiprazController.text;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode106,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojanieraz = value;
+                            object.sostojanieraz = sostojanierazController.text;
+                          });
+                          focusNode106.requestFocus();
+                          object.sostojanieraz = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние разъединителя',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode106.hasFocus ||
+                                    sostojanierazController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojanieraz,
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.rogruntraz = value;
+                              },
+                              controller: rogruntrazController,
+                              focusNode: focusNode110,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Ro грунта',
+                                hintText: 'Ro грунта',
+                                helperText: 'Ом*м',
+                                prefixIcon: Icon(
+                                  Icons.blur_on_sharp,
+                                  color: focusNode110.hasFocus ||
+                                          rogruntrazController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode110.requestFocus();
+                                  sumsopraz();
+                                  object.rogruntraz = value;
+                                  object.rogruntraz = rogruntrazController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprotzzraz = value;
+                              },
+                              controller: soprotzzrazController,
+                              focusNode: focusNode111,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rраст ЗЗ',
+                                hintText: 'Rраст ЗЗ',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.show_chart_sharp,
+                                  color: focusNode111.hasFocus ||
+                                          soprotzzrazController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode111.requestFocus();
+                                  sumsopraz();
+                                  object.soprotzzraz = value;
+                                  object.soprotzzraz =
+                                      soprotzzrazController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      TextFormField(
+                        maxLength: 50,
+                        onFieldSubmitted: (String value) {
+                          object.tipktp = value;
+                        },
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'введите название';
+                          } else if (value.length > 50) {
+                            return 'Максимальная длина 50';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.text,
+                        controller: tipktpController,
+                        focusNode: focusNode102,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Тип КТП',
+                          hintText: 'Введите наименование',
+                          prefixIcon: Icon(
+                            Icons.calendar_today_sharp,
+                            color: focusNode102.hasFocus ||
+                                    tipktpController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              tipktpController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode102.requestFocus();
+                            object.tipktp = value;
+                            object.tipktp = tipktpController.text;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode103,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojaniektp = value;
+                            object.sostojaniektp = sostojaniektpController.text;
+                          });
+                          focusNode103.requestFocus();
+                          object.sostojaniektp = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние КТП',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode103.hasFocus ||
+                                    sostojaniektpController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojaniektp,
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.rogruntktp = value;
+                              },
+                              controller: rogruntktpController,
+                              focusNode: focusNode108,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Ro грунта',
+                                hintText: 'Ro грунта',
+                                helperText: 'Ом*м',
+                                prefixIcon: Icon(
+                                  Icons.blur_on_sharp,
+                                  color: focusNode108.hasFocus ||
+                                          rogruntktpController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode108.requestFocus();
+                                  sumsopraz();
+                                  object.rogruntktp = value;
+                                  object.rogruntktp = rogruntktpController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprotzzktp = value;
+                              },
+                              controller: soprotzzktpController,
+                              focusNode: focusNode109,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rраст ЗЗ',
+                                hintText: 'Rраст ЗЗ',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.show_chart_sharp,
+                                  color: focusNode109.hasFocus ||
+                                          soprotzzktpController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode109.requestFocus();
+                                  sumsopraz();
+                                  object.soprotzzktp = value;
+                                  object.soprotzzktp =
+                                      soprotzzktpController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      TextFormField(
+                        maxLength: 50,
+                        onFieldSubmitted: (String value) {
+                          object.tipshr = value;
+                        },
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'введите название';
+                          } else if (value.length > 50) {
+                            return 'Максимальная длина 50';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.text,
+                        controller: tipshrController,
+                        focusNode: focusNode104,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Тип ЩР',
+                          hintText: 'Введите наименование',
+                          prefixIcon: Icon(
+                            Icons.calendar_today_sharp,
+                            color: focusNode104.hasFocus ||
+                                    tipshrController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              tipshrController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode104.requestFocus();
+                            object.tipshr = value;
+                            object.tipshr = tipshrController.text;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode105,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojanieshr = value;
+                            object.sostojanieshr = sostojanieshrController.text;
+                          });
+                          focusNode105.requestFocus();
+                          object.sostojanieshr = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние ЩР',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode105.hasFocus ||
+                                    sostojanieshrController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojanieshr,
+                      ),
+                      SizedBox(height: 5),
                       Divider(thickness: 4),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -9255,7 +9956,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'ВОЗДУШНЫЕ ЛИНИИ',
+                            'ЛЭП',
                             style: TextStyle(
                                 fontSize: 24,
                                 color: Theme.of(context).primaryColor,
@@ -9299,7 +10000,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'КАБЕЛЬНЫЕ ЛИНИИ',
+                            'ТЕРРИТОРИЯ',
                             style: TextStyle(
                                 fontSize: 24,
                                 color: Theme.of(context).primaryColor,
@@ -9343,50 +10044,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'КТП (РУ)',
-                            style: TextStyle(
-                                fontSize: 24,
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.w300),
-                          )),
-                      SizedBox(height: 20),
-                      Divider(thickness: 4),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
-                            ),
-                        onPressed: () => saveForm8(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Form(
-                  key: _9formKey,
-                  child: ListView(
-                    children: <Widget>[
-                      SizedBox(height: 20),
-                      Container(
-                          alignment: Alignment.center,
-                          child: Text(
                             'КАЛЬКУЛЯТОР ПРОСТОЕВ',
                             style: TextStyle(
                                 fontSize: 24,
@@ -9407,7 +10064,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 borderRadius:
                                     BorderRadius.circular(10.0)) // foreground
                             ),
-                        onPressed: () => saveForm9(),
+                        onPressed: () => saveForm8(),
                         child: Text(
                           isEdit
                               ? 'Редактировать и закрыть'
