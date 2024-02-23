@@ -6,6 +6,7 @@ import 'package:ehz1/image_screen.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:math' as math;
 import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -28,6 +29,14 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   String locationData = '';
 
   DateTime dateUkz; // Дата выбранная для date
+  DateTime datato1; // Дата выбранная для dateObsl1
+  DateTime datato2; // Дата выбранная для dateObsl2
+
+  static const _actionTitles = [
+    'Удалить запись',
+    'Сохранить запись и зкрыть',
+    'Сформировать документ'
+  ];
 
   FocusNode focusNode1 = FocusNode();
   FocusNode focusNode2 = FocusNode();
@@ -192,6 +201,10 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   File _imagebdr1;
   File _imagebdr2;
   File _imageaz;
+
+  File _imageelobor;
+  File _imagevl;
+  File _imagedrug;
 
   Color _cardColor = Colors.white;
 
@@ -725,31 +738,31 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                         onPressed: () {
                           if (_1formKey.currentState != null) {
                             _1formKey.currentState.validate();
-                            saveForm12();
+                            saveForm(_1formKey);
                           } else if (_2formKey.currentState != null) {
                             _2formKey.currentState.validate();
-                            saveForm22();
+                            saveForm(_2formKey);
                           } else if (_3formKey.currentState != null) {
                             _3formKey.currentState.validate();
-                            saveForm32();
+                            saveForm(_3formKey);
                           } else if (_4formKey.currentState != null) {
                             _4formKey.currentState.validate();
-                            saveForm42();
+                            saveForm(_4formKey);
                           } else if (_5formKey.currentState != null) {
                             _5formKey.currentState.validate();
-                            saveForm52();
+                            saveForm(_5formKey);
                           } else if (_6formKey.currentState != null) {
                             _6formKey.currentState.validate();
-                            saveForm62();
+                            saveForm(_6formKey);
                           } else if (_7formKey.currentState != null) {
                             _7formKey.currentState.validate();
-                            saveForm72();
+                            saveForm(_7formKey);
                           } else if (_8formKey.currentState != null) {
                             _8formKey.currentState.validate();
-                            saveForm82();
+                            saveForm(_8formKey);
                           } else if (_9formKey.currentState != null) {
                             _9formKey.currentState.validate();
-                            saveForm92();
+                            saveForm(_9formKey);
                           }
                         },
                       ),
@@ -772,33 +785,23 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                           size: 32,
                         ),
                         onPressed: () {
-                          if (_1formKey.currentState != null) {
-                            _1formKey.currentState.validate();
-                            saveForm1();
-                          } else if (_2formKey.currentState != null) {
-                            _2formKey.currentState.validate();
-                            saveForm2();
-                          } else if (_3formKey.currentState != null) {
-                            _3formKey.currentState.validate();
-                            saveForm3();
-                          } else if (_4formKey.currentState != null) {
-                            _4formKey.currentState.validate();
-                            saveForm4();
-                          } else if (_5formKey.currentState != null) {
-                            _5formKey.currentState.validate();
-                            saveForm5();
-                          } else if (_6formKey.currentState != null) {
-                            _6formKey.currentState.validate();
-                            saveForm6();
-                          } else if (_7formKey.currentState != null) {
-                            _7formKey.currentState.validate();
-                            saveForm7();
-                          } else if (_8formKey.currentState != null) {
-                            _8formKey.currentState.validate();
-                            saveForm8();
-                          } else if (_9formKey.currentState != null) {
-                            _9formKey.currentState.validate();
-                            saveForm9();
+                          List<GlobalKey<FormState>> formKeys = [
+                            _1formKey,
+                            _2formKey,
+                            _3formKey,
+                            _4formKey,
+                            _5formKey,
+                            _6formKey,
+                            _7formKey,
+                            _8formKey,
+                            _9formKey
+                          ];
+                          for (final formKey in formKeys) {
+                            if (formKey.currentState != null &&
+                                formKey.currentState.validate()) {
+                              saveForm(formKey);
+                              Navigator.pop(context, true);
+                            }
                           }
                         },
                       ),
@@ -3416,28 +3419,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       ),
                       Divider(thickness: 4),
                       SizedBox(height: 10),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
-                            ),
-                        onPressed: () => saveForm1(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -6511,26 +6492,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                         ),
                       ),
                       Divider(thickness: 4),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
-                            ),
-                        onPressed: () => saveForm2(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -8361,26 +8322,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                         ),
                       ),
                       Divider(thickness: 4),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
-                            ),
-                        onPressed: () => saveForm3(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -9253,26 +9194,6 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                         ),
                       ),
                       Divider(thickness: 4),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
-                            ),
-                        onPressed: () => saveForm4(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -9920,26 +9841,137 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       ),
                       SizedBox(height: 5),
                       Divider(thickness: 4),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
+                      TextFormField(
+                        maxLength: 1000,
+                        focusNode: focusNode120,
+                        onSaved: (value) {
+                          object.zamechkl1 = value;
+                        },
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode120.requestFocus();
+                            object.zamechkl1 = value;
+                            object.zamechkl1 = zamechkl1Controller.text;
+                          });
+                        },
+                        controller: zamechkl1Controller,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Замечания',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              zamechkl1Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
                             ),
-                        onPressed: () => saveForm5(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
+                          ),
+                          prefixIcon: GestureDetector(
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CameraPageUkz()),
+                                ).then((value) {
+                                  setState(() async {
+                                    if (value != null) {
+                                      _imageelobor = value;
+                                      if (_5formKey.currentState.validate()) {
+                                        _5formKey.currentState.save();
+                                        if (_imageelobor != null) {
+                                          final Directory extDir =
+                                              await getApplicationDocumentsDirectory();
+                                          final String dirPath =
+                                              '${extDir.path}/Pictures/flutter';
+                                          await Directory(dirPath)
+                                              .create(recursive: true);
+                                          final String filePath =
+                                              '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
+                                          await _imageelobor.copy(filePath);
+                                          object.fotokl1 = filePath;
+                                          print(
+                                              'сделали: ${object.fotokl1.toString()}');
+                                        }
+                                      }
+                                    }
+                                  });
+                                });
+                              },
+                              child: Icon(
+                                Icons.camera_alt_sharp,
+                                color: Colors.green,
+                              )),
+                          hintText: 'Дефекты, замечания и другое',
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        maxLines: 10,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1000),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 100,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ImageScreen(
+                                            imagePath: object.fotokl1)),
+                                  );
+                                },
+                                child: Center(
+                                  child: object.fotokl1 != null
+                                      ? Image.file(
+                                          File(object.fotokl1),
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          height: 100,
+                                        )
+                                      : Text(
+                                          'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
+                                          style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w300,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
                     ],
                   ),
                 ),
@@ -9962,28 +9994,502 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w300),
                           )),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       Divider(thickness: 4),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Питающая линия',
+                            style: TextStyle(
+                                fontSize: 24,
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.w300),
+                          )),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode113,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojanievl1 = value;
+                            object.sostojanievl1 = sostojanievl1Controller.text;
+                          });
+                          focusNode113.requestFocus();
+                          object.sostojanievl1 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние питающей ВЛ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode113.hasFocus ||
+                                    sostojanievl1Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojanievl1,
+                      ),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode114,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojaniekl1 = value;
+                            object.sostojaniekl1 = sostojaniekl1Controller.text;
+                          });
+                          focusNode114.requestFocus();
+                          object.sostojaniekl1 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние питающей КЛ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode114.hasFocus ||
+                                    sostojaniekl1Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojaniekl1,
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Анодная линия',
+                            style: TextStyle(
+                                fontSize: 24,
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.w300),
+                          )),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode115,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojanievl2 = value;
+                            object.sostojanievl2 = sostojanievl2Controller.text;
+                          });
+                          focusNode115.requestFocus();
+                          object.sostojanievl2 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние анодной ВЛ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode115.hasFocus ||
+                                    sostojanievl2Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojanievl2,
+                      ),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode116,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojaniekl2 = value;
+                            object.sostojaniekl2 = sostojaniekl2Controller.text;
+                          });
+                          focusNode116.requestFocus();
+                          object.sostojaniekl2 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние анодной КЛ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode116.hasFocus ||
+                                    sostojaniekl2Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojaniekl2,
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Катодная линия',
+                            style: TextStyle(
+                                fontSize: 24,
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.w300),
+                          )),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode117,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojanievl3 = value;
+                            object.sostojanievl3 = sostojanievl3Controller.text;
+                          });
+                          focusNode117.requestFocus();
+                          object.sostojanievl3 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние катодной ВЛ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode117.hasFocus ||
+                                    sostojanievl3Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojanievl3,
+                      ),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode118,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojaniekl3 = value;
+                            object.sostojaniekl3 = sostojaniekl3Controller.text;
+                          });
+                          focusNode118.requestFocus();
+                          object.sostojaniekl3 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние катодной КЛ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode118.hasFocus ||
+                                    sostojaniekl3Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojaniekl3,
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      TextFormField(
+                        maxLength: 1000,
+                        focusNode: focusNode119,
+                        onSaved: (value) {
+                          object.zamechvl1 = value;
+                        },
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode119.requestFocus();
+                            object.zamechvl1 = value;
+                            object.zamechvl1 = zamechvl1Controller.text;
+                          });
+                        },
+                        controller: zamechvl1Controller,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Замечания',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              zamechvl1Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
                             ),
-                        onPressed: () => saveForm6(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
+                          ),
+                          prefixIcon: GestureDetector(
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CameraPageUkz()),
+                                ).then((value) {
+                                  setState(() async {
+                                    if (value != null) {
+                                      _imagevl = value;
+                                      if (_6formKey.currentState.validate()) {
+                                        _6formKey.currentState.save();
+                                        if (_imagevl != null) {
+                                          final Directory extDir =
+                                              await getApplicationDocumentsDirectory();
+                                          final String dirPath =
+                                              '${extDir.path}/Pictures/flutter';
+                                          await Directory(dirPath)
+                                              .create(recursive: true);
+                                          final String filePath =
+                                              '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
+                                          await _imagevl.copy(filePath);
+                                          object.fotovl1 = filePath;
+                                          print(
+                                              'сделали: ${object.fotovl1.toString()}');
+                                        }
+                                      }
+                                    }
+                                  });
+                                });
+                              },
+                              child: Icon(
+                                Icons.camera_alt_sharp,
+                                color: Colors.green,
+                              )),
+                          hintText: 'Дефекты, замечания и другое',
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        maxLines: 10,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1000),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 100,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ImageScreen(
+                                            imagePath: object.fotovl1)),
+                                  );
+                                },
+                                child: Center(
+                                  child: object.fotovl1 != null
+                                      ? Image.file(
+                                          File(object.fotovl1),
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          height: 100,
+                                        )
+                                      : Text(
+                                          'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
+                                          style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w300,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
                     ],
                   ),
                 ),
@@ -10006,28 +10512,250 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w300),
                           )),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       Divider(thickness: 4),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode122,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.provodvl1 = value;
+                            object.provodvl1 = provodvl1Controller.text;
+                          });
+                          focusNode122.requestFocus();
+                          object.provodvl1 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние территории',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode122.hasFocus ||
+                                    provodvl1Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.provodvl1,
+                      ),
+                      SizedBox(height: 5),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode123,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.provodvl2 = value;
+                            object.provodvl2 = provodvl2Controller.text;
+                          });
+                          focusNode123.requestFocus();
+                          object.provodvl2 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние ограждения',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode123.hasFocus ||
+                                    provodvl2Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.provodvl2,
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      TextFormField(
+                        maxLength: 1000,
+                        focusNode: focusNode121,
+                        onSaved: (value) {
+                          object.zamechkl2 = value;
+                        },
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode121.requestFocus();
+                            object.zamechkl2 = value;
+                            object.zamechkl2 = zamechkl2Controller.text;
+                          });
+                        },
+                        controller: zamechkl2Controller,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Замечания',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              zamechkl2Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
                             ),
-                        onPressed: () => saveForm7(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
+                          ),
+                          prefixIcon: GestureDetector(
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CameraPageUkz()),
+                                ).then((value) {
+                                  setState(() async {
+                                    if (value != null) {
+                                      _imagedrug = value;
+                                      if (_7formKey.currentState.validate()) {
+                                        _7formKey.currentState.save();
+                                        if (_imagedrug != null) {
+                                          final Directory extDir =
+                                              await getApplicationDocumentsDirectory();
+                                          final String dirPath =
+                                              '${extDir.path}/Pictures/flutter';
+                                          await Directory(dirPath)
+                                              .create(recursive: true);
+                                          final String filePath =
+                                              '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
+                                          await _imagedrug.copy(filePath);
+                                          object.fotokl2 = filePath;
+                                          print(
+                                              'сделали: ${object.fotokl2.toString()}');
+                                        }
+                                      }
+                                    }
+                                  });
+                                });
+                              },
+                              child: Icon(
+                                Icons.camera_alt_sharp,
+                                color: Colors.green,
+                              )),
+                          hintText: 'Дефекты, замечания и другое',
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        maxLines: 10,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1000),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 100,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ImageScreen(
+                                            imagePath: object.fotokl2)),
+                                  );
+                                },
+                                child: Center(
+                                  child: object.fotokl2 != null
+                                      ? Image.file(
+                                          File(object.fotokl2),
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          height: 100,
+                                        )
+                                      : Text(
+                                          'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
+                                          style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w300,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                      Divider(thickness: 4),
                     ],
                   ),
                 ),
@@ -10050,31 +10778,358 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w300),
                           )),
-                      SizedBox(height: 20),
-                      Divider(thickness: 4),
                       SizedBox(height: 10),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary:
-                                Theme.of(context).accentColor, // background
-                            onPrimary: Colors.white,
-                            elevation: 2,
-                            padding: const EdgeInsets.all(13.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(10.0)) // foreground
+                      Divider(thickness: 4),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Время простоя: ${prostoi1Controller.text} ч',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.w600),
                             ),
-                        onPressed: () => saveForm8(),
-                        child: Text(
-                          isEdit
-                              ? 'Редактировать и закрыть'
-                              : 'Добавить и закрыть',
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w300,
-                          ),
+                          ],
                         ),
                       ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Дата последнего ТО:',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Сегодня:',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            focusNode: focusNode125,
+                            onPressed: () async {
+                              DateTime selectedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2015),
+                                lastDate: datato1 ?? DateTime(2100),
+                                locale: const Locale("ru",
+                                    "RU"), // Установите локаль на русский язык
+                              );
+
+                              if (selectedDate != null) {
+                                setState(() {
+                                  // prostoiel();
+                                  datato1 = selectedDate;
+                                  datato1Controller.text =
+                                      DateFormat('dd.MM.yyyy')
+                                          .format(selectedDate);
+                                  object.datato1 = datato1Controller.text;
+                                });
+                              }
+                            },
+                            icon: Icon(
+                              Icons.calendar_month_outlined,
+                              color: focusNode125.hasFocus ||
+                                      datato1Controller.text.isNotEmpty
+                                  ? Theme.of(context).primaryColor
+                                  : Colors.grey,
+                              size: 32,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              datato1Controller.text,
+                              style: TextStyle(
+                                fontSize: 22,
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: IconButton(
+                              focusNode: focusNode124,
+                              onPressed: () async {
+                                DateTime selectedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: datato2 ?? DateTime.now(),
+                                  firstDate: datato1 ?? DateTime.now(),
+                                  lastDate: DateTime(2100),
+                                  locale: const Locale("ru",
+                                      "RU"), // Установите локаль на русский язык
+                                );
+
+                                if (selectedDate != null) {
+                                  setState(() {
+                                    // prostoiel();
+                                    datato2 = selectedDate;
+                                    datato2Controller.text =
+                                        DateFormat('dd.MM.yyyy')
+                                            .format(selectedDate);
+                                    object.datato2 = datato2Controller.text;
+                                  });
+                                }
+                              },
+                              icon: Icon(
+                                Icons.calendar_month_outlined,
+                                color: focusNode124.hasFocus ||
+                                        datato2Controller.text.isNotEmpty
+                                    ? Theme.of(context).primaryColor
+                                    : Colors.grey,
+                                size: 32,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              datato2Controller.text,
+                              style: TextStyle(
+                                fontSize: 22,
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.elekschetchik1 = value;
+                              },
+                              controller: elekschetchik1Controller,
+                              focusNode: focusNode126,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'эл.счётч',
+                                hintText: 'эл.счётч',
+                                helperText: 'кВт*ч',
+                                prefixIcon: Icon(
+                                  Icons.restore_sharp,
+                                  color: focusNode126.hasFocus ||
+                                          elekschetchik1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    elekschetchik1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode126.requestFocus();
+                                  prostoiel();
+                                  object.elekschetchik1 = value;
+                                  object.elekschetchik1 =
+                                      elekschetchik1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.elekschetchik2 = value;
+                              },
+                              controller: elekschetchik2Controller,
+                              focusNode: focusNode127,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'эл.счётч',
+                                hintText: 'эл.счётч',
+                                helperText: 'кВт*ч',
+                                prefixIcon: Icon(
+                                  Icons.update_sharp,
+                                  color: focusNode127.hasFocus ||
+                                          elekschetchik2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    elekschetchik2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode127.requestFocus();
+                                  prostoiel();
+                                  object.elekschetchik2 = value;
+                                  object.elekschetchik2 =
+                                      elekschetchik2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.potrmoschnost = value;
+                        },
+                        controller: potrmoschnostController,
+                        focusNode: focusNode128,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Потребляемая мощность',
+                          hintText: 'Введите значение',
+                          helperText: 'кВт',
+                          prefixIcon: Icon(
+                            Icons.info_sharp,
+                            color: focusNode128.hasFocus ||
+                                    potrmoschnostController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              potrmoschnostController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode128.requestFocus();
+                            prostoiel();
+                            object.potrmoschnost = value;
+                            object.potrmoschnost = potrmoschnostController.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 10),
                     ],
                   ),
                 ),
@@ -10082,1339 +11137,96 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
             ),
           ],
         ),
+        floatingActionButton: ExpandableFab(
+          distance: 112,
+          children: [
+            ActionButton(
+              onPressed: () => confirmDelete(),
+              icon: const Icon(Icons.delete_forever_outlined),
+            ),
+            ActionButton(
+              onPressed: () {
+                List<GlobalKey<FormState>> formKeys = [
+                  _1formKey,
+                  _2formKey,
+                  _3formKey,
+                  _4formKey,
+                  _5formKey,
+                  _6formKey,
+                  _7formKey,
+                  _8formKey,
+                  _9formKey
+                ];
+                for (final formKey in formKeys) {
+                  if (formKey.currentState != null &&
+                      formKey.currentState.validate()) {
+                    saveForm(formKey);
+                    Navigator.pop(context, true);
+                  }
+                }
+              },
+              icon: const Icon(Icons.save_outlined),
+            ),
+            ActionButton(
+              onPressed: () => editExcelFile(),
+              icon: const Icon(Icons.assignment_outlined),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  // void editExcelFile(String buttonName) async {
-  //   try {
-  //     if (buttonName == 'AO') {
-  //       // Получаем путь к файлу Excel в папке assets
-  //       ByteData data = await rootBundle.load('assets/form/IP/AO.xlsx');
-  //       List<int> bytes = data.buffer.asUint8List();
-
-  //       // Открываем файл Excel
-  //       var excel = Excel.decodeBytes(bytes);
-
-  //       // Получаем страницу, на которой нужно вставить данные
-  //       var sheet = excel['AO'];
-  //       var filial = 'Филиал';
-
-  //       // Вставляем данные в определенные ячейки
-  //       if (object.filial == 'Арзамасское ЛПУМГ') {
-  //         filial = 'Арзамасского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Владимирское ЛПУМГ') {
-  //         filial = 'Владимирского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Волжское ЛПУМГ') {
-  //         filial = 'Волжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Вятское ЛПУМГ') {
-  //         filial = 'Вятского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Заволжское ЛПУМГ') {
-  //         filial = 'Заволжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Ивановское ЛПУМГ') {
-  //         filial = 'Ивановского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Кировское ЛПУМГ') {
-  //         filial = 'Кировского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Моркинское ЛПУМГ') {
-  //         filial = 'Моркинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пензенское ЛПУМГ') {
-  //         filial = 'Пензенского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пильнинское ЛПУМГ') {
-  //         filial = 'Пильнинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Починковское ЛПУМГ') {
-  //         filial = 'Починковского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Приокское ЛПУМГ') {
-  //         filial = 'Приокского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Семеновское ЛПУМГ') {
-  //         filial = 'Семеновского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Сеченовское ЛПУМГ') {
-  //         filial = 'Сеченовского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Торбеевское ЛПУМГ') {
-  //         filial = 'Торбеевского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Чебоксарское ЛПУМГ') {
-  //         filial = 'Чебоксарского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'ИТЦ ЛПУМГ') {
-  //         filial = 'ИТЦ-филиала';
-  //       } else if (object.filial == 'УАВР') {
-  //         filial = 'УАВР-филиала';
-  //       }
-  //       sheet.cell(CellIndex.indexByString("E4")).value =
-  //           object.dolzhnpredskom ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E5")).value = object.filial ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I7")).value =
-  //           object.fiopredskom ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I8")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F11")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G14")).value = object.title ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G15")).value = object.davl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G16")).value =
-  //           object.diameter.toString() ??
-  //               '-' + "x" + object.thickpipe.toString() ??
-  //               '-';
-  //       sheet.cell(CellIndex.indexByString("G17")).value =
-  //           object.gradesteel ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G18")).value =
-  //           object.typeinsul ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F19")).value =
-  //           object.osnovanie ?? '-';
-  //       sheet.cell(CellIndex.indexByString("A25")).value =
-  //           object.piketkm ?? '-';
-  //       sheet.cell(CellIndex.indexByString("C25")).value =
-  //           object.distvtd ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E25")).value =
-  //           object.location ?? '-';
-  //       sheet.cell(CellIndex.indexByString("H25")).value =
-  //           object.privmest ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J25")).value =
-  //           object.depthpit ?? '-';
-  //       sheet.cell(CellIndex.indexByString("A34")).value = object.mesto ?? '-';
-  //       sheet.cell(CellIndex.indexByString("C34")).value =
-  //           object.tipgrunta ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E34")).value =
-  //           object.vlaggrunt ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G34")).value =
-  //           object.lengthpit ?? '-';
-  //       sheet.cell(CellIndex.indexByString("H34")).value =
-  //           object.soprgrunt ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I34")).value = object.ph ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J34")).value =
-  //           object.potencial ?? '-';
-  //       sheet.cell(CellIndex.indexByString("K34")).value =
-  //           object.tempsurf ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G38")).value = object.vlaga ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("D49")).value =
-  //           object.thickinsul1 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F49")).value =
-  //           object.thickinsul2 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("H49")).value =
-  //           object.thickinsul3 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J49")).value =
-  //           object.thickinsul4 ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("A63")).value =
-  //           object.charmetdamage1 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("C63")).value =
-  //           object.lochourmetdamage1 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G63")).value =
-  //           object.sizedepthmetdamage1 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I63")).value =
-  //           object.thickpipe ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("D68")).value =
-  //           object.thickpipe1 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F68")).value =
-  //           object.thickpipe2 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("H68")).value =
-  //           object.thickpipe3 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J68")).value =
-  //           object.thickpipe4 ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("H68")).value =
-  //           object.thickpipe ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E63")).value =
-  //           object.sizelengthmetdamage1.toString() ??
-  //               '-' + "x" + object.sizewidthmetdamage1.toString() ??
-  //               '-';
-
-  //       sheet.cell(CellIndex.indexByString("A64")).value =
-  //           object.charmetdamage2 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("C64")).value =
-  //           object.lochourmetdamage2 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G64")).value =
-  //           object.sizedepthmetdamage1 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I64")).value =
-  //           object.thickpipe ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E64")).value =
-  //           object.sizelengthmetdamage2.toString() ??
-  //               '-' + "x" + object.sizewidthmetdamage2.toString() ??
-  //               '-';
-
-  //       sheet.cell(CellIndex.indexByString("A65")).value =
-  //           object.charmetdamage3 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("C65")).value =
-  //           object.lochourmetdamage3 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("G65")).value =
-  //           object.sizedepthmetdamage1 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I65")).value =
-  //           object.thickpipe ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E65")).value =
-  //           object.sizelengthmetdamage3.toString() ??
-  //               '-' + "x" + object.sizewidthmetdamage3.toString() ??
-  //               '-';
-
-  //       sheet.cell(CellIndex.indexByString("F57")).value =
-  //           object.insulcondit ?? '-';
-
-  //       // sheet.cell(CellIndex.indexByString("F69")).value =
-  //       //     object.metalldamage ?? '-' == 'Да'
-  //       //         ? 'Неудовлетворительное'
-  //       //         : 'Удовлетворительное';
-
-  //       sheet.cell(CellIndex.indexByString("B73")).value =
-  //           object.tickinsulmeter ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F73")).value =
-  //           object.tickinsulmeternumb ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I73")).value =
-  //           object.tickinsulmeterdate ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("B74")).value =
-  //           object.tickmetallmeter ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F74")).value =
-  //           object.tickmetallmeternumb ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I74")).value =
-  //           object.tickmetallmeterdate ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("B75")).value =
-  //           object.adhesmeter ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F75")).value =
-  //           object.adhesmeternumb ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I75")).value =
-  //           object.adhesmeterdate ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("B76")).value =
-  //           object.multimeter ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F76")).value =
-  //           object.multimeternumb ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I76")).value =
-  //           object.multimeterdate ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("B77")).value = object.setvik ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F77")).value =
-  //           object.setviknumb ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I77")).value =
-  //           object.setvikdate ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E78")).value = object.zakl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E80")).value =
-  //           object.fiopredstzakazch ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J80")).value =
-  //           object.dateObsl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("A82")).value =
-  //           object.dolzhnproizvrab ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E82")).value =
-  //           object.fioproizvrab ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J82")).value =
-  //           object.dateObsl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("A84")).value =
-  //           object.dolzhnnachuchastka ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E84")).value =
-  //           object.fionachuchastka ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J84")).value =
-  //           object.dateObsl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("A86")).value =
-  //           object.dolzhnpredstzakazchSK ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E86")).value =
-  //           object.fiopredstzakazchSK ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J86")).value =
-  //           object.dateObsl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("F54")).value =
-  //           object.insuladhes1 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("H54")).value =
-  //           object.insulcharadhes1 ?? '-';
-
-  //       String result1 = "";
-
-  //       if (object.insuladhes1 != null && object.insulcharadhes1 != null) {
-  //         double insuladhes1Value =
-  //             double.tryParse(object.insuladhes1.replaceAll(',', '.'));
-
-  //         if (insuladhes1Value != null) {
-  //           if (insuladhes1Value >= 20) {
-  //             result1 = 'Соответствует';
-  //           } else {
-  //             result1 = 'Не соответствует';
-  //           }
-  //         } else {
-  //           result1 = '-';
-  //         }
-  //       } else {
-  //         result1 = '-';
-  //       }
-
-  //       sheet.cell(CellIndex.indexByString("J54")).value = result1;
-
-  //       sheet.cell(CellIndex.indexByString("H55")).value =
-  //           object.insulcharadhes2 ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("F55")).value =
-  //           object.insuladhes2 ?? '-';
-
-  //       String result2 = "";
-
-  //       if (object.insuladhes2 != null && object.insulcharadhes2 != null) {
-  //         double insuladhes2Value =
-  //             double.tryParse(object.insuladhes2.replaceAll(',', '.'));
-
-  //         if (insuladhes2Value != null) {
-  //           if (insuladhes2Value >= 20) {
-  //             result2 = 'Соответствует';
-  //           } else {
-  //             result2 = 'Не соответствует';
-  //           }
-  //         } else {
-  //           result2 = '-';
-  //         }
-  //       } else {
-  //         result2 = '-';
-  //       }
-
-  //       sheet.cell(CellIndex.indexByString("J55")).value = result2;
-
-  //       sheet.cell(CellIndex.indexByString("H56")).value =
-  //           object.insulcharadhes3 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F56")).value =
-  //           object.insuladhes3 ?? '-';
-  //       String result3 = "";
-
-  //       if (object.insuladhes3 != null && object.insulcharadhes3 != null) {
-  //         double insuladhes3Value =
-  //             double.tryParse(object.insuladhes3.replaceAll(',', '.'));
-
-  //         if (insuladhes3Value != null) {
-  //           if (insuladhes3Value >= 20) {
-  //             result3 = 'Соответствует';
-  //           } else {
-  //             result3 = 'Не соответствует';
-  //           }
-  //         } else {
-  //           result3 = '-';
-  //         }
-  //       } else {
-  //         result3 = '-';
-  //       }
-
-  //       sheet.cell(CellIndex.indexByString("J56")).value = result3;
-
-  //       sheet.cell(CellIndex.indexByString("A44")).value =
-  //           object.charinsuldamage1 ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("C44")).value =
-  //           object.lochourinsuldamage1 ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E44")).value =
-  //           object.sizelengthinsuldamage1.toString() ??
-  //               '-' + "x" + object.sizewidthinsuldamage1.toString() ??
-  //               '-';
-
-  //       double sizelength1 = double.tryParse(
-  //           sizelengthinsuldamageController1.text?.replaceAll(',', '.'));
-  //       double sizewidth1 = double.tryParse(
-  //           sizewidthinsuldamageController1.text?.replaceAll(',', '.'));
-
-  //       sheet.cell(CellIndex.indexByString("H44")).value =
-  //           (sizelength1 == null || sizewidth1 == null)
-  //               ? '-'
-  //               : sizelength1 * sizewidth1 / 100;
-
-  //       sheet.cell(CellIndex.indexByString("A45")).value =
-  //           object.charinsuldamage2 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("C45")).value =
-  //           object.lochourinsuldamage2 ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E45")).value =
-  //           object.sizelengthinsuldamage2.toString() ??
-  //               '-' + "x" + object.sizewidthinsuldamage2.toString() ??
-  //               '-';
-
-  //       double sizelength2 = double.tryParse(
-  //           sizelengthinsuldamageController2.text?.replaceAll(',', '.'));
-  //       double sizewidth2 = double.tryParse(
-  //           sizewidthinsuldamageController2.text?.replaceAll(',', '.'));
-
-  //       sheet.cell(CellIndex.indexByString("H45")).value =
-  //           (sizelength2 == null || sizewidth2 == null)
-  //               ? '-'
-  //               : sizelength2 * sizewidth2 / 100;
-
-  //       sheet.cell(CellIndex.indexByString("A46")).value =
-  //           object.charinsuldamage3 ?? '-';
-  //       sheet.cell(CellIndex.indexByString("C46")).value =
-  //           object.lochourinsuldamage3 ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E46")).value =
-  //           object.sizelengthinsuldamage3.toString() ??
-  //               '-' + "x" + object.sizewidthinsuldamage3.toString() ??
-  //               '-';
-
-  //       double sizelength3 = double.tryParse(
-  //           sizelengthinsuldamageController3.text?.replaceAll(',', '.'));
-  //       double sizewidth3 = double.tryParse(
-  //           sizewidthinsuldamageController3.text?.replaceAll(',', '.'));
-
-  //       sheet.cell(CellIndex.indexByString("H46")).value =
-  //           (sizelength3 == null || sizewidth3 == null)
-  //               ? '-'
-  //               : sizelength3 * sizewidth3 / 100;
-
-  //       // Получаем путь к папке "Downloads" на внешнем хранилище
-  //       Directory externalStorageDirectory =
-  //           await getExternalStorageDirectory();
-  //       String downloadsFolderPath = '${externalStorageDirectory.path}';
-
-  //       // Получаем путь к сохраненному файлу
-  //       var newFile = '${object.title}.xlsx';
-  //       var file = File('$downloadsFolderPath/$newFile');
-  //       var excelBytes = excel.encode();
-  //       await file.writeAsBytes(excelBytes);
-  //       String filePath = '$downloadsFolderPath/$newFile';
-
-  //       // Открываем новый файл
-  //       await OpenFile.open(filePath);
-  //     } else if (buttonName == 'APUZT') {
-  //       // Получаем путь к файлу Excel в папке assets
-  //       ByteData data = await rootBundle.load('assets/form/IP/APUZT.xlsx');
-  //       List<int> bytes = data.buffer.asUint8List();
-
-  //       // Открываем файл Excel
-  //       var excel = Excel.decodeBytes(bytes);
-
-  //       // Получаем страницу, на которой нужно вставить данные
-  //       var sheet = excel['APUZT'];
-  //       var filial = 'Филиал';
-
-  //       // Вставляем данные в определенные ячейки
-  //       if (object.filial == 'Арзамасское ЛПУМГ') {
-  //         filial = 'Арзамасского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Владимирское ЛПУМГ') {
-  //         filial = 'Владимирского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Волжское ЛПУМГ') {
-  //         filial = 'Волжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Вятское ЛПУМГ') {
-  //         filial = 'Вятского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Заволжское ЛПУМГ') {
-  //         filial = 'Заволжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Ивановское ЛПУМГ') {
-  //         filial = 'Ивановского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Кировское ЛПУМГ') {
-  //         filial = 'Кировского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Моркинское ЛПУМГ') {
-  //         filial = 'Моркинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пензенское ЛПУМГ') {
-  //         filial = 'Пензенского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пильнинское ЛПУМГ') {
-  //         filial = 'Пильнинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Починковское ЛПУМГ') {
-  //         filial = 'Починковского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Приокское ЛПУМГ') {
-  //         filial = 'Приокского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Семеновское ЛПУМГ') {
-  //         filial = 'Семеновского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Сеченовское ЛПУМГ') {
-  //         filial = 'Сеченовского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Торбеевское ЛПУМГ') {
-  //         filial = 'Торбеевского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Чебоксарское ЛПУМГ') {
-  //         filial = 'Чебоксарского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'ИТЦ ЛПУМГ') {
-  //         filial = 'ИТЦ-филиала';
-  //       } else if (object.filial == 'УАВР') {
-  //         filial = 'УАВР-филиала';
-  //       }
-  //       sheet.cell(CellIndex.indexByString("E5")).value =
-  //           object.dolzhnpredskom ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E6")).value = object.filial ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I8")).value =
-  //           object.fiopredskom ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I9")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F13")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F16")).value =
-  //           object.dolzhnpredstzakazch.toString() ??
-  //               '-' + " " + object.fiopredstzakazch.toString() ??
-  //               '-' + " " + object.fiodruglic.toString() ??
-  //               '-';
-
-  //       sheet.cell(CellIndex.indexByString("F18")).value =
-  //           object.dolzhnproizvrab.toString() ??
-  //               '-' + " " + object.fioproizvrab.toString() ??
-  //               '-';
-  //       sheet.cell(CellIndex.indexByString("F20")).value =
-  //           object.dolzhnnachuchastka.toString() ??
-  //               '-' + " " + object.fionachuchastka.toString() ??
-  //               '-';
-
-  //       sheet.cell(CellIndex.indexByString("F24")).value = object.title ?? '-';
-  //       sheet.cell(CellIndex.indexByString("C27")).value =
-  //           object.piketkm ?? '-';
-
-  //       sheet
-  //           .cell(CellIndex.indexByString("G27"))
-  //           .value = (double.tryParse(object.piketkm?.replaceAll(',', '.')) ==
-  //                   null ||
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) == null)
-  //           ? '-'
-  //           : double.tryParse(object.piketkm?.replaceAll(',', '.')) +
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) / 1000;
-  //       sheet.cell(CellIndex.indexByString("D29")).value =
-  //           object.metrrest ?? '-';
-  //       sheet.cell(CellIndex.indexByString("H36")).value =
-  //           (object.typeinsulrest == null || object.diameter == null)
-  //               ? '-'
-  //               : object.typeinsulrest ??
-  //                       '-' == 'Грунтовка + РАМ 2 слоя + Литкор НК Газ' ||
-  //                           (double.tryParse(
-  //                                       object.diameter.replaceAll(',', '.') ??
-  //                                           '-') ??
-  //                                   0) >=
-  //                               820
-  //                   ? 'Усиленного'
-  //                   : 'Нормального';
-  //       sheet.cell(CellIndex.indexByString("F37")).value =
-  //           object.typeinsulrest ?? '-';
-  //       sheet.cell(CellIndex.indexByString("D39")).value =
-  //           object.thickinsulrest ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("D42")).value =
-  //           object.typeinsulrest == null
-  //               ? '-'
-  //               : object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 2 слоя + Литкор НК Газ' ||
-  //                       object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //                   ? 'СТО Газпром 9.1-016-2012'
-  //                   : 'СТО Газпром 9.1-017-2012';
-
-  //       sheet.cell(CellIndex.indexByString("F52")).value =
-  //           (object.tickinsulmeter == null || object.tickinsulmeternumb == null)
-  //               ? '-'
-  //               : object.tickinsulmeter + ' №' + object.tickinsulmeternumb;
-  //       sheet.cell(CellIndex.indexByString("F56")).value =
-  //           (object.adhesmeter == null || object.adhesmeternumb == null)
-  //               ? '-'
-  //               : object.adhesmeter + ' №' + object.adhesmeternumb;
-  //       sheet.cell(CellIndex.indexByString("H59")).value =
-  //           (object.continmeter == null || object.continmeternumb == null)
-  //               ? '-'
-  //               : object.continmeter + ' №' + object.continmeternumb;
-  //       sheet.cell(CellIndex.indexByString("C61")).value =
-  //           object.contininsulrest ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("D64")).value = object
-  //                   .typeinsulrest ==
-  //               'Грунтовка + РАМ 2 слоя + Литкор НК Газ'
-  //           ? '4.6'
-  //           : object.typeinsulrest == 'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //               ? '3.1'
-  //               : object.typeinsulrest == 'БИУРС'
-  //                   ? '0.7'
-  //                   : object.typeinsulrest == 'Термоусаживающаяся манжета'
-  //                       ? '1.5'
-  //                       : '-';
-  //       sheet.cell(CellIndex.indexByString("G64")).value =
-  //           object.thickinsulrest ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("J64")).value =
-  //           (object.thickinsulrest == null)
-  //               ? '-'
-  //               : double.tryParse(object.thickinsulrest.replaceAll(',', '.') ??
-  //                               '-') !=
-  //                           null &&
-  //                       double.tryParse(sheet
-  //                               .cell(CellIndex.indexByString("D64"))
-  //                               .value
-  //                               .toString()
-  //                               .replaceAll(',', '.')) !=
-  //                           null &&
-  //                       double.tryParse(
-  //                               object.thickinsulrest.replaceAll(',', '.')) >=
-  //                           double.tryParse(sheet
-  //                               .cell(CellIndex.indexByString("D64"))
-  //                               .value
-  //                               .toString()
-  //                               .replaceAll(',', '.'))
-  //                   ? 'Соответствует'
-  //                   : 'Не соответствует';
-
-  //       sheet.cell(CellIndex.indexByString("D65")).value = object
-  //                   .typeinsulrest ==
-  //               'Грунтовка + РАМ 2 слоя + Литкор НК Газ'
-  //           ? '0,2'
-  //           : object.typeinsulrest == 'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //               ? '0,2'
-  //               : object.typeinsulrest == 'БИУРС'
-  //                   ? '0,3'
-  //                   : object.typeinsulrest == 'Термоусаживающаяся манжета'
-  //                       ? '0,3'
-  //                       : '-';
-  //       sheet.cell(CellIndex.indexByString("G65")).value =
-  //           object.insuladhesrest ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("J65")).value = (object
-  //                   .insuladhesrest ==
-  //               null)
-  //           ? '-'
-  //           : double.tryParse(object.insuladhesrest.replaceAll(',', '.') ??
-  //                           '-') !=
-  //                       null &&
-  //                   double.tryParse(sheet
-  //                           .cell(CellIndex.indexByString("D65"))
-  //                           .value
-  //                           .toString()
-  //                           .replaceAll(',', '.')) !=
-  //                       null &&
-  //                   double.tryParse(object.insuladhesrest.replaceAll(',', '.') ?? '-') >=
-  //                       double.tryParse(sheet
-  //                           .cell(CellIndex.indexByString("D65"))
-  //                           .value
-  //                           .toString()
-  //                           .replaceAll(',', '.'))
-  //               ? 'Соответствует'
-  //               : 'Не соответствует';
-
-  //       sheet.cell(CellIndex.indexByString("D66")).value = object
-  //                   .typeinsulrest ==
-  //               null
-  //           ? '-'
-  //           : object.typeinsulrest == 'Грунтовка + РАМ 2 слоя + Литкор НК Газ'
-  //               ? '5кВ на 1мм толщины'
-  //               : object.typeinsulrest ==
-  //                       'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //                   ? '5кВ на 1мм толщины'
-  //                   : object.typeinsulrest == 'БИУРС'
-  //                       ? '3кВ на 1мм толщины'
-  //                       : object.typeinsulrest == 'Термоусаживающаяся манжета'
-  //                           ? '5кВ на 1мм толщины + 5кВ'
-  //                           : '-';
-  //       sheet.cell(CellIndex.indexByString("G66")).value =
-  //           object.contininsulrest == null
-  //               ? '-'
-  //               : 'отсутствие пробоя при ' + object.contininsulrest + 'кВ';
-
-  //       sheet.cell(CellIndex.indexByString("E86")).value =
-  //           object.fiopredstzakazch ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J86")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E88")).value =
-  //           object.fioproizvrab ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J88")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E90")).value =
-  //           object.fionachuchastka ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J90")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("A92")).value =
-  //           object.dolzhnpredstzakazchSK ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E92")).value =
-  //           object.fiopredstzakazchSK ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J92")).value =
-  //           object.dateObsl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("J66")).value = double.tryParse(
-  //                       object.contininsulrest.replaceAll(',', '.')) !=
-  //                   null &&
-  //               double.tryParse(object.typeinsulrest.replaceAll(',', '.')) !=
-  //                   null &&
-  //               double.tryParse(object.contininsulrest.replaceAll(',', '.')) >=
-  //                   double.tryParse(object.typeinsulrest.replaceAll(',', '.'))
-  //           ? (object.typeinsulrest == 'Грунтовка + РАМ 2 слоя + Литкор НК Газ'
-  //               ? 5.0 *
-  //                   double.tryParse(object.thickinsulrest.replaceAll(',', '.'))
-  //               : object.typeinsulrest ==
-  //                       'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //                   ? 5.0 *
-  //                       double.tryParse(
-  //                           object.thickinsulrest.replaceAll(',', '.'))
-  //                   : object.typeinsulrest == 'БИУРС'
-  //                       ? 3.0 *
-  //                           double.tryParse(
-  //                               object.thickinsulrest.replaceAll(',', '.'))
-  //                       : object.typeinsulrest == 'Термоусаживающаяся манжета'
-  //                           ? 5.0 *
-  //                                   double.tryParse(object.thickinsulrest
-  //                                       .replaceAll(',', '.')) +
-  //                               5
-  //                           : 'Соответствует')
-  //           : 'Не соответствует';
-
-  //       // Получаем путь к папке "Downloads" на внешнем хранилище
-  //       Directory externalStorageDirectory =
-  //           await getExternalStorageDirectory();
-  //       String downloadsFolderPath = '${externalStorageDirectory.path}';
-
-  //       // Получаем путь к сохраненному файлу
-  //       var newFile = '${object.title}.xlsx';
-  //       var file = File('$downloadsFolderPath/$newFile');
-  //       var excelBytes = excel.encode();
-  //       await file.writeAsBytes(excelBytes);
-  //       String filePath = '$downloadsFolderPath/$newFile';
-
-  //       // Открываем новый файл
-  //       await OpenFile.open(filePath);
-  //     } else if (buttonName == 'RAZR') {
-  //       // Получаем путь к файлу Excel в папке assets
-  //       ByteData data = await rootBundle.load('assets/form/IP/RAZR.xlsx');
-  //       List<int> bytes = data.buffer.asUint8List();
-
-  //       // Открываем файл Excel
-  //       var excel = Excel.decodeBytes(bytes);
-
-  //       // Получаем страницу, на которой нужно вставить данные
-  //       var sheet = excel['RAZR'];
-  //       var filial = 'Филиал';
-
-  //       // Вставляем данные в определенные ячейки
-  //       if (object.filial == 'Арзамасское ЛПУМГ') {
-  //         filial = 'Арзамасского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Владимирское ЛПУМГ') {
-  //         filial = 'Владимирского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Волжское ЛПУМГ') {
-  //         filial = 'Волжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Вятское ЛПУМГ') {
-  //         filial = 'Вятского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Заволжское ЛПУМГ') {
-  //         filial = 'Заволжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Ивановское ЛПУМГ') {
-  //         filial = 'Ивановского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Кировское ЛПУМГ') {
-  //         filial = 'Кировского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Моркинское ЛПУМГ') {
-  //         filial = 'Моркинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пензенское ЛПУМГ') {
-  //         filial = 'Пензенского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пильнинское ЛПУМГ') {
-  //         filial = 'Пильнинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Починковское ЛПУМГ') {
-  //         filial = 'Починковского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Приокское ЛПУМГ') {
-  //         filial = 'Приокского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Семеновское ЛПУМГ') {
-  //         filial = 'Семеновского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Сеченовское ЛПУМГ') {
-  //         filial = 'Сеченовского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Торбеевское ЛПУМГ') {
-  //         filial = 'Торбеевского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Чебоксарское ЛПУМГ') {
-  //         filial = 'Чебоксарского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'ИТЦ ЛПУМГ') {
-  //         filial = 'ИТЦ-филиала';
-  //       } else if (object.filial == 'УАВР') {
-  //         filial = 'УАВР-филиала';
-  //       }
-
-  //       sheet.cell(CellIndex.indexByString("E5")).value =
-  //           object.dolzhnpredskom ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E6")).value = object.filial ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I8")).value =
-  //           object.fiopredskom ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I9")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E16")).value =
-  //           object.dateObsl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("F18")).value =
-  //           object.dolzhnpredstzakazch.toString() ??
-  //               '-' + ' ' + object.fiopredstzakazch.toString() ??
-  //               '-';
-  //       sheet.cell(CellIndex.indexByString("F20")).value =
-  //           object.dolzhnnachuchastka.toString() ??
-  //               '-' + ' ' + object.fionachuchastka.toString() ??
-  //               '-';
-  //       sheet.cell(CellIndex.indexByString("F22")).value =
-  //           object.dolzhnpredstzakazchSK.toString() ??
-  //               '-' + ' ' + object.fiopredstzakazchSK.toString() ??
-  //               '-';
-
-  //       sheet.cell(CellIndex.indexByString("F25")).value = object.title ?? '-';
-  //       sheet.cell(CellIndex.indexByString("B11")).value = object.title ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("B28")).value =
-  //           object.piketkm ?? '-';
-
-  //       sheet
-  //           .cell(CellIndex.indexByString("F28"))
-  //           .value = (double.tryParse(object.piketkm?.replaceAll(',', '.')) ==
-  //                   null ||
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) == null)
-  //           ? '-'
-  //           : double.tryParse(object.piketkm?.replaceAll(',', '.')) +
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) / 1000;
-
-  //       sheet.cell(CellIndex.indexByString("D31")).value =
-  //           object.metrrest ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E41")).value =
-  //           object.fiopredstzakazch ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J41")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E43")).value =
-  //           object.fionachuchastka ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J43")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E45")).value =
-  //           object.fiopredstzakazchSK ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J45")).value =
-  //           object.dateObsl ?? '-';
-
-  //       // Получаем путь к папке "Downloads" на внешнем хранилище
-  //       Directory externalStorageDirectory =
-  //           await getExternalStorageDirectory();
-  //       String downloadsFolderPath = '${externalStorageDirectory.path}';
-
-  //       // Получаем путь к сохраненному файлу
-  //       var newFile = '${object.title}.xlsx';
-  //       var file = File('$downloadsFolderPath/$newFile');
-  //       var excelBytes = excel.encode();
-  //       await file.writeAsBytes(excelBytes);
-  //       String filePath = '$downloadsFolderPath/$newFile';
-
-  //       // Открываем новый файл
-  //       await OpenFile.open(filePath);
-  //     } else if (buttonName == 'AKSZT') {
-  //       // Получаем путь к файлу Excel в папке assets
-  //       ByteData data = await rootBundle.load('assets/form/IP/AKSZT.xlsx');
-  //       List<int> bytes = data.buffer.asUint8List();
-
-  //       // Открываем файл Excel
-  //       var excel = Excel.decodeBytes(bytes);
-
-  //       // Получаем страницу, на которой нужно вставить данные
-  //       var sheet = excel['AKSZT'];
-  //       var filial = 'Филиал';
-
-  //       // Вставляем данные в определенные ячейки
-  //       if (object.filial == 'Арзамасское ЛПУМГ') {
-  //         filial = 'Арзамасского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Владимирское ЛПУМГ') {
-  //         filial = 'Владимирского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Волжское ЛПУМГ') {
-  //         filial = 'Волжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Вятское ЛПУМГ') {
-  //         filial = 'Вятского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Заволжское ЛПУМГ') {
-  //         filial = 'Заволжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Ивановское ЛПУМГ') {
-  //         filial = 'Ивановского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Кировское ЛПУМГ') {
-  //         filial = 'Кировского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Моркинское ЛПУМГ') {
-  //         filial = 'Моркинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пензенское ЛПУМГ') {
-  //         filial = 'Пензенского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пильнинское ЛПУМГ') {
-  //         filial = 'Пильнинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Починковское ЛПУМГ') {
-  //         filial = 'Починковского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Приокское ЛПУМГ') {
-  //         filial = 'Приокского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Семеновское ЛПУМГ') {
-  //         filial = 'Семеновского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Сеченовское ЛПУМГ') {
-  //         filial = 'Сеченовского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Торбеевское ЛПУМГ') {
-  //         filial = 'Торбеевского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Чебоксарское ЛПУМГ') {
-  //         filial = 'Чебоксарского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'ИТЦ ЛПУМГ') {
-  //         filial = 'ИТЦ-филиала';
-  //       } else if (object.filial == 'УАВР') {
-  //         filial = 'УАВР-филиала';
-  //       }
-  //       sheet.cell(CellIndex.indexByString("E6")).value = object.filial ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E5")).value =
-  //           object.dolzhnpredskom ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I8")).value =
-  //           object.fiopredskom ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I9")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("B10")).value = object.title ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E13")).value =
-  //           object.dateObsl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("E15")).value =
-  //           object.dolzhnpredstzakazch.toString() ??
-  //               '-' + " " + object.fiopredstzakazch.toString() ??
-  //               '-' + " " + object.fiodruglic.toString() ??
-  //               '-';
-  //       sheet.cell(CellIndex.indexByString("E17")).value =
-  //           object.dolzhnproizvrab.toString() ??
-  //               '-' + " " + object.fioproizvrab.toString() ??
-  //               '-';
-  //       sheet.cell(CellIndex.indexByString("E19")).value =
-  //           object.dolzhnpredststroit.toString() ??
-  //               '-' + " " + object.fiopredststroit.toString() ??
-  //               '-';
-
-  //       sheet.cell(CellIndex.indexByString("J21")).value =
-  //           object.lengthpit ?? '-';
-  //       sheet.cell(CellIndex.indexByString("B22")).value =
-  //           object.piketkm ?? '-';
-  //       sheet
-  //           .cell(CellIndex.indexByString("F22"))
-  //           .value = (double.tryParse(object.piketkm?.replaceAll(',', '.')) ==
-  //                   null ||
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) == null)
-  //           ? '-'
-  //           : double.tryParse(object.piketkm?.replaceAll(',', '.')) +
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) / 1000;
-
-  //       sheet.cell(CellIndex.indexByString("I26")).value =
-  //           (object.typeinsulrest == null || object.diameter == null)
-  //               ? '-'
-  //               : object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 2 слоя + Литкор НК Газ' ||
-  //                       double.tryParse(object.diameter.replaceAll(',', '.')) >=
-  //                           820
-  //                   ? 'Усиленного'
-  //                   : 'Нормального';
-  //       sheet.cell(CellIndex.indexByString("A26")).value =
-  //           object.typeinsulrest == null
-  //               ? '-'
-  //               : object.typeinsulrest ==
-  //                       'Грунтовка + РАМ 2 слоя + Литкор НК Газ'
-  //                   ? 'Грунтовка + РАМ 2 слоя'
-  //                   : object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //                       ? 'Грунтовка + РАМ 1 слой'
-  //                       : object.typeinsulrest;
-
-  //       sheet.cell(CellIndex.indexByString("C28")).value =
-  //           object.thickinsulrest ?? '-';
-  //       sheet.cell(CellIndex.indexByString("F28")).value =
-  //           object.typeinsulrest == 'Грунтовка + РАМ 2 слоя + Литкор НК Газ' ||
-  //                   object.typeinsulrest ==
-  //                       'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //               ? 'Литкор НК Газ'
-  //               : '-';
-  //       sheet.cell(CellIndex.indexByString("J28")).value =
-  //           object.typeinsulrest == null
-  //               ? '-'
-  //               : object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 2 слоя + Литкор НК Газ' ||
-  //                       object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //                   ? '1'
-  //                   : '-';
-
-  //       sheet.cell(CellIndex.indexByString("E40")).value =
-  //           object.fiopredstzakazch ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J40")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E42")).value =
-  //           object.fioproizvrab ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J42")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("E44")).value =
-  //           object.fiopredststroit ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J44")).value =
-  //           object.dateObsl ?? '-';
-
-  //       // Получаем путь к папке "Downloads" на внешнем хранилище
-  //       Directory externalStorageDirectory =
-  //           await getExternalStorageDirectory();
-  //       String downloadsFolderPath = '${externalStorageDirectory.path}';
-
-  //       // Получаем путь к сохраненному файлу
-  //       var newFile = '${object.title}.xlsx';
-  //       var file = File('$downloadsFolderPath/$newFile');
-  //       var excelBytes = excel.encode();
-  //       await file.writeAsBytes(excelBytes);
-  //       String filePath = '$downloadsFolderPath/$newFile';
-
-  //       // Открываем новый файл
-  //       await OpenFile.open(filePath);
-  //     } else if (buttonName == 'ZHIUR') {
-  //       // Получаем путь к файлу Excel в папке assets
-  //       ByteData data = await rootBundle.load('assets/form/IP/ZHIUR.xlsx');
-  //       List<int> bytes = data.buffer.asUint8List();
-
-  //       // Открываем файл Excel
-  //       var excel = Excel.decodeBytes(bytes);
-
-  //       // Получаем страницу, на которой нужно вставить данные
-  //       var sheet = excel['ZHIUR'];
-  //       var filial = 'Филиал';
-
-  //       // Вставляем данные в определенные ячейки
-  //       if (object.filial == 'Арзамасское ЛПУМГ') {
-  //         filial = 'Арзамасского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Владимирское ЛПУМГ') {
-  //         filial = 'Владимирского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Волжское ЛПУМГ') {
-  //         filial = 'Волжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Вятское ЛПУМГ') {
-  //         filial = 'Вятского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Заволжское ЛПУМГ') {
-  //         filial = 'Заволжского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Ивановское ЛПУМГ') {
-  //         filial = 'Ивановского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Кировское ЛПУМГ') {
-  //         filial = 'Кировского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Моркинское ЛПУМГ') {
-  //         filial = 'Моркинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пензенское ЛПУМГ') {
-  //         filial = 'Пензенского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Пильнинское ЛПУМГ') {
-  //         filial = 'Пильнинского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Починковское ЛПУМГ') {
-  //         filial = 'Починковского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Приокское ЛПУМГ') {
-  //         filial = 'Приокского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Семеновское ЛПУМГ') {
-  //         filial = 'Семеновского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Сеченовское ЛПУМГ') {
-  //         filial = 'Сеченовского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Торбеевское ЛПУМГ') {
-  //         filial = 'Торбеевского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'Чебоксарское ЛПУМГ') {
-  //         filial = 'Чебоксарского ЛПУМГ-филиала';
-  //       } else if (object.filial == 'ИТЦ ЛПУМГ') {
-  //         filial = 'ИТЦ-филиала';
-  //       } else if (object.filial == 'УАВР') {
-  //         filial = 'УАВР-филиала';
-  //       }
-  //       sheet.cell(CellIndex.indexByString("U5")).value = object.title ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J7")).value = object.piketkm ?? '-';
-  //       sheet
-  //           .cell(CellIndex.indexByString("J8"))
-  //           .value = (double.tryParse(object.piketkm?.replaceAll(',', '.')) ==
-  //                   null ||
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) == null)
-  //           ? '-'
-  //           : double.tryParse(object.piketkm?.replaceAll(',', '.')) +
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) / 1000;
-  //       sheet.cell(CellIndex.indexByString("V11")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet.cell(CellIndex.indexByString("V12")).value =
-  //           object.dateObsl ?? '-';
-
-  //       sheet.cell(CellIndex.indexByString("A18")).value =
-  //           object.dateObsl ?? '-';
-  //       sheet
-  //           .cell(CellIndex.indexByString("F28"))
-  //           .value = (double.tryParse(object.piketkm?.replaceAll(',', '.')) ==
-  //                   null ||
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) == null)
-  //           ? '-'
-  //           : double.tryParse(object.piketkm?.replaceAll(',', '.')) +
-  //               double.tryParse(object.lengthpit?.replaceAll(',', '.')) / 1000;
-  //       sheet.cell(CellIndex.indexByString("C18")).value =
-  //           object.tempair ?? '-';
-  //       sheet.cell(CellIndex.indexByString("D18")).value =
-  //           (object.typeinsulrest == null || object.diameter == null)
-  //               ? '-'
-  //               : object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 2 слоя + Литкор НК Газ' ||
-  //                       double.tryParse(object.diameter.replaceAll(',', '.')) >=
-  //                           820
-  //                   ? 'Усиленный, ' + 'РАМ 2 слоя + Литкор НК Газ'
-  //                   : 'Нормальный, ' + object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //                       ? 'РАМ 1 слой + Литкор НК Газ'
-  //                       : 'Нормальный, ' + object.typeinsulrest;
-
-  //       sheet.cell(CellIndex.indexByString("E18")).value =
-  //           object.typeinsulrest == null
-  //               ? '-'
-  //               : object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 2 слоя + Литкор НК Газ' ||
-  //                       object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //                   ? 'Грунтовка Транскор-Газ'
-  //                   : 'Праймер-клей';
-
-  //       sheet.cell(CellIndex.indexByString("F18")).value =
-  //           object.typeinsulrest == null
-  //               ? '-'
-  //               : object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 2 слоя + Литкор НК Газ' ||
-  //                       object.typeinsulrest ==
-  //                           'Грунтовка + РАМ 1 слой + Литкор НК Газ'
-  //                   ? 'Литкор НК Газ'
-  //                   : '-';
-
-  //       sheet.cell(CellIndex.indexByString("H18")).value =
-  //           object.fiopredstzakazch ?? '-';
-  //       sheet.cell(CellIndex.indexByString("J18")).value =
-  //           object.fiopredstzakazch ?? '-';
-  //       sheet.cell(CellIndex.indexByString("I18")).value =
-  //           object.fiopredststroit ?? '-';
-
-  //       // Получаем путь к папке "Downloads" на внешнем хранилище
-  //       Directory externalStorageDirectory =
-  //           await getExternalStorageDirectory();
-  //       String downloadsFolderPath = '${externalStorageDirectory.path}';
-
-  //       // Получаем путь к сохраненному файлу
-  //       var newFile = '${object.title}.xlsx';
-  //       var file = File('$downloadsFolderPath/$newFile');
-  //       var excelBytes = excel.encode();
-  //       await file.writeAsBytes(excelBytes);
-  //       String filePath = '$downloadsFolderPath/$newFile';
-
-  //       // Открываем новый файл
-  //       await OpenFile.open(filePath);
-  //     }
-  //   } catch (e) {
-  //     print('Ошибка при открытии файла: $e');
-  //   }
-  // }
-
-  // void sostinsul() {
-  //   double parsadh1 =
-  //       double.tryParse(insuladhesController1.text.replaceAll(',', '.'));
-  //   if (parsadh1 >= 20) {
-  //     insulconditController.text = 'Удовлетворительная';
-  //   } else if (parsadh1 < 20) {
-  //     insulconditController.text = 'Неудовлетворительная';
-  //   } else {
-  //     insulconditController.text = 'Неудовлетворительная';
-  //   }
-  // }
-
-  // Calculate the minimum value
-  // void minipipe() {
-  //   double minValue = double.infinity;
-  //   if (double.tryParse(thickpipeController1.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value1 =
-  //         double.parse(thickpipeController1.text.replaceAll(',', '.'));
-  //     minValue = value1;
-  //   }
-
-  //   if (double.tryParse(thickpipeController2.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value2 =
-  //         double.parse(thickpipeController2.text.replaceAll(',', '.'));
-  //     minValue = value2 < minValue ? value2 : minValue;
-  //   }
-
-  //   if (double.tryParse(thickpipeController3.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value3 =
-  //         double.parse(thickpipeController3.text.replaceAll(',', '.'));
-  //     minValue = value3 < minValue ? value3 : minValue;
-  //   }
-
-  //   if (double.tryParse(thickpipeController4.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value4 =
-  //         double.parse(thickpipeController4.text.replaceAll(',', '.'));
-  //     minValue = value4 < minValue ? value4 : minValue;
-  //   }
-  //   setState(() {
-  //     thickpipeController.text = minValue.toString();
-  //     object.thickpipe = thickpipeController.text;
-  //   });
-  // }
-
-  // void sredadg() {
-  //   double a1 = insuladhesController1.text.isNotEmpty
-  //       ? double.parse(insuladhesController1.text.replaceAll(',', '.'))
-  //       : 0.0;
-  //   double a2 = insuladhesController2.text.isNotEmpty
-  //       ? double.parse(insuladhesController2.text.replaceAll(',', '.'))
-  //       : 0.0;
-  //   double a3 = insuladhesController3.text.isNotEmpty
-  //       ? double.parse(insuladhesController3.text.replaceAll(',', '.'))
-  //       : 0.0;
-  //   double a4 = insuladhesController4.text.isNotEmpty
-  //       ? double.parse(insuladhesController4.text.replaceAll(',', '.'))
-  //       : 0.0;
-
-  //   double average = (a3 + a2 + a1) / 3;
-
-  //   setState(() {
-  //     insuladhesController4.text = average.toStringAsFixed(1);
-  //     object.insuladhes4 = insuladhesController4.text;
-  //   });
-  // }
-
-  // void sredadgrest() {
-  //   double a1 = insuladhesrestController1.text.isNotEmpty
-  //       ? double.parse(insuladhesrestController1.text)
-  //       : 0.0;
-  //   double a2 = insuladhesrestController2.text.isNotEmpty
-  //       ? double.parse(insuladhesrestController2.text)
-  //       : 0.0;
-  //   double a3 = insuladhesrestController3.text.isNotEmpty
-  //       ? double.parse(insuladhesrestController3.text)
-  //       : 0.0;
-
-  //   double average = (a3 + a2 + a1) / 3;
-
-  //   setState(() {
-  //     insuladhesrestController.text = average.toStringAsFixed(1);
-  //     object.insuladhesrest = insuladhesrestController.text;
-  //   });
-  // }
-
-  // void minithickinsul() {
-  //   double minValue = double.infinity;
-  //   if (double.tryParse(thickinsulController1.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value1 =
-  //         double.parse(thickinsulController1.text.replaceAll(',', '.'));
-  //     minValue = value1;
-  //   }
-
-  //   if (double.tryParse(thickinsulController2.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value2 =
-  //         double.parse(thickinsulController2.text.replaceAll(',', '.'));
-  //     minValue = value2 < minValue ? value2 : minValue;
-  //   }
-
-  //   if (double.tryParse(thickinsulController3.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value3 =
-  //         double.parse(thickinsulController3.text.replaceAll(',', '.'));
-  //     minValue = value3 < minValue ? value3 : minValue;
-  //   }
-
-  //   if (double.tryParse(thickinsulController4.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value4 =
-  //         double.parse(thickinsulController4.text.replaceAll(',', '.'));
-  //     minValue = value4 < minValue ? value4 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulController5.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value5 =
-  //         double.parse(thickinsulController5.text.replaceAll(',', '.'));
-  //     minValue = value5 < minValue ? value5 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulController6.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value6 =
-  //         double.parse(thickinsulController6.text.replaceAll(',', '.'));
-  //     minValue = value6 < minValue ? value6 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulController7.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value7 =
-  //         double.parse(thickinsulController7.text.replaceAll(',', '.'));
-  //     minValue = value7 < minValue ? value7 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulController8.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value8 =
-  //         double.parse(thickinsulController8.text.replaceAll(',', '.'));
-  //     minValue = value8 < minValue ? value8 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulController9.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value9 =
-  //         double.parse(thickinsulController9.text.replaceAll(',', '.'));
-  //     minValue = value9 < minValue ? value9 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulController10.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value10 =
-  //         double.parse(thickinsulController10.text.replaceAll(',', '.'));
-  //     minValue = value10 < minValue ? value10 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulController11.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value11 =
-  //         double.parse(thickinsulController11.text.replaceAll(',', '.'));
-  //     minValue = value11 < minValue ? value11 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulController12.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value12 =
-  //         double.parse(thickinsulController12.text.replaceAll(',', '.'));
-  //     minValue = value12 < minValue ? value12 : minValue;
-  //   }
-  //   setState(() {
-  //     thickinsulController.text = minValue.toString();
-  //     object.thickinsul = thickinsulController.text;
-  //   });
-  // }
-
-  // void minithickinsulrest() {
-  //   double minValue = double.infinity;
-  //   if (double.tryParse(thickinsulrestController1.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value1 =
-  //         double.parse(thickinsulrestController1.text.replaceAll(',', '.'));
-  //     minValue = value1;
-  //   }
-
-  //   if (double.tryParse(thickinsulrestController2.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value2 =
-  //         double.parse(thickinsulrestController2.text.replaceAll(',', '.'));
-  //     minValue = value2 < minValue ? value2 : minValue;
-  //   }
-
-  //   if (double.tryParse(thickinsulrestController3.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value3 =
-  //         double.parse(thickinsulrestController3.text.replaceAll(',', '.'));
-  //     minValue = value3 < minValue ? value3 : minValue;
-  //   }
-
-  //   if (double.tryParse(thickinsulrestController4.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value4 =
-  //         double.parse(thickinsulrestController4.text.replaceAll(',', '.'));
-  //     minValue = value4 < minValue ? value4 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulrestController5.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value5 =
-  //         double.parse(thickinsulrestController5.text.replaceAll(',', '.'));
-  //     minValue = value5 < minValue ? value5 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulrestController6.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value6 =
-  //         double.parse(thickinsulrestController6.text.replaceAll(',', '.'));
-  //     minValue = value6 < minValue ? value6 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulrestController7.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value7 =
-  //         double.parse(thickinsulrestController7.text.replaceAll(',', '.'));
-  //     minValue = value7 < minValue ? value7 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulrestController8.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value8 =
-  //         double.parse(thickinsulrestController8.text.replaceAll(',', '.'));
-  //     minValue = value8 < minValue ? value8 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulrestController9.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value9 =
-  //         double.parse(thickinsulrestController9.text.replaceAll(',', '.'));
-  //     minValue = value9 < minValue ? value9 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulrestController10.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value10 =
-  //         double.parse(thickinsulrestController10.text.replaceAll(',', '.'));
-  //     minValue = value10 < minValue ? value10 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulrestController11.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value11 =
-  //         double.parse(thickinsulrestController11.text.replaceAll(',', '.'));
-  //     minValue = value11 < minValue ? value11 : minValue;
-  //   }
-  //   if (double.tryParse(thickinsulrestController12.text.replaceAll(',', '.')) !=
-  //       null) {
-  //     double value12 =
-  //         double.parse(thickinsulrestController12.text.replaceAll(',', '.'));
-  //     minValue = value12 < minValue ? value12 : minValue;
-  //   }
-  //   setState(() {
-  //     thickinsulrestController.text = minValue.toString();
-  //     object.thickinsulrest = thickinsulrestController.text;
-  //   });
-  // }
+  void _showAction(BuildContext context, int index) {
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text(_actionTitles[index]),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('CLOSE'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void editExcelFile() async {
+    try {
+      // Получаем путь к файлу Excel в папке assets
+      ByteData data = await rootBundle.load('assets/form/TOUKZ.xlsx');
+      List<int> bytes = data.buffer.asUint8List();
+
+      // Открываем файл Excel
+      var excel = Excel.decodeBytes(bytes);
+
+      // Получаем страницу, на которой нужно вставить данные
+      var sheet = excel['TOUKZ'];
+
+      // Вставляем данные в определенные ячейки
+
+      sheet.cell(CellIndex.indexByString("E4")).value = object.title ?? '-';
+
+      // Получаем путь к папке "Downloads" на внешнем хранилище
+      Directory externalStorageDirectory = await getExternalStorageDirectory();
+      String downloadsFolderPath = '${externalStorageDirectory.path}';
+
+      // Получаем путь к сохраненному файлу
+      var newFile = '${object.title}.xlsx';
+      var file = File('$downloadsFolderPath/$newFile');
+      var excelBytes = excel.encode();
+      await file.writeAsBytes(excelBytes);
+      String filePath = '$downloadsFolderPath/$newFile';
+
+      // Открываем новый файл
+      await OpenFile.open(filePath);
+    } catch (e) {
+      print('Ошибка при открытии файла: $e');
+    }
+  }
 
   void soprotskz1() {
     double napr = naprrabskz1Controller.text.isNotEmpty
@@ -11610,6 +11422,48 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
     });
   }
 
+  void prostoiel() {
+    double e1 = elekschetchik1Controller.text.isNotEmpty
+        ? double.parse(elekschetchik1Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double e2 = elekschetchik2Controller.text.isNotEmpty
+        ? double.parse(elekschetchik2Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    List<String> dateParts1 = datato1Controller.text.split('.');
+    String formattedDate1 =
+        '${dateParts1[2]}-${dateParts1[1]}-${dateParts1[0]}T00:00:00.000Z';
+
+    DateTime date1 = DateTime.parse(formattedDate1);
+
+    print('Преобразованная дата 1: $date1');
+
+    List<String> dateParts2 = datato2Controller.text.split('.');
+    String formattedDate2 =
+        '${dateParts2[2]}-${dateParts2[1]}-${dateParts2[0]}T00:00:00.000Z';
+
+    DateTime date2 = DateTime.parse(formattedDate2);
+
+    print('Преобразованная дата 2: $date2');
+
+    Duration difference = date2.difference(date1);
+    int daysDifference = difference.inDays;
+
+    print('Разница между датами в днях: $daysDifference');
+
+    double m1 = potrmoschnostController.text.isNotEmpty
+        ? double.parse(potrmoschnostController.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double prostoi = (((daysDifference) * 24) * m1) - (e2 + e1);
+
+    setState(() {
+      prostoi1Controller.text = prostoi.toStringAsFixed(0);
+      object.prostoi1 = prostoi1Controller.text;
+    });
+  }
+
   // void napr() {
   //   double napr = 0.0;
   //   double ram = 5.0;
@@ -11735,8 +11589,8 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   //   });
   // }
 
-  void saveForm1() {
-    final form = _1formKey.currentState;
+  void saveForm(GlobalKey<FormState> formKey) {
+    final form = formKey.currentState;
     if (form.validate()) {
       form.save();
       object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
@@ -11745,443 +11599,233 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
       } else {
         helper.insertUkz(object);
       }
-      Navigator.pop(context, true);
     }
   }
+}
 
-  void saveForm12() {
-    final form = _1formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
+@immutable
+class ExpandableFab extends StatefulWidget {
+  const ExpandableFab({
+    this.initialOpen,
+    @required this.distance,
+    @required this.children,
+  });
+
+  final bool initialOpen;
+  final double distance;
+  final List<Widget> children;
+
+  @override
+  State<ExpandableFab> createState() => _ExpandableFabState();
+}
+
+class _ExpandableFabState extends State<ExpandableFab>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _expandAnimation;
+  bool _open = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _open = widget.initialOpen ?? false;
+    _controller = AnimationController(
+      value: _open ? 1.0 : 0.0,
+      duration: const Duration(milliseconds: 250),
+      vsync: this,
+    );
+    _expandAnimation = CurvedAnimation(
+      curve: Curves.fastOutSlowIn,
+      reverseCurve: Curves.easeOutQuad,
+      parent: _controller,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _toggle() {
+    setState(() {
+      _open = !_open;
+      if (_open) {
+        _controller.forward();
       } else {
-        helper.insertUkz(object);
+        _controller.reverse();
       }
-      // Navigator.pop(context, true);
-    }
+    });
   }
 
-  void saveForm2() {
-    final form = _2formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      Navigator.pop(context, true);
-    }
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.expand(
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        clipBehavior: Clip.none,
+        children: [
+          _buildTapToCloseFab(),
+          ..._buildExpandingActionButtons(),
+          _buildTapToOpenFab(),
+        ],
+      ),
+    );
   }
 
-  void saveForm22() {
-    final form = _2formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      // Navigator.pop(context, true);
-    }
+  Widget _buildTapToCloseFab() {
+    return SizedBox(
+      width: 56,
+      height: 56,
+      child: Center(
+        child: Material(
+          shape: const CircleBorder(),
+          clipBehavior: Clip.antiAlias,
+          elevation: 4,
+          child: InkWell(
+            onTap: _toggle,
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Icon(
+                Icons.close,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-  void saveForm3() {
-    final form = _3formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      Navigator.pop(context, true);
+  List<Widget> _buildExpandingActionButtons() {
+    final children = <Widget>[];
+    final count = widget.children.length;
+    final step = 90.0 / (count - 1);
+    for (var i = 0, angleInDegrees = 0.0;
+        i < count;
+        i++, angleInDegrees += step) {
+      children.add(
+        _ExpandingActionButton(
+          directionInDegrees: angleInDegrees,
+          maxDistance: widget.distance,
+          progress: _expandAnimation,
+          child: widget.children[i],
+        ),
+      );
     }
+    return children;
   }
 
-  void saveForm32() {
-    final form = _3formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      // Navigator.pop(context, true);
-    }
+  Widget _buildTapToOpenFab() {
+    return IgnorePointer(
+      ignoring: _open,
+      child: AnimatedContainer(
+        transformAlignment: Alignment.center,
+        transform: Matrix4.diagonal3Values(
+          _open ? 0.7 : 1.0,
+          _open ? 0.7 : 1.0,
+          1.0,
+        ),
+        duration: const Duration(milliseconds: 250),
+        curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
+        child: AnimatedOpacity(
+          opacity: _open ? 0.0 : 1.0,
+          curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
+          duration: const Duration(milliseconds: 250),
+          child: FloatingActionButton(
+            onPressed: _toggle,
+            child: const Icon(Icons.dehaze_sharp),
+          ),
+        ),
+      ),
+    );
   }
+}
 
-  void saveForm4() {
-    final form = _4formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      Navigator.pop(context, true);
-    }
+@immutable
+class _ExpandingActionButton extends StatelessWidget {
+  const _ExpandingActionButton({
+    @required this.directionInDegrees,
+    @required this.maxDistance,
+    @required this.progress,
+    @required this.child,
+  });
+
+  final double directionInDegrees;
+  final double maxDistance;
+  final Animation<double> progress;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: progress,
+      builder: (context, child) {
+        final offset = Offset.fromDirection(
+          directionInDegrees * (math.pi / 180.0),
+          progress.value * maxDistance,
+        );
+        return Positioned(
+          right: 4.0 + offset.dx,
+          bottom: 4.0 + offset.dy,
+          child: Transform.rotate(
+            angle: (1.0 - progress.value) * math.pi / 2,
+            child: child,
+          ),
+        );
+      },
+      child: FadeTransition(
+        opacity: progress,
+        child: child,
+      ),
+    );
   }
+}
 
-  void saveForm42() {
-    final form = _4formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      // Navigator.pop(context, true);
-    }
+@immutable
+class ActionButton extends StatelessWidget {
+  const ActionButton({
+    this.onPressed,
+    @required this.icon,
+  });
+
+  final VoidCallback onPressed;
+  final Widget icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Material(
+      shape: const CircleBorder(),
+      clipBehavior: Clip.antiAlias,
+      color: theme.colorScheme.secondary,
+      elevation: 4,
+      child: IconButton(
+        onPressed: onPressed,
+        icon: icon,
+        color: theme.colorScheme.onSecondary,
+      ),
+    );
   }
+}
 
-  void saveForm5() {
-    final form = _5formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      Navigator.pop(context, true);
-    }
+@immutable
+class FakeItem extends StatelessWidget {
+  const FakeItem({
+    @required this.isBig,
+  });
+
+  final bool isBig;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+      height: isBig ? 128 : 36,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        color: Colors.grey.shade300,
+      ),
+    );
   }
-
-  void saveForm52() {
-    final form = _5formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      // Navigator.pop(context, true);
-    }
-  }
-
-  void saveForm6() {
-    final form = _6formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      Navigator.pop(context, true);
-    }
-  }
-
-  void saveForm62() {
-    final form = _6formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      // Navigator.pop(context, true);
-    }
-  }
-
-  void saveForm7() {
-    final form = _7formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      Navigator.pop(context, true);
-    }
-  }
-
-  void saveForm72() {
-    final form = _7formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      // Navigator.pop(context, true);
-    }
-  }
-
-  void saveForm8() {
-    final form = _8formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      Navigator.pop(context, true);
-    }
-  }
-
-  void saveForm82() {
-    final form = _8formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      // Navigator.pop(context, true);
-    }
-  }
-
-  void saveForm9() {
-    final form = _9formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      Navigator.pop(context, true);
-    }
-  }
-
-  void saveForm92() {
-    final form = _9formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      object.todoDate = DateFormat.yMMMMd().format(DateTime.now());
-      if (object.id != null) {
-        helper.updateUkz(object);
-      } else {
-        helper.insertUkz(object);
-      }
-      // Navigator.pop(context, true);
-    }
-  }
-
-  // void updateTitle() {
-  //   setState(() {
-  //     object.title == titleController.text;
-  //   });
-  // }
-
-  // void updatePiketkm() {
-  //   setState(() {
-  //     object.piketkm = piketkmController.text;
-  //   });
-  // }
-
-  // void updateCoordinate() {
-  //   setState(() {
-  //     object.coordinate = coordinateController.text;
-  //   });
-  // }
-
-  // void updateLengthpit() {
-  //   setState(() {
-  //     object.lengthpit = lengthpitController.text;
-  //   });
-  // }
-
-  // void updateDepthpit() {
-  //   setState(() {
-  //     object.depthpit = depthpitController.text;
-  //   });
-  // }
-
-  // void updateOsnovanie() {
-  //   setState(() {
-  //     object.osnovanie = osnovanieController.text;
-  //   });
-  // }
-
-  // void updateDescription() {
-  //   setState(() {
-  //     object.description = descriptionController.text;
-  //   });
-  // }
-
-  // void updateDiameter() {
-  //   setState(() {
-  //     object.diameter = diameterController.text;
-  //   });
-  // }
-
-  // void updateThickpipe() {
-  //   setState(() {
-  //     object.thickpipe = thickpipeController.text;
-  //   });
-  // }
-
-  // void updateGradesteele() {
-  //   setState(() {
-  //     object.gradesteel = gradesteelController.text;
-  //   });
-  // }
-
-  // void updateMetalldamage() {
-  //   setState(() {
-  //     object.metalldamage = metalldamageController.text;
-  //   });
-  // }
-
-  // void updateCharmetdamage1() {
-  //   setState(() {
-  //     object.charmetdamage1 = charmetdamageController1.text;
-  //   });
-  // }
-
-  // void updateLocmetdamage1() {
-  //   setState(() {
-  //     object.locmetdamage1 = locmetdamageController1.text;
-  //   });
-  // }
-
-  // void updateSizemetdamage1() {
-  //   setState(() {
-  //     object.sizemetdamage1 = sizemetdamageController1.text;
-  //   });
-  // }
-
-  // void updateTypeinsul() {
-  //   setState(() {
-  //     object.typeinsul = typeinsulController.text;
-  //   });
-  // }
-
-  // void updateInsuladhes() {
-  //   setState(() {
-  //     object.insuladhes = insuladhesController.text;
-  //   });
-  // }
-
-  // void updateInsulcharadhes() {
-  //   setState(() {
-  //     object.insulcharadhes = insulcharadhesController.text;
-  //   });
-  // }
-
-  // void updateInsulcondit() {
-  //   setState(() {
-  //     object.insulcondit = insulconditController.text;
-  //   });
-  // }
-
-  // void updateThickinsul() {
-  //   setState(() {
-  //     object.thickinsul = thickinsulController.text;
-  //   });
-  // }
-
-  // void updateInsuldamage() {
-  //   setState(() {
-  //     object.insuldamage = insuldamageController.text;
-  //   });
-  // }
-
-  // void updateCharinsuldamage1() {
-  //   setState(() {
-  //     object.charinsuldamage1 = charinsuldamageController1.text;
-  //   });
-  // }
-
-  // void updateLocinsuldamage1() {
-  //   setState(() {
-  //     object.locinsuldamage1 = locinsuldamageController1.text;
-  //   });
-  // }
-
-  // void updateSizeinsuldamage1() {
-  //   setState(() {
-  //     object.sizeinsuldamage1 = sizeinsuldamageController1.text;
-  //   });
-  // }
-
-  // void updateTypeinsulrest() {
-  //   setState(() {
-  //     object.typeinsulrest = typeinsulrestController.text;
-  //   });
-  // }
-
-  // void updateInsuladhesrest() {
-  //   setState(() {
-  //     object.insuladhesrest = insuladhesrestController.text;
-  //   });
-  // }
-
-  // void updateThickinsulrest() {
-  //   setState(() {
-  //     object.thickinsulrest = thickinsulrestController.text;
-  //   });
-  // }
-
-  // void updateContininsulrest() {
-  //   setState(() {
-  //     object.contininsulrest = contininsulrestController.text;
-  //   });
-  // }
-
-  // void updateTickinsulmeter() {
-  //   setState(() {
-  //     object.tickinsulmeter = tickinsulmeterController.text;
-  //   });
-  // }
-
-  // void updateTickmetallmeter() {
-  //   setState(() {
-  //     object.tickmetallmeter = tickmetallmeterController.text;
-  //   });
-  // }
-
-  // void updateAdhesmeter() {
-  //   setState(() {
-  //     object.adhesmeter = adhesmeterController.text;
-  //   });
-  // }
-
-  // void updateContinmeter() {
-  //   setState(() {
-  //     object.continmeter = continmeterController.text;
-  //   });
-  // }
-
-  // void updateSetvik() {
-  //   setState(() {
-  //     object.setvik = setvikController.text;
-  //   });
-  // }
-
-  // void updatedateObsl() {
-  //   setState(() {
-  //     object.dateObsl = dateObslController.text;
-  //   });
-  // }
 }

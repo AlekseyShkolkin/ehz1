@@ -468,7 +468,7 @@ class DbHelperUkz {
   Future<List<Map<String, Object>>> getUkzs() async {
     final Database db = await this.db;
     final List<Map<String, Object>> result = await db
-        ?.rawQuery('SELECT * FROM $tblUkz ORDER BY $colId ASC'); /*ASC DESC*/
+        ?.rawQuery('SELECT * FROM $tblUkz ORDER BY $colId DESC'); /*ASC DESC*/
     return result;
   }
 
