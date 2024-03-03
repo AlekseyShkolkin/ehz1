@@ -9,7 +9,7 @@ class Upz {
   String _title;
   String _kontrol;
   String _kolvoprotvgruppe;
-  // String _date;
+  String _date1;
   String _fotoupz;
   String _zamechupz;
   String _sostojanieupz;
@@ -44,7 +44,7 @@ class Upz {
     this._todoDate, [
     this._kontrol,
     this._kolvoprotvgruppe,
-    // this._date,
+    this._date1,
     this._fotoupz,
     this._zamechupz,
     this._sostojanieupz,
@@ -78,7 +78,7 @@ class Upz {
     this._todoDate, [
     this._kontrol,
     this._kolvoprotvgruppe,
-    // this._date,
+    this._date1,
     this._fotoupz,
     this._zamechupz,
     this._sostojanieupz,
@@ -112,7 +112,7 @@ class Upz {
   String get title => _title;
   String get kontrol => _kontrol;
   String get kolvoprotvgruppe => _kolvoprotvgruppe;
-  // String get date => _date;
+  String get date1 => _date1;
   String get fotoupz => _fotoupz;
   String get zamechupz => _zamechupz;
   String get sostojanieupz => _sostojanieupz;
@@ -164,11 +164,11 @@ class Upz {
     }
   }
 
-  // set date(String newdate) {
-  //   if ((newdate?.length ?? 0) <= 255) {
-  //     _date = newdate;
-  //   }
-  // }
+  set date1(String newdate1) {
+    if ((newdate1?.length ?? 0) <= 255) {
+      _date1 = newdate1;
+    }
+  }
 
   set fotoupz(String newfotoupz) {
     if ((newfotoupz?.length ?? 0) <= 255) {
@@ -327,7 +327,7 @@ class Upz {
 
     map['kontrol'] = _kontrol;
     map['kolvoprotvgruppe'] = _kolvoprotvgruppe;
-    // map['date'] = _date;
+    map['date1'] = _date1;
     map['fotoupz'] = _fotoupz;
     map['zamechupz'] = _zamechupz;
     map['sostojanieupz'] = _sostojanieupz;
@@ -367,7 +367,7 @@ class Upz {
 
     _kontrol = o['kontrol'];
     _kolvoprotvgruppe = o['kolvoprotvgruppe'];
-    // _date = o['date'];
+    _date1 = o['date1'];
     _fotoupz = o['fotoupz'];
     _zamechupz = o['zamechupz'];
     _sostojanieupz = o['sostojanieupz'];

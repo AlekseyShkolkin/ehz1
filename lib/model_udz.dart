@@ -7,7 +7,7 @@ class Udz {
   int _id;
   String _todoDate;
   String _title;
-  String _date;
+  String _date1;
 
   String _marka1;
   String _sostojanie1;
@@ -40,7 +40,7 @@ class Udz {
   Udz(
     this._title,
     this._todoDate, [
-    this._date,
+    this._date1,
     this._marka1,
     this._sostojanie1,
     this._potencrels1,
@@ -73,7 +73,7 @@ class Udz {
     this._id,
     this._title,
     this._todoDate, [
-    this._date,
+    this._date1,
     this._marka1,
     this._sostojanie1,
     this._potencrels1,
@@ -105,7 +105,7 @@ class Udz {
   int get id => _id;
   String get todoDate => _todoDate;
   String get title => _title;
-// String get date => _date;
+  String get date1 => _date1;
 
   String get marka1 => _marka1;
   String get sostojanie1 => _sostojanie1;
@@ -137,6 +137,12 @@ class Udz {
   set title(String newTitle) {
     if ((newTitle?.length ?? 0) <= 255) {
       _title = newTitle;
+    }
+  }
+
+  set date1(String newdate1) {
+    if ((newdate1?.length ?? 0) <= 255) {
+      date1 = newdate1;
     }
   }
 
@@ -305,6 +311,7 @@ class Udz {
     map['title'] = _title;
     map['date'] = _todoDate;
 
+    map['date1'] = _date1;
     map['marka1'] = _marka1;
     map['sostojanie1'] = _sostojanie1;
     map['potencrels1'] = _potencrels1;
@@ -343,6 +350,7 @@ class Udz {
     _title = o['title'];
     _todoDate = o['date'];
 
+    _date1 = o['date1'];
     _marka1 = o['marka1'];
     _sostojanie1 = o['sostojanie1'];
     _potencrels1 = o['potencrels1'];

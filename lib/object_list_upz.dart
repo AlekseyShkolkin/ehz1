@@ -147,9 +147,9 @@ class ObjectListUpzState extends State {
                         const SizedBox(
                           height: 15.0,
                         ),
-                        upzs[position].todoDate != null
+                        upzs[position].date1 != null
                             ? Text(
-                                'Дата обслуживания ' + upzs[position].todoDate,
+                                'Дата обслуживания ' + upzs[position].date1,
                                 style: const TextStyle(
                                     fontSize: 11.0,
                                     fontWeight: FontWeight.w600,

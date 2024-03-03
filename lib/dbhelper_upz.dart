@@ -11,6 +11,7 @@ class DbHelperUpz {
   String colId = 'id';
   String coltitle = 'title';
   String coldate = 'date';
+  String coldate1 = 'date1';
 
   String colkontrol = 'kontrol';
   String colkolvoprotvgruppe = 'kolvoprotvgruppe';
@@ -67,6 +68,7 @@ class DbHelperUpz {
         $colId INTEGER PRIMARY KEY, 
         $coltitle TEXT,
         $coldate TEXT,
+        $coldate1 TEXT,
         $colkontrol TEXT,
         $colkolvoprotvgruppe TEXT,
         $colfotoupz TEXT,

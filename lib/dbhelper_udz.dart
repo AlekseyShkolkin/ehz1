@@ -11,6 +11,7 @@ class DbHelperUdz {
   String colId = 'id';
   String coltitle = 'title';
   String coldate = 'date';
+  String coldate1 = 'date1';
 
   String colmarka1 = 'marka1';
   String colsostojanie1 = 'sostojanie1';
@@ -66,6 +67,7 @@ class DbHelperUdz {
         $colId INTEGER PRIMARY KEY, 
         $coltitle TEXT,
         $coldate TEXT,
+        $coldate1 TEXT,
         $colmarka1 TEXT,
         $colsostojanie1 TEXT,
         $colpotencrels1 TEXT,
