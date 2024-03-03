@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import './start_page.dart';
 import 'package:flutter/material.dart';
+import './dbhelper_ukz.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,6 +17,7 @@ class _LoadProgState extends State<LoadProg> {
   @override
   void initState() {
     super.initState();
+
     startTime();
   }
 
@@ -23,10 +26,17 @@ class _LoadProgState extends State<LoadProg> {
     return Timer(duration, navigationPage);
   }
 
-  void navigationPage() {
+  void navigationPage() async {
+    DbHelperUkz dbHelperUkz = DbHelperUkz();
+    int countUkz = await dbHelperUkz.getTodoCountUkz();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => PasswordScreen()),
+      MaterialPageRoute(
+          builder: (_) => StartPage(
+                countUkz: countUkz,
+                // countLkp: countLkp,
+                // countVhk: countVhk,
+              )),
     );
   }
 

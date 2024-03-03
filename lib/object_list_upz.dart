@@ -1,26 +1,26 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import './dbhelper_ukz.dart';
-import './model_ukz.dart';
-import './object_detail_ukz.dart';
+import './dbhelper_upz.dart';
+import './model_upz.dart';
+import './object_detail_upz.dart';
 import 'package:sqflite/sqflite.dart';
 
-DbHelperUkz helper = DbHelperUkz();
+DbHelperUpz helper = DbHelperUpz();
 
-class ObjectListUkz extends StatefulWidget {
+class ObjectListUpz extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => ObjectListUkzState();
+  State<StatefulWidget> createState() => ObjectListUpzState();
 }
 
-class ObjectListUkzState extends State {
-  DbHelperUkz helper = DbHelperUkz();
-  List<Ukz> ukzs;
+class ObjectListUpzState extends State {
+  DbHelperUpz helper = DbHelperUpz();
+  List<Upz> upzs;
 
   @override
   Widget build(BuildContext context) {
-    if (ukzs == null) {
-      ukzs = <Ukz>[];
+    if (upzs == null) {
+      upzs = <Upz>[];
       getData();
     }
 
@@ -29,7 +29,7 @@ class ObjectListUkzState extends State {
         backgroundColor: Theme.of(context).primaryColor,
         title: Center(
             child: Text(
-          'ОБСЛУЖИВАНИЕ УКЗ',
+          'ОБСЛУЖИВАНИЕ УПЗ',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w400,
@@ -41,7 +41,7 @@ class ObjectListUkzState extends State {
         backgroundColor: Theme.of(context).primaryColor,
         heroTag: 'Добавить объект',
         onPressed: () {
-          navigateToDetail(Ukz('', ''));
+          navigateToDetail(Upz('', ''));
         },
         tooltip: 'Добавляет объект',
         child: Icon(
@@ -57,7 +57,7 @@ class ObjectListUkzState extends State {
   ListView objectListItems() {
     return ListView.builder(
         padding: const EdgeInsets.only(top: 8.0),
-        itemCount: ukzs.length,
+        itemCount: upzs.length,
         itemBuilder: (BuildContext context, int position) {
           return Container(
             padding: const EdgeInsets.only(bottom: 2.0),
@@ -95,13 +95,13 @@ class ObjectListUkzState extends State {
                       )
                     ],
                   )),
-              key: Key(ukzs[position].id.toString()),
+              key: Key(upzs[position].id.toString()),
               onDismissed: (DismissDirection direction) {
-                final int id = ukzs[position].id;
-                final String title = ukzs[position].title.toString();
+                final int id = upzs[position].id;
+                final String title = upzs[position].title.toString();
                 setState(() {
-                  ukzs.removeAt(position);
-                  helper.deleteUkz(id);
+                  upzs.removeAt(position);
+                  helper.deleteUpz(id);
                   getData();
                 });
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -129,7 +129,7 @@ class ObjectListUkzState extends State {
                     title: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Text(
-                        ukzs[position].title ?? '' '',
+                        upzs[position].title ?? '' '',
                         style: const TextStyle(
                             fontSize: 15.0, fontWeight: FontWeight.w800),
                       ),
@@ -138,7 +138,7 @@ class ObjectListUkzState extends State {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          descriptionParser(ukzs[position].markaskz1 ?? ''),
+                          descriptionParser(upzs[position].title ?? ''),
                           style: const TextStyle(
                               fontSize: 13.0,
                               fontWeight: FontWeight.w600,
@@ -147,9 +147,9 @@ class ObjectListUkzState extends State {
                         const SizedBox(
                           height: 15.0,
                         ),
-                        ukzs[position].date1 != null
+                        upzs[position].date != null
                             ? Text(
-                                'Дата обслуживания ' + ukzs[position].date1,
+                                'Дата обслуживания ' + upzs[position].date,
                                 style: const TextStyle(
                                     fontSize: 11.0,
                                     fontWeight: FontWeight.w600,
@@ -168,8 +168,8 @@ class ObjectListUkzState extends State {
                         const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10),
                     isThreeLine: true,
                     onTap: () {
-                      debugPrint('Tapped on ' + ukzs[position].id.toString());
-                      navigateToDetail(ukzs[position]);
+                      debugPrint('Tapped on ' + upzs[position].id.toString());
+                      navigateToDetail(upzs[position]);
                     },
                   )),
             ),
@@ -187,18 +187,18 @@ class ObjectListUkzState extends State {
   void getData() {
     final Future<Database> dbFuture = helper.initializeDb();
     dbFuture.then((Database result) {
-      final Future<List> todosFuture = helper.getUkzs();
+      final Future<List> todosFuture = helper.getUpzs();
       todosFuture?.then((List result) {
-        final List<Ukz> ukzList = <Ukz>[];
+        final List<Upz> upzList = <Upz>[];
         for (int i = 0; i < (result?.length ?? 0); i++) {
-          ukzList.add(Ukz.fromObject(result[i]));
-          debugPrint(ukzList[i].title);
+          upzList.add(Upz.fromObject(result[i]));
+          debugPrint(upzList[i].title);
         }
         setState(() {
-          ukzs = ukzList;
+          upzs = upzList;
         });
-        debugPrint('Items: ' + ukzs.length.toString());
-        var lenlistip = ukzs.length.toString();
+        debugPrint('Items: ' + upzs.length.toString());
+        var lenlistip = upzs.length.toString();
       });
     });
   }
@@ -207,7 +207,7 @@ class ObjectListUkzState extends State {
     final bool result = await Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (BuildContext context) => ObjectDetailUkz(object: object)),
+          builder: (BuildContext context) => ObjectDetailUpz(object: object)),
     );
 
     if (result == true) {

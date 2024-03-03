@@ -57,7 +57,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     color: Theme.of(context).primaryColor,
                   ),
                   labelText: 'Введите пароль',
-                  helperText: 'Пароль должен состоять из 6 цифр',
+                  helperText: 'Пароль должен состоять из 4 цифр',
                   errorText: _errorMessage,
                 ),
               ),
@@ -127,9 +127,9 @@ class _PasswordScreenState extends State<PasswordScreen> {
         }
       } else {
         // Если файл не существует, то устанавливаем новый пароль
-        if (password.length != 6 || int.tryParse(password) == null) {
+        if (password.length != 4 || int.tryParse(password) == null) {
           setState(() {
-            _errorMessage = 'Пароль должен состоять из 6 цифр';
+            _errorMessage = 'Пароль должен состоять из 4 цифр';
           });
         } else {
           await file.writeAsString(password);

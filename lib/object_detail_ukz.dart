@@ -714,7 +714,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       Text(
                         'ИЗМЕНИТЬ ЗАПИСЬ',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -11208,7 +11208,175 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
 
       // Вставляем данные в определенные ячейки
 
-      sheet.cell(CellIndex.indexByString("E4")).value = object.title ?? '-';
+      sheet.cell(CellIndex.indexByString("A1")).value =
+          'Протокол обслуживания УКЗ № ${object.title}' ?? '-';
+      sheet.cell(CellIndex.indexByString("A2")).value =
+          'Дата ${object.date1}' ?? '-';
+
+      sheet.cell(CellIndex.indexByString("B4")).value = object.markaskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B5")).value =
+          object.sostojanieskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B6")).value =
+          object.potencialskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B8")).value =
+          object.naprrabskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B10")).value =
+          object.naprmaxskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B11")).value =
+          object.tokrabskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B13")).value =
+          object.tokmaxskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B14")).value =
+          object.zapaspotokuskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B15")).value =
+          '${object.shuntnaprskz1 ?? '-'}-${object.shunttokskz1 ?? '-'}';
+      sheet.cell(CellIndex.indexByString("B16")).value =
+          object.shuntnaprskz2 ?? '-';
+      sheet.cell(CellIndex.indexByString("B17")).value =
+          object.soprotskz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B18")).value =
+          object.schetelec1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B19")).value =
+          object.schetnarab1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B20")).value =
+          object.schetzasch1 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("D4")).value = object.kipname1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D5")).value =
+          object.sostojaniekip1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D6")).value =
+          object.peremsost1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D7")).value =
+          object.potenctdvklsum1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D8")).value =
+          object.potenctdvklpol1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D9")).value =
+          object.potenctdotklsum1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D10")).value =
+          object.potenctdotklpol1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D11")).value =
+          object.datchkorr1 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("F4")).value = object.kipname2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F5")).value =
+          object.sostojaniekip2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F6")).value =
+          object.peremsost2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F7")).value =
+          object.potenctdvklsum2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F8")).value =
+          object.potenctdvklpol2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F9")).value =
+          object.potenctdotklsum2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F10")).value =
+          object.potenctdotklpol2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F11")).value =
+          object.datchkorr2 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("D13")).value = object.kipname3 ?? '-';
+      sheet.cell(CellIndex.indexByString("D14")).value =
+          object.sostojaniekip3 ?? '-';
+      sheet.cell(CellIndex.indexByString("D15")).value =
+          object.peremsost3 ?? '-';
+      sheet.cell(CellIndex.indexByString("D16")).value =
+          object.potenctdvklsum3 ?? '-';
+      sheet.cell(CellIndex.indexByString("D17")).value =
+          object.potenctdvklpol3 ?? '-';
+      sheet.cell(CellIndex.indexByString("D18")).value =
+          object.potenctdotklsum3 ?? '-';
+      sheet.cell(CellIndex.indexByString("D19")).value =
+          object.potenctdotklpol3 ?? '-';
+      sheet.cell(CellIndex.indexByString("D20")).value =
+          object.datchkorr3 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("F13")).value = object.kipname4 ?? '-';
+      sheet.cell(CellIndex.indexByString("F14")).value =
+          object.sostojaniekip4 ?? '-';
+      sheet.cell(CellIndex.indexByString("F15")).value =
+          object.peremsost4 ?? '-';
+      sheet.cell(CellIndex.indexByString("F16")).value =
+          object.potenctdvklsum4 ?? '-';
+      sheet.cell(CellIndex.indexByString("F17")).value =
+          object.potenctdvklpol4 ?? '-';
+      sheet.cell(CellIndex.indexByString("F18")).value =
+          object.potenctdotklsum4 ?? '-';
+      sheet.cell(CellIndex.indexByString("F19")).value =
+          object.potenctdotklpol4 ?? '-';
+      sheet.cell(CellIndex.indexByString("F20")).value =
+          object.datchkorr4 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("H4")).value = object.bdr1 ?? '-';
+      sheet.cell(CellIndex.indexByString("H5")).value =
+          object.sostojaniebdr1 ?? '-';
+      sheet.cell(CellIndex.indexByString("H6")).value = object.tok1bdr1 ?? '-';
+      sheet.cell(CellIndex.indexByString("H7")).value = object.tok2bdr1 ?? '-';
+      sheet.cell(CellIndex.indexByString("H8")).value = object.tok3bdr1 ?? '-';
+      sheet.cell(CellIndex.indexByString("H9")).value = object.tok4bdr1 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("H13")).value = object.bdr2 ?? '-';
+      sheet.cell(CellIndex.indexByString("H14")).value =
+          object.sostojaniebdr2 ?? '-';
+      sheet.cell(CellIndex.indexByString("H15")).value = object.tok1bdr2 ?? '-';
+      sheet.cell(CellIndex.indexByString("H16")).value = object.tok2bdr2 ?? '-';
+      sheet.cell(CellIndex.indexByString("H17")).value = object.tok3bdr2 ?? '-';
+      sheet.cell(CellIndex.indexByString("H18")).value = object.tok4bdr2 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("J4")).value = object.markaaz ?? '-';
+      sheet.cell(CellIndex.indexByString("J5")).value =
+          object.sostojanieaz ?? '-';
+      sheet.cell(CellIndex.indexByString("J7")).value = object.tok5az ?? '-';
+      sheet.cell(CellIndex.indexByString("J8")).value = object.tok1az ?? '-';
+      sheet.cell(CellIndex.indexByString("J9")).value = object.tok2az ?? '-';
+      sheet.cell(CellIndex.indexByString("J10")).value = object.tok3az ?? '-';
+      sheet.cell(CellIndex.indexByString("J11")).value = object.tok3az ?? '-';
+      sheet.cell(CellIndex.indexByString("J12")).value =
+          object.soprrast5az ?? '-';
+      sheet.cell(CellIndex.indexByString("J13")).value =
+          object.soprrast1az ?? '-';
+      sheet.cell(CellIndex.indexByString("J14")).value =
+          object.soprrast2az ?? '-';
+      sheet.cell(CellIndex.indexByString("J15")).value =
+          object.soprrast3az ?? '-';
+      sheet.cell(CellIndex.indexByString("J16")).value =
+          object.soprrast4az ?? '-';
+      sheet.cell(CellIndex.indexByString("J17")).value =
+          object.rogruntaz ?? '-';
+      sheet.cell(CellIndex.indexByString("J18")).value =
+          object.rogruntktp ?? '-';
+      sheet.cell(CellIndex.indexByString("J19")).value =
+          object.rogruntraz ?? '-';
+
+      sheet.cell(CellIndex.indexByString("L4")).value =
+          object.sostojaniektp ?? '-';
+      sheet.cell(CellIndex.indexByString("L5")).value =
+          object.sostojanieshr ?? '-';
+      sheet.cell(CellIndex.indexByString("L7")).value =
+          object.soprotzzktp ?? '-';
+      sheet.cell(CellIndex.indexByString("L8")).value =
+          object.soprotzzraz ?? '-';
+
+      sheet.cell(CellIndex.indexByString("L10")).value =
+          object.sostojanievl1 ?? '-';
+      sheet.cell(CellIndex.indexByString("L11")).value =
+          object.sostojaniekl1 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("L13")).value =
+          object.sostojanievl2 ?? '-';
+      sheet.cell(CellIndex.indexByString("L14")).value =
+          object.sostojaniekl2 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("L16")).value =
+          object.sostojanievl3 ?? '-';
+      sheet.cell(CellIndex.indexByString("L17")).value =
+          object.sostojaniekl3 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("L19")).value =
+          object.provodvl2 ?? '-';
+      sheet.cell(CellIndex.indexByString("L20")).value =
+          object.provodvl1 ?? '-';
+
+      sheet.cell(CellIndex.indexByString("A22")).value =
+          'СКЗ 1:${object.zamechskz1 != null && object.zamechskz1.isNotEmpty ? object.zamechskz1 : 'нет замечаний'}; СКЗ 2:${object.zamechskz2 != null && object.zamechskz2.isNotEmpty ? object.zamechskz2 : 'нет замечаний'};';
 
       // Получаем путь к папке "Downloads" на внешнем хранилище
       Directory externalStorageDirectory = await getExternalStorageDirectory();
