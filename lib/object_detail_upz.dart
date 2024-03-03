@@ -276,11 +276,11 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
     super.initState();
     isEdit = object.title == '' ? false : true;
     titleController.text = object.title ?? '';
-    dateController.text = object.date ?? '';
+    dateController.text = object.todoDate ?? '';
 
     kontrolController.text = object.kontrol ?? '';
     kolvoprotvgruppeController.text = object.kolvoprotvgruppe ?? '';
-    dateController.text = object.date ?? '';
+    dateController.text = object.todoDate ?? '';
     zamechupzController.text = object.zamechupz ?? '';
     sostojanieupzController.text = object.sostojanieupz ?? '';
     peremsostController.text = object.peremsost ?? '';
@@ -498,7 +498,7 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                                   dateUpz = selectedDate;
                                   dateController.text = DateFormat('dd.MM.yyyy')
                                       .format(selectedDate);
-                                  object.date = dateController.text;
+                                  object.todoDate = dateController.text;
                                 });
                               }
                             },
@@ -727,7 +727,7 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
       sheet.cell(CellIndex.indexByString("A1")).value =
           'Протокол обслуживания УКЗ № ${object.title}' ?? '-';
       sheet.cell(CellIndex.indexByString("A2")).value =
-          'Дата ${object.date}' ?? '-';
+          'Дата ${object.todoDate}' ?? '-';
 
       sheet.cell(CellIndex.indexByString("B4")).value = object.title ?? '-';
       // sheet.cell(CellIndex.indexByString("B5")).value =
