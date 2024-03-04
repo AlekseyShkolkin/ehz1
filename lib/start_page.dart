@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import './object_list_ukz.dart';
 import './object_list_upz.dart';
+import './object_list_udz.dart';
+import './object_list_azd.dart';
 import './dbhelper_ukz.dart';
 import './dbhelper_upz.dart';
+import './dbhelper_udz.dart';
+import './dbhelper_azd.dart';
 
 class StartPage extends StatefulWidget {
   final int countUkz;
@@ -38,12 +42,12 @@ class _StartPageState extends State<StartPage> {
       countAzd = widget.countAzd;
       DbHelperUkz dbHelperUkz = DbHelperUkz();
       DbHelperUpz dbHelperUpz = DbHelperUpz();
-      // DbHelperUkz dbHelperUkz = DbHelperUkz();
-      // DbHelperUkz dbHelperUkz = DbHelperUkz();
+      DbHelperUdz dbHelperUdz = DbHelperUdz();
+      DbHelperAzd dbHelperAzd = DbHelperAzd();
       dbHelperUkz.getTodoCountUkz();
-      // dbHelperUkz.getTodoCountUkz();
-      // dbHelperUkz.getTodoCountUkz();
-      // dbHelperUkz.getTodoCountUkz();
+      dbHelperUpz.getTodoCountUpz();
+      dbHelperUdz.getTodoCountUdz();
+      dbHelperAzd.getTodoCountAzd();
     });
   }
 
@@ -211,7 +215,7 @@ class _StartPageState extends State<StartPage> {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ObjectListUpz(),
+                  builder: (context) => ObjectListUdz(),
                 ),
               );
             },
@@ -239,27 +243,27 @@ class _StartPageState extends State<StartPage> {
                       color: Colors.white,
                     ),
                   ),
-                  //  trailing: Badge(
-                  //       position: BadgePosition.bottomEnd(),
-                  //       badgeStyle: BadgeStyle(
-                  //         badgeColor: Color.fromRGBO(145, 156, 255, 1),
-                  //         elevation: 2,
-                  //       ),
-                  //       badgeContent:
-                  //           widget.countUpz == null || widget.countUpz == 0
-                  //               ? Text('')
-                  //               : Text(
-                  //                   widget.countUpz.toString(),
-                  //                   style: TextStyle(
-                  //                     color: Colors.white,
-                  //                   ),
-                  //                 ),
-                  //   child: Icon(
-                  //     Icons.train,
-                  //     size: 54,
-                  //     color: Colors.white,
-                  //   ),
-                  // ),
+                  trailing: Badge(
+                    position: BadgePosition.bottomEnd(),
+                    badgeStyle: BadgeStyle(
+                      badgeColor: Color.fromRGBO(145, 156, 255, 1),
+                      elevation: 2,
+                    ),
+                    badgeContent:
+                        widget.countUdz == null || widget.countUdz == 0
+                            ? Text('')
+                            : Text(
+                                widget.countUdz.toString(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                    child: Icon(
+                      Icons.train,
+                      size: 54,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -274,7 +278,7 @@ class _StartPageState extends State<StartPage> {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => ObjectListUkz(),
+                  builder: (context) => ObjectListAzd(),
                 ),
               );
             },
@@ -302,32 +306,32 @@ class _StartPageState extends State<StartPage> {
                       color: Colors.white,
                     ),
                   ),
-                  //  trailing: Badge(
-                  //     position: BadgePosition.bottomEnd(),
-                  //     badgeStyle: BadgeStyle(
-                  //       badgeColor: Color.fromRGBO(145, 156, 255, 1),
-                  //       elevation: 2,
-                  //     ),
-                  //     badgeContent:
-                  //         widget.countUpz == null || widget.countUpz == 0
-                  //             ? Text('')
-                  //             : Text(
-                  //                 widget.countUpz.toString(),
-                  //                 style: TextStyle(
-                  //                   color: Colors.white,
-                  //                 ),
-                  //               ),
-                  //   child: Column(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       Icon(
-                  //         Icons.directions_car_sharp,
-                  //         size: 54,
-                  //         color: Colors.white,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
+                  trailing: Badge(
+                    position: BadgePosition.bottomEnd(),
+                    badgeStyle: BadgeStyle(
+                      badgeColor: Color.fromRGBO(145, 156, 255, 1),
+                      elevation: 2,
+                    ),
+                    badgeContent:
+                        widget.countAzd == null || widget.countAzd == 0
+                            ? Text('')
+                            : Text(
+                                widget.countAzd.toString(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.directions_car_sharp,
+                          size: 54,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
