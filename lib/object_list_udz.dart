@@ -26,17 +26,36 @@ class ObjectListUdzState extends State {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_outlined,
+              color: Colors.black,
+              size: 22,
+            )),
+        elevation: 0,
+        backgroundColor: Colors.white,
         title: Center(
             child: Text(
           'ОБСЛУЖИВАНИЕ УДЗ',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w400,
+            color: Colors.black,
           ),
         )),
       ),
-      body: objectListItems(),
+      backgroundColor: Colors.white,
+      body: udzs.isNotEmpty
+          ? objectListItems()
+          : Center(
+              child: Image.asset(
+                'assets/notdate.png',
+                fit: BoxFit.fill,
+              ),
+            ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         heroTag: 'Добавить объект',
@@ -54,20 +73,20 @@ class ObjectListUdzState extends State {
     );
   }
 
-  ListView objectListItems() {
+  objectListItems() {
     return ListView.builder(
-        padding: const EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(top: 2.0),
         itemCount: udzs.length,
         itemBuilder: (BuildContext context, int position) {
           return Container(
-            padding: const EdgeInsets.only(bottom: 2.0),
+            padding: const EdgeInsets.only(bottom: 4.0),
             decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                    color: Color.fromARGB(255, 235, 235, 243),
-                    blurRadius: 10.0,
-                    spreadRadius: -9.0,
-                    offset: Offset(0.0, 7.0)),
+                    color: Color.fromARGB(255, 80, 80, 83),
+                    blurRadius: 12.0,
+                    spreadRadius: -10.0,
+                    offset: Offset(0.1, 6)),
               ],
             ),
             child: Dismissible(
@@ -112,14 +131,17 @@ class ObjectListUdzState extends State {
               },
               child: Card(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  elevation: 0.0,
+                      borderRadius: BorderRadius.circular(12.0)),
+                  elevation: 2.0,
                   child: ListTile(
                     leading: Column(
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 7.0,
-                          backgroundColor: Colors.white,
+                        Icon(
+                          Icons.train,
+                          size: 32,
+                          color: udzs[position].zamech1.isEmpty
+                              ? Theme.of(context).primaryColor
+                              : Colors.red,
                         ),
                         const SizedBox(
                           height: 24.0,
@@ -129,19 +151,29 @@ class ObjectListUdzState extends State {
                     title: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Text(
-                        udzs[position].title ?? '' '',
+                        udzs[position].title ?? 'Без названия',
                         style: const TextStyle(
-                            fontSize: 15.0, fontWeight: FontWeight.w800),
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          descriptionParser(udzs[position].title ?? ''),
+                          udzs[position].potenctrub1.isNotEmpty &&
+                                  udzs[position].potencrels1.isNotEmpty
+                              ? 'Uт=' +
+                                  udzs[position].potenctrub1 +
+                                  'A  ' +
+                                  'Uр=' +
+                                  udzs[position].potencrels1 +
+                                  'B '
+                              : '',
                           style: const TextStyle(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w500,
                               color: Colors.black38),
                         ),
                         const SizedBox(
@@ -151,15 +183,15 @@ class ObjectListUdzState extends State {
                             ? Text(
                                 'Дата обслуживания ' + udzs[position].date1,
                                 style: const TextStyle(
-                                    fontSize: 11.0,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black38),
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black87),
                               )
                             : Text(
                                 'СОЗДАНО / без даты',
                                 style: const TextStyle(
-                                    fontSize: 11.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w400,
                                     color: Colors.black38),
                               ),
                       ],
