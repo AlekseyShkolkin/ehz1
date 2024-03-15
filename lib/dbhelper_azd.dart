@@ -51,6 +51,8 @@ class DbHelperAzd {
   String colsoprotrast2 = 'soprotrast2';
   String colzamechan2 = 'zamechan2';
   String colfoto2 = 'foto2';
+  String coludsoprgrunta1 = 'udsoprgrunta1';
+  String coludsoprgrunta2 = 'udsoprgrunta2';
 
   DbHelperAzd._internal();
 
@@ -79,6 +81,8 @@ class DbHelperAzd {
         $colId INTEGER PRIMARY KEY, 
         $coltitle TEXT,
         $coldate TEXT,
+        $coludsoprgrunta1 TEXT,
+        $coludsoprgrunta2 TEXT,
         $coldate1 TEXT,        
         $coltipdorogi TEXT,
         $coldoroga TEXT,

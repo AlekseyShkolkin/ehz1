@@ -57,7 +57,7 @@ class ObjectListAzdState extends State {
               ),
             ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         heroTag: 'Добавить объект',
         onPressed: () {
           navigateToDetail(Azd('', ''));

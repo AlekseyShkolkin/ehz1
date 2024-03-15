@@ -120,7 +120,7 @@ class _StartPageState extends State<StartPage> {
                   trailing: Badge(
                     position: BadgePosition.bottomEnd(),
                     badgeStyle: BadgeStyle(
-                      badgeColor: Color.fromRGBO(145, 156, 255, 1),
+                      badgeColor: Theme.of(context).colorScheme.secondary,
                       elevation: 2,
                     ),
                     badgeContent:
@@ -183,7 +183,7 @@ class _StartPageState extends State<StartPage> {
                   trailing: Badge(
                     position: BadgePosition.bottomEnd(),
                     badgeStyle: BadgeStyle(
-                      badgeColor: Color.fromRGBO(145, 156, 255, 1),
+                      badgeColor: Theme.of(context).colorScheme.secondary,
                       elevation: 2,
                     ),
                     badgeContent:
@@ -192,7 +192,7 @@ class _StartPageState extends State<StartPage> {
                             : Text(
                                 widget.countUpz.toString(),
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                 ),
                               ),
                     child: Icon(
@@ -246,7 +246,7 @@ class _StartPageState extends State<StartPage> {
                   trailing: Badge(
                     position: BadgePosition.bottomEnd(),
                     badgeStyle: BadgeStyle(
-                      badgeColor: Color.fromRGBO(145, 156, 255, 1),
+                      badgeColor: Theme.of(context).colorScheme.secondary,
                       elevation: 2,
                     ),
                     badgeContent:
@@ -309,7 +309,7 @@ class _StartPageState extends State<StartPage> {
                   trailing: Badge(
                     position: BadgePosition.bottomEnd(),
                     badgeStyle: BadgeStyle(
-                      badgeColor: Color.fromRGBO(145, 156, 255, 1),
+                      badgeColor: Theme.of(context).colorScheme.secondary,
                       elevation: 2,
                     ),
                     badgeContent:

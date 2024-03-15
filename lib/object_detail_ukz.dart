@@ -706,7 +706,16 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
         resizeToAvoidBottomInset: true,
         backgroundColor: _cardColor,
         appBar: AppBar(
-            backgroundColor: Theme.of(context).primaryColor,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: Colors.black,
+                  size: 22,
+                )),
+            backgroundColor: Colors.white,
             title: isEdit
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -714,8 +723,9 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       Text(
                         'ИЗМЕНИТЬ ЗАПИСЬ',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 22,
                           fontWeight: FontWeight.w400,
+                          color: Colors.black,
                         ),
                       ),
                       IconButton(
@@ -732,7 +742,7 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       IconButton(
                         icon: Icon(
                           Icons.save,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           size: 32,
                         ),
                         onPressed: () {
@@ -776,12 +786,13 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w400,
+                          color: Colors.black,
                         ),
                       ),
                       IconButton(
                         icon: Icon(
                           Icons.save,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           size: 32,
                         ),
                         onPressed: () {
@@ -828,46 +839,49 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                     icon: Icon(
                   Icons.exposure_sharp,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
                   Icons.battery_4_bar_sharp,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
                   Icons.settings_input_component_sharp,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
                   Icons.tonality_sharp,
                   size: 30,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
                   Icons.flash_on_sharp,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
                   Icons.cable_rounded,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
                   Icons.device_hub_sharp,
                   size: 30,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
                   Icons.calculate_sharp,
                   size: 30,
+                  color: Theme.of(context).primaryColor,
                 )),
               ],
             )),
@@ -11397,35 +11411,57 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
   }
 
   void soprotskz1() {
-    double napr = naprrabskz1Controller.text.isNotEmpty
+    double napr = naprrabskz1Controller.text.isNotEmpty &&
+            double.tryParse(naprrabskz1Controller.text.replaceAll(',', '.')) !=
+                null
         ? double.parse(naprrabskz1Controller.text.replaceAll(',', '.'))
         : 0.0;
-    double tok = tokrabskz1Controller.text.isNotEmpty
+    double tok = tokrabskz1Controller.text.isNotEmpty &&
+            double.tryParse(tokrabskz1Controller.text.replaceAll(',', '.')) !=
+                null
         ? double.parse(tokrabskz1Controller.text.replaceAll(',', '.'))
         : 0.0;
 
-    double soprotskz = napr / tok;
+    if (tok != 0) {
+      double soprotskz = napr / tok;
 
-    setState(() {
-      soprotskz1Controller.text = soprotskz.toStringAsFixed(2);
-      object.soprotskz1 = soprotskz1Controller.text;
-    });
+      setState(() {
+        soprotskz1Controller.text = soprotskz.toStringAsFixed(2);
+        object.soprotskz1 = soprotskz1Controller.text;
+      });
+    } else {
+      setState(() {
+        soprotskz1Controller.text = '0.00';
+        object.soprotskz1 = '0.00';
+      });
+    }
   }
 
   void soprotskz2() {
-    double napr = naprrabskz2Controller.text.isNotEmpty
+    double napr = naprrabskz2Controller.text.isNotEmpty &&
+            double.tryParse(naprrabskz2Controller.text.replaceAll(',', '.')) !=
+                null
         ? double.parse(naprrabskz2Controller.text.replaceAll(',', '.'))
         : 0.0;
-    double tok = tokrabskz2Controller.text.isNotEmpty
+    double tok = tokrabskz2Controller.text.isNotEmpty &&
+            double.tryParse(tokrabskz2Controller.text.replaceAll(',', '.')) !=
+                null
         ? double.parse(tokrabskz2Controller.text.replaceAll(',', '.'))
         : 0.0;
 
-    double soprotskz = napr / tok;
+    if (tok != 0) {
+      double soprotskz = napr / tok;
 
-    setState(() {
-      soprotskz2Controller.text = soprotskz.toStringAsFixed(2);
-      object.soprotskz2 = soprotskz2Controller.text;
-    });
+      setState(() {
+        soprotskz2Controller.text = soprotskz.toStringAsFixed(2);
+        object.soprotskz2 = soprotskz2Controller.text;
+      });
+    } else {
+      setState(() {
+        soprotskz2Controller.text = '0.00';
+        object.soprotskz2 = '0.00';
+      });
+    }
   }
 
   void raschtok1() {

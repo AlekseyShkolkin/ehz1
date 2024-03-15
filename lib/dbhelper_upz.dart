@@ -15,6 +15,9 @@ class DbHelperUpz {
 
   String colkontrol = 'kontrol';
   String colkolvoprotvgruppe = 'kolvoprotvgruppe';
+  String colkolvoprotvgruppe1 = 'kolvoprotvgruppe1';
+  String colkolvoprotvgruppe2 = 'kolvoprotvgruppe2';
+
   String colfotoupz = 'fotoupz';
   String colzamechupz = 'zamechupz';
   String colsostojanieupz = 'sostojanieupz';
@@ -40,6 +43,9 @@ class DbHelperUpz {
   String coltokupz2 = 'tokupz2';
   String colsoprrast2 = 'soprrast2';
   String coludsoprgrunta2 = 'udsoprgrunta2';
+  String colsoprcepiupz = 'soprcepiupz';
+  String colsoprcepiupz1 = 'soprcepiupz1';
+  String colsoprcepiupz2 = 'soprcepiupz2';
 
   DbHelperUpz._internal();
 
@@ -71,6 +77,8 @@ class DbHelperUpz {
         $coldate1 TEXT,
         $colkontrol TEXT,
         $colkolvoprotvgruppe TEXT,
+        $colkolvoprotvgruppe1 TEXT,
+        $colkolvoprotvgruppe2 TEXT,
         $colfotoupz TEXT,
         $colzamechupz TEXT,
         $colsostojanieupz TEXT,
@@ -95,6 +103,9 @@ class DbHelperUpz {
         $coledsupz2 TEXT,
         $coltokupz2 TEXT,
         $colsoprrast2 TEXT,
+        $colsoprcepiupz TEXT,
+        $colsoprcepiupz1 TEXT,
+        $colsoprcepiupz2 TEXT,
         $coludsoprgrunta2 TEXT)''');
   }
 

@@ -47,6 +47,8 @@ class Azd {
   String _soprotrast2;
   String _zamechan2;
   String _foto2;
+  String _udsoprgrunta1;
+  String _udsoprgrunta2;
 
   Azd(
     this._title,
@@ -90,6 +92,8 @@ class Azd {
     this._soprotrast2,
     this._zamechan2,
     this._foto2,
+    this._udsoprgrunta1,
+    this._udsoprgrunta2,
   ]);
 
   Azd.withId(
@@ -135,6 +139,8 @@ class Azd {
     this._soprotrast2,
     this._zamechan2,
     this._foto2,
+    this._udsoprgrunta1,
+    this._udsoprgrunta2,
   ]);
 
   int get id => _id;
@@ -180,6 +186,8 @@ class Azd {
   String get soprotrast2 => _soprotrast2;
   String get zamechan2 => _zamechan2;
   String get foto2 => _foto2;
+  String get udsoprgrunta1 => _udsoprgrunta1;
+  String get udsoprgrunta2 => _udsoprgrunta2;
 
   set title(String newTitle) {
     if ((newTitle?.length ?? 0) <= 255) {
@@ -425,6 +433,18 @@ class Azd {
     }
   }
 
+  set udsoprgrunta1(String newudsoprgrunta1) {
+    if ((newudsoprgrunta1?.length ?? 0) <= 255) {
+      _udsoprgrunta1 = newudsoprgrunta1;
+    }
+  }
+
+  set udsoprgrunta2(String newudsoprgrunta2) {
+    if ((newudsoprgrunta2?.length ?? 0) <= 255) {
+      _udsoprgrunta2 = newudsoprgrunta2;
+    }
+  }
+
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> map = <String, dynamic>{};
     map['title'] = _title;
@@ -469,6 +489,8 @@ class Azd {
     map['soprotrast2'] = _soprotrast2;
     map['zamechan2'] = _zamechan2;
     map['foto2'] = _foto2;
+    map['udsoprgrunta1'] = _udsoprgrunta1;
+    map['udsoprgrunta2'] = _udsoprgrunta2;
 
     if (_id != null) {
       map['id'] = _id;
@@ -519,5 +541,7 @@ class Azd {
     _soprotrast2 = o['soprotrast2'];
     _zamechan2 = o['zamechan2'];
     _foto2 = o['foto2'];
+    _udsoprgrunta1 = o['udsoprgrunta1'];
+    _udsoprgrunta2 = o['udsoprgrunta2'];
   }
 }

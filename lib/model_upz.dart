@@ -9,6 +9,8 @@ class Upz {
   String _title;
   String _kontrol;
   String _kolvoprotvgruppe;
+  String _kolvoprotvgruppe1;
+  String _kolvoprotvgruppe2;
   String _date1;
   String _fotoupz;
   String _zamechupz;
@@ -39,11 +41,17 @@ class Upz {
   String _soprrast2;
   String _udsoprgrunta2;
 
+  String _soprcepiupz;
+  String _soprcepiupz1;
+  String _soprcepiupz2;
+
   Upz(
     this._title,
     this._todoDate, [
     this._kontrol,
     this._kolvoprotvgruppe,
+    this._kolvoprotvgruppe1,
+    this._kolvoprotvgruppe2,
     this._date1,
     this._fotoupz,
     this._zamechupz,
@@ -70,6 +78,9 @@ class Upz {
     this._tokupz2,
     this._soprrast2,
     this._udsoprgrunta2,
+    this._soprcepiupz,
+    this._soprcepiupz1,
+    this._soprcepiupz2,
   ]);
 
   Upz.withId(
@@ -78,6 +89,8 @@ class Upz {
     this._todoDate, [
     this._kontrol,
     this._kolvoprotvgruppe,
+    this._kolvoprotvgruppe1,
+    this._kolvoprotvgruppe2,
     this._date1,
     this._fotoupz,
     this._zamechupz,
@@ -104,6 +117,9 @@ class Upz {
     this._tokupz2,
     this._soprrast2,
     this._udsoprgrunta2,
+    this._soprcepiupz,
+    this._soprcepiupz1,
+    this._soprcepiupz2,
   ]);
 
   int get id => _id;
@@ -112,6 +128,9 @@ class Upz {
   String get title => _title;
   String get kontrol => _kontrol;
   String get kolvoprotvgruppe => _kolvoprotvgruppe;
+  String get kolvoprotvgruppe1 => _kolvoprotvgruppe1;
+  String get kolvoprotvgruppe2 => _kolvoprotvgruppe2;
+
   String get date1 => _date1;
   String get fotoupz => _fotoupz;
   String get zamechupz => _zamechupz;
@@ -142,6 +161,10 @@ class Upz {
   String get soprrast2 => _soprrast2;
   String get udsoprgrunta2 => _udsoprgrunta2;
 
+  String get soprcepiupz => _soprcepiupz;
+  String get soprcepiupz1 => _soprcepiupz1;
+  String get soprcepiupz2 => _soprcepiupz2;
+
   set title(String newTitle) {
     if ((newTitle?.length ?? 0) <= 255) {
       _title = newTitle;
@@ -161,6 +184,18 @@ class Upz {
   set kolvoprotvgruppe(String newkolvoprotvgruppe) {
     if ((newkolvoprotvgruppe?.length ?? 0) <= 255) {
       _kolvoprotvgruppe = newkolvoprotvgruppe;
+    }
+  }
+
+  set kolvoprotvgruppe1(String newkolvoprotvgruppe1) {
+    if ((newkolvoprotvgruppe1?.length ?? 0) <= 255) {
+      _kolvoprotvgruppe1 = newkolvoprotvgruppe1;
+    }
+  }
+
+  set kolvoprotvgruppe2(String newkolvoprotvgruppe2) {
+    if ((newkolvoprotvgruppe2?.length ?? 0) <= 255) {
+      _kolvoprotvgruppe2 = newkolvoprotvgruppe2;
     }
   }
 
@@ -320,6 +355,24 @@ class Upz {
     }
   }
 
+  set soprcepiupz(String newsoprcepiupz) {
+    if ((newsoprcepiupz?.length ?? 0) <= 255) {
+      _soprcepiupz = newsoprcepiupz;
+    }
+  }
+
+  set soprcepiupz1(String newsoprcepiupz1) {
+    if ((newsoprcepiupz1?.length ?? 0) <= 255) {
+      _soprcepiupz1 = newsoprcepiupz1;
+    }
+  }
+
+  set soprcepiupz2(String newsoprcepiupz2) {
+    if ((newsoprcepiupz2?.length ?? 0) <= 255) {
+      _soprcepiupz2 = newsoprcepiupz2;
+    }
+  }
+
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> map = <String, dynamic>{};
     map['title'] = _title;
@@ -327,6 +380,9 @@ class Upz {
 
     map['kontrol'] = _kontrol;
     map['kolvoprotvgruppe'] = _kolvoprotvgruppe;
+    map['kolvoprotvgruppe1'] = _kolvoprotvgruppe1;
+    map['kolvoprotvgruppe2'] = _kolvoprotvgruppe2;
+
     map['date1'] = _date1;
     map['fotoupz'] = _fotoupz;
     map['zamechupz'] = _zamechupz;
@@ -353,6 +409,9 @@ class Upz {
     map['tokupz2'] = _tokupz2;
     map['soprrast2'] = _soprrast2;
     map['udsoprgrunta2'] = _udsoprgrunta2;
+    map['soprcepiupz'] = _soprcepiupz;
+    map['soprcepiupz1'] = _soprcepiupz1;
+    map['soprcepiupz2'] = _soprcepiupz2;
 
     if (_id != null) {
       map['id'] = _id;
@@ -367,6 +426,9 @@ class Upz {
 
     _kontrol = o['kontrol'];
     _kolvoprotvgruppe = o['kolvoprotvgruppe'];
+    _kolvoprotvgruppe1 = o['kolvoprotvgruppe1'];
+    _kolvoprotvgruppe2 = o['kolvoprotvgruppe2'];
+
     _date1 = o['date1'];
     _fotoupz = o['fotoupz'];
     _zamechupz = o['zamechupz'];
@@ -393,5 +455,8 @@ class Upz {
     _tokupz2 = o['tokupz2'];
     _soprrast2 = o['soprrast2'];
     _udsoprgrunta2 = o['udsoprgrunta2'];
+    _soprcepiupz = o['soprcepiupz'];
+    _soprcepiupz1 = o['soprcepiupz1'];
+    _soprcepiupz2 = o['soprcepiupz2'];
   }
 }

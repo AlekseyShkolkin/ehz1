@@ -57,7 +57,7 @@ class ObjectListUpzState extends State {
               ),
             ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         heroTag: 'Добавить объект',
         onPressed: () {
           navigateToDetail(Upz('', ''));
@@ -139,7 +139,8 @@ class ObjectListUpzState extends State {
                         Icon(
                           Icons.linear_scale_rounded,
                           size: 32,
-                          color: upzs[position].zamechupz.isEmpty
+                          color: upzs[position].zamechupz.isEmpty ||
+                                  upzs[position].zamechupz == null
                               ? Theme.of(context).primaryColor
                               : Colors.red,
                         ),
@@ -163,14 +164,14 @@ class ObjectListUpzState extends State {
                       children: <Widget>[
                         Text(
                           upzs[position].tokupz.isNotEmpty &&
-                                  upzs[position].potencialprot.isNotEmpty
+                                  upzs[position].potencialvklsumm.isNotEmpty
                               ? 'I=' +
                                   upzs[position].tokupz +
                                   'мA  ' +
                                   'U=' +
-                                  upzs[position].potencialprot +
+                                  upzs[position].potencialvklsumm +
                                   'B '
-                              : '',
+                              : 'Данные отсутствуют',
                           style: const TextStyle(
                               fontSize: 14.0,
                               fontWeight: FontWeight.w500,

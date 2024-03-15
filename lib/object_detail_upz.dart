@@ -188,17 +188,7 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
   FocusNode focusNode150 = FocusNode(); //free
   FocusNode focusNode151 = FocusNode(); //free
 
-  File _imageskz1;
-  File _imageskz2;
-
-  File _imagekip1;
-  File _imagekip2;
-  File _imagekip3;
-  File _imagekip4;
-
-  File _imagebdr1;
-  File _imagebdr2;
-  File _imageaz;
+  File _imageupz;
 
   File _imageelobor;
   File _imagevl;
@@ -235,12 +225,21 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
     'В резерве',
   ];
 
+  final List<String> _tipkontrol = [
+    'КИП',
+    'БСЗ',
+    'Ковер',
+    'Неизвестно',
+  ];
+
   TextEditingController idController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController dateController = TextEditingController();
 
   TextEditingController kontrolController = TextEditingController();
   TextEditingController kolvoprotvgruppeController = TextEditingController();
+  TextEditingController kolvoprotvgruppe1Controller = TextEditingController();
+  TextEditingController kolvoprotvgruppe2Controller = TextEditingController();
   TextEditingController zamechupzController = TextEditingController();
   TextEditingController sostojanieupzController = TextEditingController();
   TextEditingController peremsostController = TextEditingController();
@@ -265,6 +264,9 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
   TextEditingController tokupz2Controller = TextEditingController();
   TextEditingController soprrast2Controller = TextEditingController();
   TextEditingController udsoprgrunta2Controller = TextEditingController();
+  TextEditingController soprcepiupzController = TextEditingController();
+  TextEditingController soprcepiupz1Controller = TextEditingController();
+  TextEditingController soprcepiupz2Controller = TextEditingController();
 
   bool isEdit;
   final GlobalKey<FormState> _1formKey = GlobalKey<FormState>();
@@ -280,6 +282,8 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
 
     kontrolController.text = object.kontrol ?? '';
     kolvoprotvgruppeController.text = object.kolvoprotvgruppe ?? '';
+    kolvoprotvgruppe1Controller.text = object.kolvoprotvgruppe1 ?? '';
+    kolvoprotvgruppe2Controller.text = object.kolvoprotvgruppe2 ?? '';
     dateController.text = object.date1 ?? '';
     zamechupzController.text = object.zamechupz ?? '';
     sostojanieupzController.text = object.sostojanieupz ?? '';
@@ -305,6 +309,9 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
     tokupz2Controller.text = object.tokupz2 ?? '';
     soprrast2Controller.text = object.soprrast2 ?? '';
     udsoprgrunta2Controller.text = object.udsoprgrunta2 ?? '';
+    soprcepiupzController.text = object.soprcepiupz ?? '';
+    soprcepiupz1Controller.text = object.soprcepiupz1 ?? '';
+    soprcepiupz2Controller.text = object.soprcepiupz2 ?? '';
   }
 
   ObjectDetailUpzState(this.object);
@@ -323,7 +330,16 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
         resizeToAvoidBottomInset: true,
         backgroundColor: _cardColor,
         appBar: AppBar(
-            backgroundColor: Theme.of(context).primaryColor,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: Colors.black,
+                  size: 22,
+                )),
+            backgroundColor: Colors.white,
             title: isEdit
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -333,12 +349,14 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
+                          color: Colors.black,
                         ),
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.delete,
-                          color: Color.fromRGBO(187, 30, 16, 1.0),
+                          Icons.delete_outline_outlined,
+                          color: Theme.of(context).primaryColor,
+                          // color: Color.fromRGBO(187, 30, 16, 1.0),
                           size: 32,
                         ),
                         onPressed: () {
@@ -348,8 +366,9 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.save,
-                          color: Theme.of(context).accentColor,
+                          Icons.save_outlined,
+                          color: Theme.of(context).primaryColor,
+                          // color: Theme.of(context).colorScheme.secondary,
                           size: 32,
                         ),
                         onPressed: () {
@@ -375,12 +394,14 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w400,
+                          color: Colors.black,
                         ),
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.save,
-                          color: Theme.of(context).accentColor,
+                          Icons.save_outlined,
+                          color: Theme.of(context).primaryColor,
+                          // color: Theme.of(context).colorScheme.secondary,
                           size: 32,
                         ),
                         onPressed: () {
@@ -419,21 +440,21 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
               tabs: [
                 Tab(
                     icon: Icon(
-                  Icons.exposure_sharp,
+                  Icons.linear_scale_rounded,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
-                  Icons.battery_4_bar_sharp,
+                  Icons.filter_1_outlined,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
-                  Icons.settings_input_component_sharp,
+                  Icons.filter_2_outlined,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
               ],
             )),
@@ -599,9 +620,884 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                           });
                         },
                       ),
-                      Divider(thickness: 4),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode5,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojanieupz = value;
+                            object.sostojanieupz = sostojanieupzController.text;
+                          });
+                          focusNode5.requestFocus();
+                          object.sostojanieupz = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние УПЗ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode5.hasFocus ||
+                                    sostojanieupzController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojanieupz,
+                      ),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode3,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.kontrol = value;
+                            object.kontrol = kontrolController.text;
+                          });
+                          focusNode3.requestFocus();
+                          object.kontrol = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Тип контроля',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode3.hasFocus ||
+                                    kontrolController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _tipkontrol.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.kontrol,
+                      ),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.kolvoprotvgruppe = value;
+                        },
+                        controller: kolvoprotvgruppeController,
+                        focusNode: focusNode4,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Количество протекторов УПЗ',
+                          hintText: 'Введите или рассчитайте значение',
+                          helperText: 'шт',
+                          prefixIcon: Icon(
+                            Icons.add_box_sharp,
+                            color: focusNode4.hasFocus ||
+                                    kolvoprotvgruppeController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              kolvoprotrash();
+                            },
+                            child: Icon(
+                              Icons.calculate_sharp,
+                              color: Colors.green,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode4.requestFocus();
+                            object.kolvoprotvgruppe = value;
+                            object.kolvoprotvgruppe =
+                                kolvoprotvgruppeController.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
+                      SizedBox(height: 5),
                       Divider(thickness: 4),
                       SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.peremsost = value;
+                              },
+                              controller: peremsostController,
+                              focusNode: focusNode6,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uперем',
+                                hintText: 'Uперем',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.flash_on,
+                                  color: focusNode6.hasFocus ||
+                                          peremsostController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    peremsostController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode6.requestFocus();
+                                  object.peremsost = value;
+                                  object.peremsost = peremsostController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tokupz = value;
+                              },
+                              controller: tokupzController,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Наименование не введено';
+                                } else if (value.length > 6) {
+                                  return 'Максимальная длина 6';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              focusNode: focusNode13,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Ток УПЗ',
+                                hintText: 'Введите значение',
+                                helperText: 'мА',
+                                prefixIcon: Icon(
+                                  Icons.maximize_sharp,
+                                  color: focusNode13.hasFocus ||
+                                          tokupzController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    tokupzController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode13.requestFocus();
+                                  object.tokupz = value;
+                                  object.tokupz = tokupzController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialvklsumm = value;
+                              },
+                              controller: potencialvklsummController,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Наименование не введено';
+                                } else if (value.length > 6) {
+                                  return 'Максимальная длина 6';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              focusNode: focusNode7,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uсум',
+                                hintText: 'Uсум',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.radio_button_checked_sharp,
+                                  color: focusNode7.hasFocus ||
+                                          potencialvklsummController
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialvklsummController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode7.requestFocus();
+                                  object.potencialvklsumm = value;
+                                  object.potencialvklsumm =
+                                      potencialvklsummController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialvklpolyar = value;
+                              },
+                              controller: potencialvklpolyarController,
+                              focusNode: focusNode8,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uпол',
+                                hintText: 'Uпол',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.trip_origin_sharp,
+                                  color: focusNode8.hasFocus ||
+                                          potencialvklpolyarController
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialvklpolyarController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode8.requestFocus();
+                                  object.potencialvklpolyar = value;
+                                  object.potencialvklpolyar =
+                                      potencialvklpolyarController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialprot = value;
+                              },
+                              controller: potencialprotController,
+                              focusNode: focusNode9,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uупз',
+                                hintText: 'Uупз',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.adjust_sharp,
+                                  color: focusNode9.hasFocus ||
+                                          potencialprotController
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialprotController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode9.requestFocus();
+                                  object.potencialprot = value;
+                                  object.potencialprot =
+                                      potencialprotController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.edsupz = value;
+                              },
+                              controller: edsupzController,
+                              focusNode: focusNode10,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'ЭДС УПЗ',
+                                hintText: 'ЭДС УПЗ',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.fiber_smart_record,
+                                  color: focusNode10.hasFocus ||
+                                          edsupzController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    edsupzController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode10.requestFocus();
+                                  object.edsupz = value;
+                                  object.edsupz = edsupzController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprrast = value;
+                              },
+                              controller: soprrastController,
+                              focusNode: focusNode11,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rраст',
+                                hintText: 'Rраст',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.filter_hdr_rounded,
+                                  color: focusNode11.hasFocus ||
+                                          soprrastController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    soprrastController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode11.requestFocus();
+                                  object.soprrast = value;
+                                  object.soprrast = soprrastController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.udsoprgrunta = value;
+                              },
+                              controller: udsoprgruntaController,
+                              focusNode: focusNode12,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rуд.гр.',
+                                hintText: 'Rуд.гр.',
+                                helperText: 'Ом*м',
+                                prefixIcon: Icon(
+                                  Icons.filter,
+                                  color: focusNode12.hasFocus ||
+                                          udsoprgruntaController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    udsoprgruntaController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode12.requestFocus();
+                                  object.udsoprgrunta = value;
+                                  object.udsoprgrunta =
+                                      udsoprgruntaController.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      TextFormField(
+                        maxLength: 1000,
+                        focusNode: focusNode14,
+                        onSaved: (value) {
+                          object.zamechupz = value;
+                        },
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode14.requestFocus();
+                            object.zamechupz = value;
+                            object.zamechupz = zamechupzController.text;
+                          });
+                        },
+                        controller: zamechupzController,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Замечания',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              zamechupzController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          prefixIcon: GestureDetector(
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CameraPageUkz()),
+                                ).then((value) {
+                                  setState(() async {
+                                    if (value != null) {
+                                      _imageupz = value;
+                                      if (_1formKey.currentState.validate()) {
+                                        _1formKey.currentState.save();
+                                        if (_imageupz != null) {
+                                          final Directory extDir =
+                                              await getApplicationDocumentsDirectory();
+                                          final String dirPath =
+                                              '${extDir.path}/Pictures/ehz';
+                                          await Directory(dirPath)
+                                              .create(recursive: true);
+                                          final String filePath =
+                                              '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
+                                          await _imageupz.copy(filePath);
+                                          object.fotoupz = filePath;
+                                        }
+                                      }
+                                    }
+                                  });
+                                });
+                              },
+                              child: Icon(
+                                Icons.camera_alt_sharp,
+                                color: Colors.green,
+                              )),
+                          hintText: 'Дефекты, замечания и другое',
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        maxLines: 10,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1000),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 100,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ImageScreen(
+                                            imagePath: object.fotoupz)),
+                                  );
+                                },
+                                child: Center(
+                                  child: object.fotoupz != null
+                                      ? Image.file(
+                                          File(object.fotoupz),
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          height: 100,
+                                        )
+                                      : Text(
+                                          'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
+                                          style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w300,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(thickness: 4),
                     ],
                   ),
                 ),
@@ -626,6 +1522,552 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                           )),
                       SizedBox(height: 10),
                       Divider(thickness: 4),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.kolvoprotvgruppe1 = value;
+                        },
+                        controller: kolvoprotvgruppe1Controller,
+                        focusNode: focusNode23,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Количество протекторов в группе',
+                          hintText: 'Введите значение',
+                          helperText: 'шт',
+                          prefixIcon: Icon(
+                            Icons.add_box_sharp,
+                            color: focusNode23.hasFocus ||
+                                    kolvoprotvgruppe1Controller.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              kolvoprotvgruppe1Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode23.requestFocus();
+                            object.kolvoprotvgruppe1 = value;
+                            object.kolvoprotvgruppe1 =
+                                kolvoprotvgruppe1Controller.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
+                      Divider(thickness: 4),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.tokupz1 = value;
+                        },
+                        controller: tokupz1Controller,
+                        focusNode: focusNode24,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Ток группы',
+                          hintText: 'Введите значение',
+                          helperText: 'мА',
+                          prefixIcon: Icon(
+                            Icons.maximize_sharp,
+                            color: focusNode24.hasFocus ||
+                                    tokupz1Controller.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              tokupz1Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode24.requestFocus();
+                            object.tokupz1 = value;
+                            object.tokupz1 = tokupz1Controller.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialvklsumm1 = value;
+                              },
+                              controller: potencialvklsumm1Controller,
+                              focusNode: focusNode25,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uсум',
+                                hintText: 'Uсум',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.radio_button_checked_sharp,
+                                  color: focusNode25.hasFocus ||
+                                          potencialvklsumm1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialvklsumm1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode25.requestFocus();
+                                  object.potencialvklsumm1 = value;
+                                  object.potencialvklsumm1 =
+                                      potencialvklsumm1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialvklpolyar1 = value;
+                              },
+                              controller: potencialvklpolyar1Controller,
+                              focusNode: focusNode26,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uпол',
+                                hintText: 'Uпол',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.trip_origin_sharp,
+                                  color: focusNode26.hasFocus ||
+                                          potencialvklpolyar1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialvklpolyar1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode26.requestFocus();
+                                  object.potencialvklpolyar1 = value;
+                                  object.potencialvklpolyar1 =
+                                      potencialvklpolyar1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialprot1 = value;
+                              },
+                              controller: potencialprot1Controller,
+                              focusNode: focusNode27,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uупз',
+                                hintText: 'Uупз',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.adjust_sharp,
+                                  color: focusNode27.hasFocus ||
+                                          potencialprot1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialprot1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode27.requestFocus();
+                                  object.potencialprot1 = value;
+                                  object.potencialprot1 =
+                                      potencialprot1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.edsupz1 = value;
+                              },
+                              controller: edsupz1Controller,
+                              focusNode: focusNode28,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'ЭДС группы',
+                                hintText: 'ЭДС группы',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.fiber_smart_record,
+                                  color: focusNode28.hasFocus ||
+                                          edsupz1Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    edsupz1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode28.requestFocus();
+                                  object.edsupz1 = value;
+                                  object.edsupz1 = edsupz1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprrast1 = value;
+                              },
+                              controller: soprrast1Controller,
+                              focusNode: focusNode29,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rраст',
+                                hintText: 'Rраст',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.filter_hdr_rounded,
+                                  color: focusNode29.hasFocus ||
+                                          soprrast1Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    soprrast1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode29.requestFocus();
+                                  object.soprrast1 = value;
+                                  object.soprrast1 = soprrast1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.udsoprgrunta1 = value;
+                              },
+                              controller: udsoprgrunta1Controller,
+                              focusNode: focusNode30,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rуд.гр.',
+                                hintText: 'Rуд.гр.',
+                                helperText: 'Ом*м',
+                                prefixIcon: Icon(
+                                  Icons.filter,
+                                  color: focusNode30.hasFocus ||
+                                          udsoprgrunta1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    udsoprgrunta1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode30.requestFocus();
+                                  object.udsoprgrunta1 = value;
+                                  object.udsoprgrunta1 =
+                                      udsoprgrunta1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
                       Divider(thickness: 4),
                     ],
                   ),
@@ -651,6 +2093,552 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                           )),
                       SizedBox(height: 10),
                       Divider(thickness: 4),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.kolvoprotvgruppe2 = value;
+                        },
+                        controller: kolvoprotvgruppe2Controller,
+                        focusNode: focusNode22,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Количество протекторов в группе',
+                          hintText: 'Введите значение',
+                          helperText: 'шт',
+                          prefixIcon: Icon(
+                            Icons.add_box_sharp,
+                            color: focusNode22.hasFocus ||
+                                    kolvoprotvgruppe2Controller.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              kolvoprotvgruppe2Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode22.requestFocus();
+                            object.kolvoprotvgruppe2 = value;
+                            object.kolvoprotvgruppe2 =
+                                kolvoprotvgruppe2Controller.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
+                      Divider(thickness: 4),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.tokupz2 = value;
+                        },
+                        controller: tokupz2Controller,
+                        focusNode: focusNode21,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Ток группы',
+                          hintText: 'Введите значение',
+                          helperText: 'мА',
+                          prefixIcon: Icon(
+                            Icons.maximize_sharp,
+                            color: focusNode21.hasFocus ||
+                                    tokupz2Controller.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              tokupz2Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode21.requestFocus();
+                            object.tokupz2 = value;
+                            object.tokupz2 = tokupz2Controller.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialvklsumm2 = value;
+                              },
+                              controller: potencialvklsumm2Controller,
+                              focusNode: focusNode20,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uсум',
+                                hintText: 'Uсум',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.radio_button_checked_sharp,
+                                  color: focusNode20.hasFocus ||
+                                          potencialvklsumm2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialvklsumm2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode20.requestFocus();
+                                  object.potencialvklsumm2 = value;
+                                  object.potencialvklsumm2 =
+                                      potencialvklsumm2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialvklpolyar2 = value;
+                              },
+                              controller: potencialvklpolyar2Controller,
+                              focusNode: focusNode19,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uпол',
+                                hintText: 'Uпол',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.trip_origin_sharp,
+                                  color: focusNode19.hasFocus ||
+                                          potencialvklpolyar2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialvklpolyar2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode19.requestFocus();
+                                  object.potencialvklpolyar2 = value;
+                                  object.potencialvklpolyar2 =
+                                      potencialvklpolyar2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencialprot2 = value;
+                              },
+                              controller: potencialprot2Controller,
+                              focusNode: focusNode18,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uупз',
+                                hintText: 'Uупз',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.adjust_sharp,
+                                  color: focusNode18.hasFocus ||
+                                          potencialprot2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencialprot2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode18.requestFocus();
+                                  object.potencialprot2 = value;
+                                  object.potencialprot2 =
+                                      potencialprot2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.edsupz2 = value;
+                              },
+                              controller: edsupz2Controller,
+                              focusNode: focusNode17,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'ЭДС группы',
+                                hintText: 'ЭДС группы',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.fiber_smart_record,
+                                  color: focusNode17.hasFocus ||
+                                          edsupz2Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    edsupz2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode17.requestFocus();
+                                  object.edsupz2 = value;
+                                  object.edsupz2 = edsupz2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprrast2 = value;
+                              },
+                              controller: soprrast2Controller,
+                              focusNode: focusNode16,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rраст',
+                                hintText: 'Rраст',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.filter_hdr_rounded,
+                                  color: focusNode16.hasFocus ||
+                                          soprrast2Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    soprrast2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode16.requestFocus();
+                                  object.soprrast2 = value;
+                                  object.soprrast2 = soprrast2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.udsoprgrunta2 = value;
+                              },
+                              controller: udsoprgrunta2Controller,
+                              focusNode: focusNode15,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rуд.гр.',
+                                hintText: 'Rуд.гр.',
+                                helperText: 'Ом*м',
+                                prefixIcon: Icon(
+                                  Icons.filter,
+                                  color: focusNode15.hasFocus ||
+                                          udsoprgrunta2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    udsoprgrunta2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode15.requestFocus();
+                                  object.udsoprgrunta2 = value;
+                                  object.udsoprgrunta2 =
+                                      udsoprgrunta2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
                       Divider(thickness: 4),
                     ],
                   ),
@@ -693,6 +2681,29 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
     );
   }
 
+  void kolvoprotrash() {
+    double kp1 = kolvoprotvgruppe1Controller.text.isNotEmpty &&
+            double.tryParse(
+                    kolvoprotvgruppe1Controller.text.replaceAll(',', '.')) !=
+                null
+        ? double.parse(kolvoprotvgruppe1Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double kp2 = kolvoprotvgruppe2Controller.text.isNotEmpty &&
+            double.tryParse(
+                    kolvoprotvgruppe2Controller.text.replaceAll(',', '.')) !=
+                null
+        ? double.parse(kolvoprotvgruppe2Controller.text.replaceAll(',', '.'))
+        : 0.0;
+
+    double summap = kp1 + kp2;
+
+    setState(() {
+      kolvoprotvgruppeController.text = summap.toStringAsFixed(0);
+      object.kolvoprotvgruppe = kolvoprotvgruppeController.text;
+    });
+  }
+
   void _showAction(BuildContext context, int index) {
     showDialog<void>(
       context: context,
@@ -725,174 +2736,62 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
       // Вставляем данные в определенные ячейки
 
       sheet.cell(CellIndex.indexByString("A1")).value =
-          'Протокол обслуживания УКЗ № ${object.title}' ?? '-';
+          'Протокол обслуживания УПЗ № ${object.title}' ?? '-';
       sheet.cell(CellIndex.indexByString("A2")).value =
           'Дата ${object.date1}' ?? '-';
 
-      sheet.cell(CellIndex.indexByString("B4")).value = object.title ?? '-';
-      // sheet.cell(CellIndex.indexByString("B5")).value =
-      //     object.sostojanieskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B6")).value =
-      //     object.potencialskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B8")).value =
-      //     object.naprrabskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B10")).value =
-      //     object.naprmaxskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B11")).value =
-      //     object.tokrabskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B13")).value =
-      //     object.tokmaxskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B14")).value =
-      //     object.zapaspotokuskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B15")).value =
-      //     '${object.shuntnaprskz1 ?? '-'}-${object.shunttokskz1 ?? '-'}';
-      // sheet.cell(CellIndex.indexByString("B16")).value =
-      //     object.shuntnaprskz2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B17")).value =
-      //     object.soprotskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B18")).value =
-      //     object.schetelec1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B19")).value =
-      //     object.schetnarab1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B20")).value =
-      //     object.schetzasch1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B4")).value = object.kontrol ?? '-';
+      sheet.cell(CellIndex.indexByString("B5")).value =
+          object.kolvoprotvgruppe ?? '-';
+      sheet.cell(CellIndex.indexByString("B6")).value = object.peremsost ?? '-';
+      sheet.cell(CellIndex.indexByString("B7")).value =
+          object.potencialvklsumm ?? '-';
+      sheet.cell(CellIndex.indexByString("B8")).value =
+          object.potencialvklpolyar ?? '-';
+      sheet.cell(CellIndex.indexByString("B9")).value =
+          object.potencialprot ?? '-';
+      sheet.cell(CellIndex.indexByString("B10")).value = object.edsupz ?? '-';
+      sheet.cell(CellIndex.indexByString("B11")).value = object.tokupz ?? '-';
+      sheet.cell(CellIndex.indexByString("B12")).value = object.soprrast ?? '-';
+      sheet.cell(CellIndex.indexByString("B13")).value =
+          object.soprcepiupz ?? '-';
+      sheet.cell(CellIndex.indexByString("B14")).value =
+          object.udsoprgrunta ?? '-';
 
-      // sheet.cell(CellIndex.indexByString("D4")).value = object.kipname1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D5")).value =
-      //     object.sostojaniekip1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D6")).value =
-      //     object.peremsost1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D7")).value =
-      //     object.potenctdvklsum1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D8")).value =
-      //     object.potenctdvklpol1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D9")).value =
-      //     object.potenctdotklsum1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D10")).value =
-      //     object.potenctdotklpol1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D11")).value =
-      //     object.datchkorr1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D5")).value =
+          object.kolvoprotvgruppe1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D6")).value = object.peremsost ?? '-';
+      sheet.cell(CellIndex.indexByString("D7")).value =
+          object.potencialvklsumm1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D8")).value =
+          object.potencialvklpolyar1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D9")).value =
+          object.potencialprot1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D10")).value = object.edsupz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D11")).value = object.tokupz1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D12")).value =
+          object.soprrast1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D13")).value =
+          object.soprcepiupz1 ?? '-';
 
-      // sheet.cell(CellIndex.indexByString("F4")).value = object.kipname2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F5")).value =
-      //     object.sostojaniekip2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F6")).value =
-      //     object.peremsost2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F7")).value =
-      //     object.potenctdvklsum2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F8")).value =
-      //     object.potenctdvklpol2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F9")).value =
-      //     object.potenctdotklsum2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F10")).value =
-      //     object.potenctdotklpol2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F11")).value =
-      //     object.datchkorr2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F5")).value =
+          object.kolvoprotvgruppe2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F6")).value = object.peremsost ?? '-';
+      sheet.cell(CellIndex.indexByString("F7")).value =
+          object.potencialvklsumm2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F8")).value =
+          object.potencialvklpolyar2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F9")).value =
+          object.potencialprot2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F10")).value = object.edsupz2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F11")).value = object.tokupz2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F12")).value =
+          object.soprrast2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F13")).value =
+          object.soprcepiupz2 ?? '-';
 
-      // sheet.cell(CellIndex.indexByString("D13")).value = object.kipname3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D14")).value =
-      //     object.sostojaniekip3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D15")).value =
-      //     object.peremsost3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D16")).value =
-      //     object.potenctdvklsum3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D17")).value =
-      //     object.potenctdvklpol3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D18")).value =
-      //     object.potenctdotklsum3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D19")).value =
-      //     object.potenctdotklpol3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D20")).value =
-      //     object.datchkorr3 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("F13")).value = object.kipname4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F14")).value =
-      //     object.sostojaniekip4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F15")).value =
-      //     object.peremsost4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F16")).value =
-      //     object.potenctdvklsum4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F17")).value =
-      //     object.potenctdvklpol4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F18")).value =
-      //     object.potenctdotklsum4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F19")).value =
-      //     object.potenctdotklpol4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F20")).value =
-      //     object.datchkorr4 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("H4")).value = object.bdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H5")).value =
-      //     object.sostojaniebdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H6")).value = object.tok1bdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H7")).value = object.tok2bdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H8")).value = object.tok3bdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H9")).value = object.tok4bdr1 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("H13")).value = object.bdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H14")).value =
-      //     object.sostojaniebdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H15")).value = object.tok1bdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H16")).value = object.tok2bdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H17")).value = object.tok3bdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H18")).value = object.tok4bdr2 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("J4")).value = object.markaaz ?? '-';
-      // sheet.cell(CellIndex.indexByString("J5")).value =
-      //     object.sostojanieaz ?? '-';
-      // sheet.cell(CellIndex.indexByString("J7")).value = object.tok5az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J8")).value = object.tok1az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J9")).value = object.tok2az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J10")).value = object.tok3az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J11")).value = object.tok3az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J12")).value =
-      //     object.soprrast5az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J13")).value =
-      //     object.soprrast1az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J14")).value =
-      //     object.soprrast2az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J15")).value =
-      //     object.soprrast3az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J16")).value =
-      //     object.soprrast4az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J17")).value =
-      //     object.rogruntaz ?? '-';
-      // sheet.cell(CellIndex.indexByString("J18")).value =
-      //     object.rogruntktp ?? '-';
-      // sheet.cell(CellIndex.indexByString("J19")).value =
-      //     object.rogruntraz ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L4")).value =
-      //     object.sostojaniektp ?? '-';
-      // sheet.cell(CellIndex.indexByString("L5")).value =
-      //     object.sostojanieshr ?? '-';
-      // sheet.cell(CellIndex.indexByString("L7")).value =
-      //     object.soprotzzktp ?? '-';
-      // sheet.cell(CellIndex.indexByString("L8")).value =
-      //     object.soprotzzraz ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L10")).value =
-      //     object.sostojanievl1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("L11")).value =
-      //     object.sostojaniekl1 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L13")).value =
-      //     object.sostojanievl2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("L14")).value =
-      //     object.sostojaniekl2 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L16")).value =
-      //     object.sostojanievl3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("L17")).value =
-      //     object.sostojaniekl3 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L19")).value =
-      //     object.provodvl2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("L20")).value =
-      //     object.provodvl1 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("A22")).value =
-      //     'СКЗ 1:${object.zamechskz1 != null && object.zamechskz1.isNotEmpty ? object.zamechskz1 : 'нет замечаний'}; СКЗ 2:${object.zamechskz2 != null && object.zamechskz2.isNotEmpty ? object.zamechskz2 : 'нет замечаний'};';
+      sheet.cell(CellIndex.indexByString("A22")).value =
+          'УПЗ:${object.zamechupz != null ? object.zamechupz : 'нет замечаний'};';
 
       // Получаем путь к папке "Downloads" на внешнем хранилище
       Directory externalStorageDirectory = await getExternalStorageDirectory();
