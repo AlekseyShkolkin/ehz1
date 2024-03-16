@@ -1368,6 +1368,68 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.soprcepiupz = value;
+                        },
+                        controller: soprcepiupzController,
+                        focusNode: focusNode31,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'R цепи УПЗ',
+                          hintText: 'R цепи УПЗ',
+                          helperText: 'Ом',
+                          prefixIcon: Icon(
+                            Icons.linear_scale,
+                            color: focusNode31.hasFocus ||
+                                    soprcepiupzController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              soprcepiupzController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode31.requestFocus();
+                            object.soprcepiupz = value;
+                            object.soprcepiupz = soprcepiupzController.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
                       SizedBox(height: 5),
                       Divider(thickness: 4),
                       TextFormField(
@@ -2002,10 +2064,10 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                             child: TextFormField(
                               maxLength: 6,
                               onFieldSubmitted: (String value) {
-                                object.udsoprgrunta1 = value;
+                                object.soprcepiupz1 = value;
                               },
-                              controller: udsoprgrunta1Controller,
-                              focusNode: focusNode30,
+                              controller: soprcepiupz1Controller,
+                              focusNode: focusNode32,
                               style: textStyle,
                               decoration: InputDecoration(
                                 focusColor: Theme.of(context).primaryColor,
@@ -2019,21 +2081,20 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                                   fontWeight: FontWeight.w300,
                                   color: Theme.of(context).primaryColor,
                                 ),
-                                labelText: 'Rуд.гр.',
-                                hintText: 'Rуд.гр.',
-                                helperText: 'Ом*м',
+                                labelText: 'R цепи группы УПЗ',
+                                hintText: 'R цепи группы УПЗ',
+                                helperText: 'Ом',
                                 prefixIcon: Icon(
-                                  Icons.filter,
-                                  color: focusNode30.hasFocus ||
-                                          udsoprgrunta1Controller
-                                              .text.isNotEmpty
+                                  Icons.linear_scale,
+                                  color: focusNode32.hasFocus ||
+                                          soprcepiupz1Controller.text.isNotEmpty
                                       ? Theme.of(context).primaryColor
                                       : Colors.grey,
                                   size: 32,
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
-                                    udsoprgrunta1Controller.clear();
+                                    soprcepiupz1Controller.clear();
                                   },
                                   child: Icon(
                                     Icons.delete_outline,
@@ -2056,10 +2117,10 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                               ),
                               onChanged: (String value) {
                                 setState(() {
-                                  focusNode30.requestFocus();
-                                  object.udsoprgrunta1 = value;
-                                  object.udsoprgrunta1 =
-                                      udsoprgrunta1Controller.text;
+                                  focusNode32.requestFocus();
+                                  object.soprcepiupz1 = value;
+                                  object.soprcepiupz1 =
+                                      soprcepiupz1Controller.text;
                                 });
                               },
                               keyboardType: TextInputType.number,
@@ -2573,10 +2634,10 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                             child: TextFormField(
                               maxLength: 6,
                               onFieldSubmitted: (String value) {
-                                object.udsoprgrunta2 = value;
+                                object.soprcepiupz2 = value;
                               },
-                              controller: udsoprgrunta2Controller,
-                              focusNode: focusNode15,
+                              controller: soprcepiupz2Controller,
+                              focusNode: focusNode33,
                               style: textStyle,
                               decoration: InputDecoration(
                                 focusColor: Theme.of(context).primaryColor,
@@ -2590,21 +2651,20 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                                   fontWeight: FontWeight.w300,
                                   color: Theme.of(context).primaryColor,
                                 ),
-                                labelText: 'Rуд.гр.',
-                                hintText: 'Rуд.гр.',
-                                helperText: 'Ом*м',
+                                labelText: 'R цепи группы УПЗ',
+                                hintText: 'R цепи группы УПЗ',
+                                helperText: 'Ом',
                                 prefixIcon: Icon(
-                                  Icons.filter,
-                                  color: focusNode15.hasFocus ||
-                                          udsoprgrunta2Controller
-                                              .text.isNotEmpty
+                                  Icons.linear_scale,
+                                  color: focusNode33.hasFocus ||
+                                          soprcepiupz2Controller.text.isNotEmpty
                                       ? Theme.of(context).primaryColor
                                       : Colors.grey,
                                   size: 32,
                                 ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
-                                    udsoprgrunta2Controller.clear();
+                                    soprcepiupz2Controller.clear();
                                   },
                                   child: Icon(
                                     Icons.delete_outline,
@@ -2627,10 +2687,10 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                               ),
                               onChanged: (String value) {
                                 setState(() {
-                                  focusNode15.requestFocus();
-                                  object.udsoprgrunta2 = value;
-                                  object.udsoprgrunta2 =
-                                      udsoprgrunta2Controller.text;
+                                  focusNode33.requestFocus();
+                                  object.soprcepiupz2 = value;
+                                  object.soprcepiupz2 =
+                                      soprcepiupz2Controller.text;
                                 });
                               },
                               keyboardType: TextInputType.number,
