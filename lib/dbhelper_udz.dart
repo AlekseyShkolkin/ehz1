@@ -39,6 +39,8 @@ class DbHelperUdz {
   String colnarabshet2 = 'narabshet2';
   String colfoto2 = 'foto2';
   String colzamech2 = 'zamech2';
+  String colrealtok1 = 'realtok1';
+  String colrealtok2 = 'realtok2';
 
   DbHelperUdz._internal();
 
@@ -90,6 +92,8 @@ class DbHelperUdz {
         $coltokshunt2 TEXT,
         $colizmnaprshunt2 TEXT,
         $colsoprotudz2 TEXT,
+        $colrealtok1 TEXT,
+        $colrealtok2 TEXT,
         $colelecshet2 TEXT,
         $colnarabshet2 TEXT,
         $colfoto2 TEXT,

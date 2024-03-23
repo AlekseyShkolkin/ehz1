@@ -36,10 +36,14 @@ class Udz {
   String _narabshet2;
   String _foto2;
   String _zamech2;
+  String _realtok1;
+  String _realtok2;
 
   Udz(
     this._title,
     this._todoDate, [
+    this._realtok1,
+    this._realtok2,
     this._date1,
     this._marka1,
     this._sostojanie1,
@@ -73,6 +77,8 @@ class Udz {
     this._id,
     this._title,
     this._todoDate, [
+    this._realtok1,
+    this._realtok2,
     this._date1,
     this._marka1,
     this._sostojanie1,
@@ -133,6 +139,8 @@ class Udz {
   String get narabshet2 => _narabshet2;
   String get foto2 => _foto2;
   String get zamech2 => _zamech2;
+  String get realtok1 => _realtok1;
+  String get realtok2 => _realtok2;
 
   set title(String newTitle) {
     if ((newTitle?.length ?? 0) <= 255) {
@@ -306,6 +314,18 @@ class Udz {
     }
   }
 
+  set realtok1(String newrealtok1) {
+    if ((newrealtok1?.length ?? 0) <= 255) {
+      _realtok1 = newrealtok1;
+    }
+  }
+
+  set realtok2(String newrealtok2) {
+    if ((newrealtok2?.length ?? 0) <= 255) {
+      _realtok2 = newrealtok2;
+    }
+  }
+
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> map = <String, dynamic>{};
     map['title'] = _title;
@@ -338,6 +358,8 @@ class Udz {
     map['narabshet2'] = _narabshet2;
     map['foto2'] = _foto2;
     map['zamech2'] = _zamech2;
+    map['realtok1'] = _realtok1;
+    map['realtok2'] = _realtok2;
 
     if (_id != null) {
       map['id'] = _id;
@@ -377,5 +399,7 @@ class Udz {
     _narabshet2 = o['narabshet2'];
     _foto2 = o['foto2'];
     _zamech2 = o['zamech2'];
+    _realtok1 = o['realtok1'];
+    _realtok2 = o['realtok2'];
   }
 }

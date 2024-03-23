@@ -873,7 +873,7 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                               controller: tokupzController,
                               validator: (String value) {
                                 if (value.isEmpty) {
-                                  return 'Наименование не введено';
+                                  return 'Значение не введено';
                                 } else if (value.length > 6) {
                                   return 'Максимальная длина 6';
                                 } else {
@@ -952,7 +952,7 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
                               controller: potencialvklsummController,
                               validator: (String value) {
                                 if (value.isEmpty) {
-                                  return 'Наименование не введено';
+                                  return 'Значение не введено';
                                 } else if (value.length > 6) {
                                   return 'Максимальная длина 6';
                                 } else {

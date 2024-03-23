@@ -164,12 +164,10 @@ class ObjectListUdzState extends State {
                         Text(
                           udzs[position].potenctrub1.isNotEmpty &&
                                   udzs[position].potencrels1.isNotEmpty
-                              ? 'Uт=' +
+                              ? 'Uт-з=' +
                                   udzs[position].potenctrub1 +
                                   'A  ' +
-                                  'Uр=' +
-                                  udzs[position].potencrels1 +
-                                  'B '
+                                  'Uр-з='
                               : '',
                           style: const TextStyle(
                               fontSize: 14.0,
