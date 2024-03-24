@@ -151,7 +151,16 @@ class ObjectListAzdState extends State {
                     title: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Text(
-                        azds[position].title ?? 'Без названия',
+                        (azds[position].title != null &&
+                                azds[position].kmtruby != null &&
+                                azds[position].doroga != null &&
+                                azds[position].kmdorogi != null &&
+                                azds[position].title.isNotEmpty &&
+                                azds[position].kmtruby.isNotEmpty &&
+                                azds[position].doroga.isNotEmpty &&
+                                azds[position].kmdorogi.isNotEmpty)
+                            ? '${azds[position].title}-${azds[position].kmtruby}, ${azds[position].doroga}-${azds[position].kmdorogi}'
+                            : 'Нет данных',
                         style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.w500,
@@ -162,19 +171,17 @@ class ObjectListAzdState extends State {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          azds[position].potenctrubsumm1.isNotEmpty &&
-                                  azds[position].potencfutlsumm1.isNotEmpty
-                              ? 'Uт=' +
-                                  azds[position].potenctrubsumm1 +
-                                  'B  ' +
-                                  'Uф=' +
-                                  azds[position].potencfutlsumm1 +
-                                  'B '
+                          (azds[position].potenctrubsumm1 != null &&
+                                  azds[position].potencfutlsumm1 != null &&
+                                  azds[position].potenctrubsumm1.isNotEmpty &&
+                                  azds[position].potencfutlsumm1.isNotEmpty)
+                              ? 'Uт=${azds[position].potenctrubsumm1}B  Uф=${azds[position].potencfutlsumm1}B'
                               : '',
                           style: const TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black38),
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black38,
+                          ),
                         ),
                         const SizedBox(
                           height: 15.0,

@@ -730,8 +730,8 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.delete,
-                          color: Color.fromRGBO(187, 30, 16, 1.0),
+                          Icons.delete_outline_outlined,
+                          color: Theme.of(context).primaryColor,
                           size: 32,
                         ),
                         onPressed: () {
@@ -741,8 +741,8 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.save,
-                          color: Theme.of(context).colorScheme.secondary,
+                          Icons.save_outlined,
+                          color: Theme.of(context).primaryColor,
                           size: 32,
                         ),
                         onPressed: () {
@@ -791,8 +791,8 @@ class ObjectDetailUkzState extends State<ObjectDetailUkz> {
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.save,
-                          color: Theme.of(context).colorScheme.secondary,
+                          Icons.save_outlined,
+                          color: Theme.of(context).primaryColor,
                           size: 32,
                         ),
                         onPressed: () {

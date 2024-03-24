@@ -135,74 +135,9 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
   FocusNode focusNode97 = FocusNode();
   FocusNode focusNode98 = FocusNode();
   FocusNode focusNode99 = FocusNode();
-  FocusNode focusNode100 = FocusNode();
-  FocusNode focusNode101 = FocusNode();
-  FocusNode focusNode102 = FocusNode();
-  FocusNode focusNode103 = FocusNode();
-  FocusNode focusNode104 = FocusNode();
-  FocusNode focusNode105 = FocusNode();
-  FocusNode focusNode106 = FocusNode();
-  FocusNode focusNode107 = FocusNode();
-  FocusNode focusNode108 = FocusNode();
-  FocusNode focusNode109 = FocusNode();
-  FocusNode focusNode110 = FocusNode();
-  FocusNode focusNode111 = FocusNode();
-  FocusNode focusNode112 = FocusNode();
-  FocusNode focusNode113 = FocusNode();
-  FocusNode focusNode114 = FocusNode();
-  FocusNode focusNode115 = FocusNode();
-  FocusNode focusNode116 = FocusNode();
-  FocusNode focusNode117 = FocusNode();
-  FocusNode focusNode118 = FocusNode();
-  FocusNode focusNode119 = FocusNode(); //free
-  FocusNode focusNode120 = FocusNode(); //free
-  FocusNode focusNode121 = FocusNode(); //free
-  FocusNode focusNode122 = FocusNode(); //free
-  FocusNode focusNode123 = FocusNode(); //free
-  FocusNode focusNode124 = FocusNode(); //free
-  FocusNode focusNode125 = FocusNode(); //free
-  FocusNode focusNode126 = FocusNode(); //free
-  FocusNode focusNode127 = FocusNode(); //free
-  FocusNode focusNode128 = FocusNode(); //free
-  FocusNode focusNode129 = FocusNode(); //free
-  FocusNode focusNode130 = FocusNode(); //free
-  FocusNode focusNode131 = FocusNode(); //free
-  FocusNode focusNode132 = FocusNode(); //free
-  FocusNode focusNode133 = FocusNode(); //free
-  FocusNode focusNode134 = FocusNode(); //free
-  FocusNode focusNode135 = FocusNode(); //free
-  FocusNode focusNode136 = FocusNode(); //free
-  FocusNode focusNode137 = FocusNode(); //free
-  FocusNode focusNode138 = FocusNode(); //free
-  FocusNode focusNode139 = FocusNode(); //free
-  FocusNode focusNode140 = FocusNode(); //free
-  FocusNode focusNode141 = FocusNode(); //free
-  FocusNode focusNode142 = FocusNode(); //free
-  FocusNode focusNode143 = FocusNode(); //free
-  FocusNode focusNode144 = FocusNode(); //free
-  FocusNode focusNode145 = FocusNode(); //free
-  FocusNode focusNode146 = FocusNode(); //free
-  FocusNode focusNode147 = FocusNode(); //free
-  FocusNode focusNode148 = FocusNode(); //free
-  FocusNode focusNode149 = FocusNode(); //free
-  FocusNode focusNode150 = FocusNode(); //free
-  FocusNode focusNode151 = FocusNode(); //free
 
-  File _imageskz1;
-  File _imageskz2;
-
-  File _imagekip1;
-  File _imagekip2;
-  File _imagekip3;
-  File _imagekip4;
-
-  File _imagebdr1;
-  File _imagebdr2;
-  File _imageaz;
-
-  File _imageelobor;
-  File _imagevl;
-  File _imagedrug;
+  File _image1;
+  File _image2;
 
   Color _cardColor = Colors.white;
 
@@ -233,6 +168,31 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
     'Требует ремонта',
     'В ремонте',
     'В резерве',
+  ];
+  final List<String> _tipdorogi = [
+    'Автомобильная дорога',
+    'Железная дорога',
+    'Другое',
+  ];
+  final List<String> _patron = [
+    'Есть',
+    'Отсутствует',
+    'Нет данных',
+  ];
+  final List<String> _zaschpatrona = [
+    'Протекаторная',
+    'Соввместная с газопроводом',
+    'от СКЗ',
+    'Отсутствует',
+    'Нет данных',
+  ];
+  final List<String> _tipkontrolja = [
+    'КИП',
+    'КИП с БСЗ',
+    'БСЗ',
+    'СКЗ',
+    'Ковер',
+    'Нет данных',
   ];
 
   TextEditingController idController = TextEditingController();
@@ -276,6 +236,8 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
   TextEditingController soprotcepi2Controller = TextEditingController();
   TextEditingController soprotrast2Controller = TextEditingController();
   TextEditingController zamechan2Controller = TextEditingController();
+  TextEditingController udsoprgrunta1Controller = TextEditingController();
+  TextEditingController udsoprgrunta2Controller = TextEditingController();
 
   bool isEdit;
   final GlobalKey<FormState> _1formKey = GlobalKey<FormState>();
@@ -325,6 +287,8 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
     soprotcepi2Controller.text = object.soprotcepi2 ?? '';
     soprotrast2Controller.text = object.soprotrast2 ?? '';
     zamechan2Controller.text = object.zamechan2 ?? '';
+    udsoprgrunta1Controller.text = object.udsoprgrunta1 ?? '';
+    udsoprgrunta2Controller.text = object.udsoprgrunta2 ?? '';
   }
 
   ObjectDetailAzdState(this.object);
@@ -343,7 +307,16 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
         resizeToAvoidBottomInset: true,
         backgroundColor: _cardColor,
         appBar: AppBar(
-            backgroundColor: Theme.of(context).primaryColor,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: Colors.black,
+                  size: 22,
+                )),
+            backgroundColor: Colors.white,
             title: isEdit
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -353,12 +326,13 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
+                          color: Colors.black,
                         ),
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.delete,
-                          color: Color.fromRGBO(187, 30, 16, 1.0),
+                          Icons.delete_outline_outlined,
+                          color: Theme.of(context).primaryColor,
                           size: 32,
                         ),
                         onPressed: () {
@@ -368,8 +342,8 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.save,
-                          color: Theme.of(context).accentColor,
+                          Icons.save_outlined,
+                          color: Theme.of(context).primaryColor,
                           size: 32,
                         ),
                         onPressed: () {
@@ -395,12 +369,13 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w400,
+                          color: Colors.black,
                         ),
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.save,
-                          color: Theme.of(context).accentColor,
+                          Icons.save_outlined,
+                          color: Theme.of(context).primaryColor,
                           size: 32,
                         ),
                         onPressed: () {
@@ -439,21 +414,21 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
               tabs: [
                 Tab(
                     icon: Icon(
-                  Icons.exposure_sharp,
+                  Icons.directions_car_sharp,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
-                  Icons.battery_4_bar_sharp,
+                  Icons.arrow_back_rounded,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
                 Tab(
                     icon: Icon(
-                  Icons.settings_input_component_sharp,
+                  Icons.arrow_forward_rounded,
                   size: 30,
-                  // color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 )),
               ],
             )),
@@ -470,9 +445,9 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                       Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'УСТАНОВКА ПРОТЕКТОРНОЙ ЗАЩИТЫ',
+                            'ПЕРЕХОД ГАЗОПРОВОДА ПОД АЖД',
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w300),
                           )),
@@ -571,7 +546,7 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                         decoration: InputDecoration(
                           focusColor: Theme.of(context).primaryColor,
                           labelStyle: TextStyle(
-                            fontSize: 22,
+                            fontSize: 16,
                             fontWeight: FontWeight.w300,
                             color: Theme.of(context).primaryColor,
                           ),
@@ -580,8 +555,8 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                             fontWeight: FontWeight.w300,
                             color: Theme.of(context).primaryColor,
                           ),
-                          labelText: 'Наименование объекта *',
-                          hintText: 'Как называется объект обслуживания',
+                          labelText: 'Наименование газопровода',
+                          hintText: 'Введите газопровод',
                           prefixIcon: Icon(
                             Icons.account_balance_outlined,
                             color: focusNode1.hasFocus ||
@@ -619,9 +594,631 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                           });
                         },
                       ),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode2,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.tipdorogi = value;
+                            object.tipdorogi = tipdorogiController.text;
+                          });
+                          focusNode2.requestFocus();
+                          object.tipdorogi = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Тип дороги',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.add_road_rounded,
+                            color: (focusNode2.hasFocus ||
+                                    tipdorogiController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _tipdorogi.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.tipdorogi,
+                      ),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 50,
+                        onFieldSubmitted: (String value) {
+                          object.doroga = value;
+                        },
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return 'Наименование не введено';
+                          } else if (value.length > 50) {
+                            return 'Максимальная длина 50';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.text,
+                        controller: dorogaController,
+                        focusNode: focusNode3,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Наименование дороги',
+                          hintText: 'Введите дорогу',
+                          prefixIcon: Icon(
+                            Icons.edit_road_rounded,
+                            color: focusNode3.hasFocus ||
+                                    dorogaController.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              dorogaController.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode3.requestFocus();
+                            object.doroga = value;
+                            object.doroga = dorogaController.text;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 10,
+                              onFieldSubmitted: (String value) {
+                                object.kmtruby = value;
+                              },
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Значение не введено';
+                                } else if (value.length > 10) {
+                                  return 'Максимальная длина 10';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              keyboardType: TextInputType.number,
+                              controller: kmtrubyController,
+                              focusNode: focusNode4,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'КМ трубы',
+                                hintText: 'КМ трубы',
+                                helperText: 'КМ',
+                                prefixIcon: Icon(
+                                  Icons.add_location_alt_outlined,
+                                  color: focusNode4.hasFocus ||
+                                          kmtrubyController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    kmtrubyController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode4.requestFocus();
+                                  object.kmtruby = value;
+                                  object.kmtruby = kmtrubyController.text;
+                                });
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 10,
+                              onFieldSubmitted: (String value) {
+                                object.kmdorogi = value;
+                              },
+                              keyboardType: TextInputType.number,
+                              controller: kmdorogiController,
+                              focusNode: focusNode5,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'КМ дороги',
+                                hintText: 'КМ дороги',
+                                helperText: 'КМ',
+                                prefixIcon: Icon(
+                                  Icons.edit_road_rounded,
+                                  color: focusNode5.hasFocus ||
+                                          kmdorogiController.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    kmdorogiController.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode5.requestFocus();
+                                  object.kmdorogi = value;
+                                  object.kmdorogi = kmdorogiController.text;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
                       Divider(thickness: 4),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode6,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.nalichfutljara = value;
+                            object.nalichfutljara =
+                                nalichfutljaraController.text;
+                          });
+                          focusNode6.requestFocus();
+                          object.nalichfutljara = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Наличие защитного кожуха',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.radio_button_checked_outlined,
+                            color: (focusNode6.hasFocus ||
+                                    nalichfutljaraController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _patron.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.nalichfutljara,
+                      ),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode7,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.tipzashity = value;
+                            object.tipzashity = tipzashityController.text;
+                          });
+                          focusNode7.requestFocus();
+                          object.tipzashity = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Тип защиты кожуха',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.iso_sharp,
+                            color: (focusNode7.hasFocus ||
+                                    tipzashityController.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _zaschpatrona.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.tipzashity,
+                      ),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode8,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.tipkontrolja1 = value;
+                            object.tipkontrolja1 = tipkontrolja1Controller.text;
+                          });
+                          focusNode8.requestFocus();
+                          object.tipkontrolja1 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Тип контроля',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.battery_4_bar,
+                            color: (focusNode8.hasFocus ||
+                                    tipkontrolja1Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _tipkontrolja.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.tipkontrolja1,
+                      ),
+                      SizedBox(height: 10),
+                      DropdownButtonFormField(
+                        isExpanded: true,
+                        focusNode: focusNode9,
+                        onChanged: (String value) {
+                          setState(() {
+                            object.sostojanie1 = value;
+                            object.sostojanie1 = sostojanie1Controller.text;
+                          });
+                          focusNode9.requestFocus();
+                          object.sostojanie1 = value;
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelText: 'Состояние средств ЭХЗ',
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          prefixIcon: Icon(
+                            Icons.check_circle_outline_sharp,
+                            color: (focusNode9.hasFocus ||
+                                    sostojanie1Controller.text.isNotEmpty)
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        items: _sostojanieskz1.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        style: textStyle,
+                        value: object.sostojanie1,
+                      ),
+                      SizedBox(height: 10),
                       Divider(thickness: 4),
                       SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 1000,
+                        focusNode: focusNode10,
+                        onSaved: (value) {
+                          object.zamechan1 = value;
+                        },
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode10.requestFocus();
+                            object.zamechan1 = value;
+                            object.zamechan1 = zamechan1Controller.text;
+                          });
+                        },
+                        controller: zamechan1Controller,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Замечания',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              zamechan1Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          prefixIcon: GestureDetector(
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CameraPageUkz()),
+                                ).then((value) {
+                                  setState(() async {
+                                    if (value != null) {
+                                      _image1 = value;
+                                      if (_1formKey.currentState.validate()) {
+                                        _1formKey.currentState.save();
+                                        if (_image1 != null) {
+                                          final Directory extDir =
+                                              await getApplicationDocumentsDirectory();
+                                          final String dirPath =
+                                              '${extDir.path}/Pictures/ehz';
+                                          await Directory(dirPath)
+                                              .create(recursive: true);
+                                          final String filePath =
+                                              '$dirPath/${DateTime.now().millisecondsSinceEpoch.toString()}.jpg';
+                                          await _image1.copy(filePath);
+                                          object.foto1 = filePath;
+                                        }
+                                      }
+                                    }
+                                  });
+                                });
+                              },
+                              child: Icon(
+                                Icons.camera_alt_sharp,
+                                color: Colors.green,
+                              )),
+                          hintText: 'Дефекты, замечания и другое',
+                          border: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        maxLines: 10,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1000),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: 100,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ImageScreen(
+                                            imagePath: object.foto1)),
+                                  );
+                                },
+                                child: Center(
+                                  child: object.foto1 != null
+                                      ? Image.file(
+                                          File(object.foto1),
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          height: 100,
+                                        )
+                                      : Text(
+                                          'ИЗОБРАЖЕНИЕ ОТСУТСТВУЕТ',
+                                          style: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w300,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(thickness: 4),
                     ],
                   ),
                 ),
@@ -638,7 +1235,7 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                       Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'ГРУППА №1',
+                            'ДО ПЕРЕХОДА ПО ХОДУ ГАЗА',
                             style: TextStyle(
                                 fontSize: 22,
                                 color: Theme.of(context).primaryColor,
@@ -646,6 +1243,730 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                           )),
                       SizedBox(height: 10),
                       Divider(thickness: 4),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.peremsost1 = value;
+                        },
+                        controller: peremsost1Controller,
+                        focusNode: focusNode11,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Переменная составляющая',
+                          hintText: 'Введите значение',
+                          helperText: 'В',
+                          prefixIcon: Icon(
+                            Icons.flash_on_sharp,
+                            color: focusNode11.hasFocus ||
+                                    peremsost1Controller.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              peremsost1Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode11.requestFocus();
+                            object.peremsost1 = value;
+                            object.peremsost1 = peremsost1Controller.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potenctrubsumm1 = value;
+                              },
+                              controller: potenctrubsumm1Controller,
+                              focusNode: focusNode12,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uтруба-земля',
+                                hintText: 'Uтруба-земля',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.radio_button_checked_sharp,
+                                  color: focusNode12.hasFocus ||
+                                          potenctrubsumm1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potenctrubsumm1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode12.requestFocus();
+                                  object.potenctrubsumm1 = value;
+                                  object.potenctrubsumm1 =
+                                      potenctrubsumm1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencfutlsumm1 = value;
+                              },
+                              controller: potencfutlsumm1Controller,
+                              focusNode: focusNode13,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uкожух-земля',
+                                hintText: 'Uкожух-земля',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.trip_origin_sharp,
+                                  color: focusNode13.hasFocus ||
+                                          potencfutlsumm1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencfutlsumm1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode13.requestFocus();
+                                  object.potencfutlsumm1 = value;
+                                  object.potencfutlsumm1 =
+                                      potencfutlsumm1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potenctrubpol1 = value;
+                              },
+                              controller: potenctrubpol1Controller,
+                              focusNode: focusNode14,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uпол(т-з)',
+                                hintText: 'Uпол(т-з)',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.adjust_sharp,
+                                  color: focusNode14.hasFocus ||
+                                          potenctrubpol1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potenctrubpol1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode14.requestFocus();
+                                  object.potenctrubpol1 = value;
+                                  object.potenctrubpol1 =
+                                      potenctrubpol1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencfutlpol1 = value;
+                              },
+                              controller: potencfutlpol1Controller,
+                              focusNode: focusNode15,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uпол(ф-з)',
+                                hintText: 'Uпол(ф-з)',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.radio_button_off_sharp,
+                                  color: focusNode15.hasFocus ||
+                                          potencfutlpol1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencfutlpol1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode15.requestFocus();
+                                  object.potencfutlpol1 = value;
+                                  object.potencfutlpol1 =
+                                      potencfutlpol1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tok11 = value;
+                              },
+                              controller: tok11Controller,
+                              focusNode: focusNode16,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'I(1 канала)',
+                                hintText: 'I(1 канала)',
+                                helperText: 'А',
+                                prefixIcon: Icon(
+                                  Icons.flash_on_sharp,
+                                  color: focusNode16.hasFocus ||
+                                          tok11Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode16.requestFocus();
+                                  object.tok11 = value;
+                                  object.tok11 = tok11Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tok21 = value;
+                              },
+                              controller: tok21Controller,
+                              focusNode: focusNode17,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'I(2 канала)',
+                                hintText: 'I(2 канала)',
+                                helperText: 'А',
+                                prefixIcon: Icon(
+                                  Icons.flash_on_sharp,
+                                  color: focusNode17.hasFocus ||
+                                          tok21Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode17.requestFocus();
+                                  object.tok21 = value;
+                                  object.tok21 = tok21Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprotkan11 = value;
+                              },
+                              controller: soprotkan11Controller,
+                              focusNode: focusNode18,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'R(1 канала)',
+                                hintText: 'R(1 канала)',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.view_week_sharp,
+                                  color: focusNode18.hasFocus ||
+                                          soprotkan11Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode18.requestFocus();
+                                  object.soprotkan11 = value;
+                                  object.soprotkan11 =
+                                      soprotkan11Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprotkan21 = value;
+                              },
+                              controller: soprotkan21Controller,
+                              focusNode: focusNode19,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'R(2 канала)',
+                                hintText: 'R(2 канала)',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.view_week_sharp,
+                                  color: focusNode19.hasFocus ||
+                                          soprotkan21Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode19.requestFocus();
+                                  object.soprotkan21 = value;
+                                  object.soprotkan21 =
+                                      soprotkan21Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprotrast1 = value;
+                              },
+                              controller: soprotrast1Controller,
+                              focusNode: focusNode20,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rраст',
+                                hintText: 'Rраст',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.filter_hdr_rounded,
+                                  color: focusNode20.hasFocus ||
+                                          soprotrast1Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    soprotrast1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode20.requestFocus();
+                                  object.soprotrast1 = value;
+                                  object.soprotrast1 =
+                                      soprotrast1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.udsoprgrunta1 = value;
+                              },
+                              controller: udsoprgrunta1Controller,
+                              focusNode: focusNode21,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rуд.гр.',
+                                hintText: 'Rуд.гр.',
+                                helperText: 'Ом*м',
+                                prefixIcon: Icon(
+                                  Icons.filter,
+                                  color: focusNode21.hasFocus ||
+                                          udsoprgrunta1Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    udsoprgrunta1Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode21.requestFocus();
+                                  object.udsoprgrunta1 = value;
+                                  object.udsoprgrunta1 =
+                                      udsoprgrunta1Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
                       Divider(thickness: 4),
                     ],
                   ),
@@ -663,7 +1984,7 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                       Container(
                           alignment: Alignment.center,
                           child: Text(
-                            'ГРУППА №2',
+                            'ПОСЛЕ ПЕРЕХОДА ПО ХОДУ ГАЗА',
                             style: TextStyle(
                                 fontSize: 24,
                                 color: Theme.of(context).primaryColor,
@@ -671,6 +1992,730 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
                           )),
                       SizedBox(height: 10),
                       Divider(thickness: 4),
+                      SizedBox(height: 10),
+                      TextFormField(
+                        maxLength: 6,
+                        onFieldSubmitted: (String value) {
+                          object.peremsost2 = value;
+                        },
+                        controller: peremsost2Controller,
+                        focusNode: focusNode32,
+                        style: textStyle,
+                        decoration: InputDecoration(
+                          focusColor: Theme.of(context).primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          labelText: 'Переменная составляющая',
+                          hintText: 'Введите значение',
+                          helperText: 'В',
+                          prefixIcon: Icon(
+                            Icons.flash_on_sharp,
+                            color: focusNode32.hasFocus ||
+                                    peremsost2Controller.text.isNotEmpty
+                                ? Theme.of(context).primaryColor
+                                : Colors.grey,
+                            size: 32,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              peremsost2Controller.clear();
+                            },
+                            child: Icon(
+                              Icons.delete_outline,
+                              color: Color.fromRGBO(187, 30, 16, 1.0),
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                          ),
+                        ),
+                        onChanged: (String value) {
+                          setState(() {
+                            focusNode32.requestFocus();
+                            object.peremsost2 = value;
+                            object.peremsost2 = peremsost2Controller.text;
+                          });
+                        },
+                        keyboardType: TextInputType.number,
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potenctrubsumm2 = value;
+                              },
+                              controller: potenctrubsumm2Controller,
+                              focusNode: focusNode31,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uтруба-земля',
+                                hintText: 'Uтруба-земля',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.radio_button_checked_sharp,
+                                  color: focusNode31.hasFocus ||
+                                          potenctrubsumm2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potenctrubsumm2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode31.requestFocus();
+                                  object.potenctrubsumm2 = value;
+                                  object.potenctrubsumm2 =
+                                      potenctrubsumm2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencfutlsumm2 = value;
+                              },
+                              controller: potencfutlsumm2Controller,
+                              focusNode: focusNode30,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uкожух-земля',
+                                hintText: 'Uкожух-земля',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.trip_origin_sharp,
+                                  color: focusNode30.hasFocus ||
+                                          potencfutlsumm2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencfutlsumm2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode30.requestFocus();
+                                  object.potencfutlsumm2 = value;
+                                  object.potencfutlsumm2 =
+                                      potencfutlsumm2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potenctrubpol2 = value;
+                              },
+                              controller: potenctrubpol2Controller,
+                              focusNode: focusNode29,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uпол(т-з)',
+                                hintText: 'Uпол(т-з)',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.adjust_sharp,
+                                  color: focusNode29.hasFocus ||
+                                          potenctrubpol2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potenctrubpol2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode29.requestFocus();
+                                  object.potenctrubpol2 = value;
+                                  object.potenctrubpol2 =
+                                      potenctrubpol2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.potencfutlpol2 = value;
+                              },
+                              controller: potencfutlpol2Controller,
+                              focusNode: focusNode28,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Uпол(ф-з)',
+                                hintText: 'Uпол(ф-з)',
+                                helperText: 'В',
+                                prefixIcon: Icon(
+                                  Icons.radio_button_off_sharp,
+                                  color: focusNode28.hasFocus ||
+                                          potencfutlpol2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    potencfutlpol2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode28.requestFocus();
+                                  object.potencfutlpol2 = value;
+                                  object.potencfutlpol2 =
+                                      potencfutlpol2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tok12 = value;
+                              },
+                              controller: tok12Controller,
+                              focusNode: focusNode27,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'I(1 канала)',
+                                hintText: 'I(1 канала)',
+                                helperText: 'А',
+                                prefixIcon: Icon(
+                                  Icons.flash_on_sharp,
+                                  color: focusNode27.hasFocus ||
+                                          tok12Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode27.requestFocus();
+                                  object.tok12 = value;
+                                  object.tok12 = tok12Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.tok22 = value;
+                              },
+                              controller: tok22Controller,
+                              focusNode: focusNode26,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'I(2 канала)',
+                                hintText: 'I(2 канала)',
+                                helperText: 'А',
+                                prefixIcon: Icon(
+                                  Icons.flash_on_sharp,
+                                  color: focusNode26.hasFocus ||
+                                          tok22Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode26.requestFocus();
+                                  object.tok22 = value;
+                                  object.tok22 = tok22Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprotkan12 = value;
+                              },
+                              controller: soprotkan12Controller,
+                              focusNode: focusNode25,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'R(1 канала)',
+                                hintText: 'R(1 канала)',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.view_week_sharp,
+                                  color: focusNode25.hasFocus ||
+                                          soprotkan12Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode25.requestFocus();
+                                  object.soprotkan12 = value;
+                                  object.soprotkan12 =
+                                      soprotkan12Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprotkan22 = value;
+                              },
+                              controller: soprotkan22Controller,
+                              focusNode: focusNode24,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'R(2 канала)',
+                                hintText: 'R(2 канала)',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.view_week_sharp,
+                                  color: focusNode24.hasFocus ||
+                                          soprotkan22Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode24.requestFocus();
+                                  object.soprotkan22 = value;
+                                  object.soprotkan22 =
+                                      soprotkan22Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Divider(thickness: 4),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.soprotrast2 = value;
+                              },
+                              controller: soprotrast2Controller,
+                              focusNode: focusNode23,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rраст',
+                                hintText: 'Rраст',
+                                helperText: 'Ом',
+                                prefixIcon: Icon(
+                                  Icons.filter_hdr_rounded,
+                                  color: focusNode23.hasFocus ||
+                                          soprotrast2Controller.text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    soprotrast2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode23.requestFocus();
+                                  object.soprotrast2 = value;
+                                  object.soprotrast2 =
+                                      soprotrast2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextFormField(
+                              maxLength: 6,
+                              onFieldSubmitted: (String value) {
+                                object.udsoprgrunta2 = value;
+                              },
+                              controller: udsoprgrunta2Controller,
+                              focusNode: focusNode22,
+                              style: textStyle,
+                              decoration: InputDecoration(
+                                focusColor: Theme.of(context).primaryColor,
+                                labelStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                labelText: 'Rуд.гр.',
+                                hintText: 'Rуд.гр.',
+                                helperText: 'Ом*м',
+                                prefixIcon: Icon(
+                                  Icons.filter,
+                                  color: focusNode22.hasFocus ||
+                                          udsoprgrunta2Controller
+                                              .text.isNotEmpty
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                  size: 32,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    udsoprgrunta2Controller.clear();
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    color: Color.fromRGBO(187, 30, 16, 1.0),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey, width: 2),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 2),
+                                ),
+                              ),
+                              onChanged: (String value) {
+                                setState(() {
+                                  focusNode22.requestFocus();
+                                  object.udsoprgrunta2 = value;
+                                  object.udsoprgrunta2 =
+                                      udsoprgrunta2Controller.text;
+                                });
+                              },
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
                       Divider(thickness: 4),
                     ],
                   ),
@@ -733,186 +2778,85 @@ class ObjectDetailAzdState extends State<ObjectDetailAzd> {
   void editExcelFile() async {
     try {
       // Получаем путь к файлу Excel в папке assets
-      ByteData data = await rootBundle.load('assets/form/TOUPZ.xlsx');
+      ByteData data = await rootBundle.load('assets/form/TOAZD.xlsx');
       List<int> bytes = data.buffer.asUint8List();
 
       // Открываем файл Excel
       var excel = Excel.decodeBytes(bytes);
 
       // Получаем страницу, на которой нужно вставить данные
-      var sheet = excel['TOUPZ'];
+      var sheet = excel['TOAZD'];
 
       // Вставляем данные в определенные ячейки
 
       sheet.cell(CellIndex.indexByString("A1")).value =
-          'Протокол обслуживания УКЗ № ${object.title}' ?? '-';
+          'Протокол обслуживания перехода через АЖД № ${object.title}-${object.kmtruby}, ${object.doroga}-${object.kmdorogi}' ??
+              '-';
       sheet.cell(CellIndex.indexByString("A2")).value =
           'Дата ${object.date1}' ?? '-';
 
       sheet.cell(CellIndex.indexByString("B4")).value = object.title ?? '-';
-      // sheet.cell(CellIndex.indexByString("B5")).value =
-      //     object.sostojanieskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B6")).value =
-      //     object.potencialskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B8")).value =
-      //     object.naprrabskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B10")).value =
-      //     object.naprmaxskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B11")).value =
-      //     object.tokrabskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B13")).value =
-      //     object.tokmaxskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B14")).value =
-      //     object.zapaspotokuskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B15")).value =
-      //     '${object.shuntnaprskz1 ?? '-'}-${object.shunttokskz1 ?? '-'}';
-      // sheet.cell(CellIndex.indexByString("B16")).value =
-      //     object.shuntnaprskz2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B17")).value =
-      //     object.soprotskz1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B18")).value =
-      //     object.schetelec1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B19")).value =
-      //     object.schetnarab1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("B20")).value =
-      //     object.schetzasch1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B5")).value = object.tipdorogi ?? '-';
+      sheet.cell(CellIndex.indexByString("B6")).value = object.doroga ?? '-';
+      sheet.cell(CellIndex.indexByString("B7")).value = object.kmtruby ?? '-';
+      sheet.cell(CellIndex.indexByString("B8")).value = object.kmdorogi ?? '-';
+      sheet.cell(CellIndex.indexByString("B9")).value =
+          object.nalichfutljara ?? '-';
+      sheet.cell(CellIndex.indexByString("B10")).value =
+          object.tipzashity ?? '-';
+      sheet.cell(CellIndex.indexByString("B11")).value =
+          object.tipkontrolja1 ?? '-';
+      sheet.cell(CellIndex.indexByString("B12")).value =
+          object.sostojanie1 ?? '-';
 
-      // sheet.cell(CellIndex.indexByString("D4")).value = object.kipname1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D5")).value =
-      //     object.sostojaniekip1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D6")).value =
-      //     object.peremsost1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D7")).value =
-      //     object.potenctdvklsum1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D8")).value =
-      //     object.potenctdvklpol1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D9")).value =
-      //     object.potenctdotklsum1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D10")).value =
-      //     object.potenctdotklpol1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D11")).value =
-      //     object.datchkorr1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D4")).value =
+          object.peremsost1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D5")).value =
+          object.potenctrubsumm1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D6")).value =
+          object.potenctrubpol1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D7")).value =
+          object.potencfutlsumm1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D8")).value =
+          object.potencfutlpol1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D9")).value = object.tok11 ?? '-';
+      sheet.cell(CellIndex.indexByString("D10")).value = object.tok21 ?? '-';
+      sheet.cell(CellIndex.indexByString("D11")).value =
+          object.soprotkan11 ?? '-';
+      sheet.cell(CellIndex.indexByString("D12")).value =
+          object.soprotkan21 ?? '-';
+      sheet.cell(CellIndex.indexByString("D13")).value =
+          object.soprotcepi1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D14")).value =
+          object.soprotrast1 ?? '-';
+      sheet.cell(CellIndex.indexByString("D15")).value =
+          object.udsoprgrunta1 ?? '-';
 
-      // sheet.cell(CellIndex.indexByString("F4")).value = object.kipname2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F5")).value =
-      //     object.sostojaniekip2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F6")).value =
-      //     object.peremsost2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F7")).value =
-      //     object.potenctdvklsum2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F8")).value =
-      //     object.potenctdvklpol2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F9")).value =
-      //     object.potenctdotklsum2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F10")).value =
-      //     object.potenctdotklpol2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F11")).value =
-      //     object.datchkorr2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F4")).value =
+          object.peremsost2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F5")).value =
+          object.potenctrubsumm2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F6")).value =
+          object.potenctrubpol2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F7")).value =
+          object.potencfutlsumm2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F8")).value =
+          object.potencfutlpol2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F9")).value = object.tok12 ?? '-';
+      sheet.cell(CellIndex.indexByString("F10")).value = object.tok22 ?? '-';
+      sheet.cell(CellIndex.indexByString("F11")).value =
+          object.soprotkan12 ?? '-';
+      sheet.cell(CellIndex.indexByString("F12")).value =
+          object.soprotkan22 ?? '-';
+      sheet.cell(CellIndex.indexByString("F13")).value =
+          object.soprotcepi2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F14")).value =
+          object.soprotrast2 ?? '-';
+      sheet.cell(CellIndex.indexByString("F15")).value =
+          object.udsoprgrunta2 ?? '-';
 
-      // sheet.cell(CellIndex.indexByString("D13")).value = object.kipname3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D14")).value =
-      //     object.sostojaniekip3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D15")).value =
-      //     object.peremsost3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D16")).value =
-      //     object.potenctdvklsum3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D17")).value =
-      //     object.potenctdvklpol3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D18")).value =
-      //     object.potenctdotklsum3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D19")).value =
-      //     object.potenctdotklpol3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("D20")).value =
-      //     object.datchkorr3 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("F13")).value = object.kipname4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F14")).value =
-      //     object.sostojaniekip4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F15")).value =
-      //     object.peremsost4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F16")).value =
-      //     object.potenctdvklsum4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F17")).value =
-      //     object.potenctdvklpol4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F18")).value =
-      //     object.potenctdotklsum4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F19")).value =
-      //     object.potenctdotklpol4 ?? '-';
-      // sheet.cell(CellIndex.indexByString("F20")).value =
-      //     object.datchkorr4 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("H4")).value = object.bdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H5")).value =
-      //     object.sostojaniebdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H6")).value = object.tok1bdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H7")).value = object.tok2bdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H8")).value = object.tok3bdr1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H9")).value = object.tok4bdr1 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("H13")).value = object.bdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H14")).value =
-      //     object.sostojaniebdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H15")).value = object.tok1bdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H16")).value = object.tok2bdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H17")).value = object.tok3bdr2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("H18")).value = object.tok4bdr2 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("J4")).value = object.markaaz ?? '-';
-      // sheet.cell(CellIndex.indexByString("J5")).value =
-      //     object.sostojanieaz ?? '-';
-      // sheet.cell(CellIndex.indexByString("J7")).value = object.tok5az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J8")).value = object.tok1az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J9")).value = object.tok2az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J10")).value = object.tok3az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J11")).value = object.tok3az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J12")).value =
-      //     object.soprrast5az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J13")).value =
-      //     object.soprrast1az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J14")).value =
-      //     object.soprrast2az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J15")).value =
-      //     object.soprrast3az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J16")).value =
-      //     object.soprrast4az ?? '-';
-      // sheet.cell(CellIndex.indexByString("J17")).value =
-      //     object.rogruntaz ?? '-';
-      // sheet.cell(CellIndex.indexByString("J18")).value =
-      //     object.rogruntktp ?? '-';
-      // sheet.cell(CellIndex.indexByString("J19")).value =
-      //     object.rogruntraz ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L4")).value =
-      //     object.sostojaniektp ?? '-';
-      // sheet.cell(CellIndex.indexByString("L5")).value =
-      //     object.sostojanieshr ?? '-';
-      // sheet.cell(CellIndex.indexByString("L7")).value =
-      //     object.soprotzzktp ?? '-';
-      // sheet.cell(CellIndex.indexByString("L8")).value =
-      //     object.soprotzzraz ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L10")).value =
-      //     object.sostojanievl1 ?? '-';
-      // sheet.cell(CellIndex.indexByString("L11")).value =
-      //     object.sostojaniekl1 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L13")).value =
-      //     object.sostojanievl2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("L14")).value =
-      //     object.sostojaniekl2 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L16")).value =
-      //     object.sostojanievl3 ?? '-';
-      // sheet.cell(CellIndex.indexByString("L17")).value =
-      //     object.sostojaniekl3 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("L19")).value =
-      //     object.provodvl2 ?? '-';
-      // sheet.cell(CellIndex.indexByString("L20")).value =
-      //     object.provodvl1 ?? '-';
-
-      // sheet.cell(CellIndex.indexByString("A22")).value =
-      //     'СКЗ 1:${object.zamechskz1 != null && object.zamechskz1.isNotEmpty ? object.zamechskz1 : 'нет замечаний'}; СКЗ 2:${object.zamechskz2 != null && object.zamechskz2.isNotEmpty ? object.zamechskz2 : 'нет замечаний'};';
+      sheet.cell(CellIndex.indexByString("A17")).value =
+          '${object.zamechan1 != null && object.zamechan1.isNotEmpty ? object.zamechan1 : 'нет замечаний'};';
 
       // Получаем путь к папке "Downloads" на внешнем хранилище
       Directory externalStorageDirectory = await getExternalStorageDirectory();

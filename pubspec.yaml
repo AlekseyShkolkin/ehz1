@@ -78,6 +78,7 @@ flutter:
     - assets/form/TOUKZ.xlsx
     - assets/form/TOUPZ.xlsx
     - assets/form/TOUDZ.xlsx
+    - assets/form/TOAZD.xlsx
     - assets/notdate.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

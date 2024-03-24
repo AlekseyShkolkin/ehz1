@@ -284,7 +284,7 @@ class ObjectDetailUpzState extends State<ObjectDetailUpz> {
     kolvoprotvgruppeController.text = object.kolvoprotvgruppe ?? '';
     kolvoprotvgruppe1Controller.text = object.kolvoprotvgruppe1 ?? '';
     kolvoprotvgruppe2Controller.text = object.kolvoprotvgruppe2 ?? '';
-    dateController.text = object.date1 ?? '';
+    // dateController.text = object.date1 ?? '';
     zamechupzController.text = object.zamechupz ?? '';
     sostojanieupzController.text = object.sostojanieupz ?? '';
     peremsostController.text = object.peremsost ?? '';

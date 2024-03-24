@@ -150,7 +150,7 @@ class Udz {
 
   set date1(String newdate1) {
     if ((newdate1?.length ?? 0) <= 255) {
-      date1 = newdate1;
+      _date1 = newdate1;
     }
   }
 
